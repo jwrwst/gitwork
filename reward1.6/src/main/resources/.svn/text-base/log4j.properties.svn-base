@@ -1,0 +1,21 @@
+log4j.rootLogger=dubug, CONSOLE
+#log4j.rootLogger=ERROR
+log4j.appender.CONSOLE=org.apache.log4j.ConsoleAppender
+
+log4j.appender.CONSOLE.layout=org.apache.log4j.PatternLayout
+log4j.appender.CONSOLE.layout.ConversionPattern=[%-5p] %d{yyyy-MM-dd HH:mm:ss,SSS} %l %n %m %n
+# %-4r %-5p [%t] %37c %3x - %m%n
+
+log4j.appender.FILE=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.FILE.layout = org.apache.log4j.PatternLayout
+log4j.appender.FILE.layout.ConversionPattern=[%-5p] %d{yyyy-MM-dd HH:mm:ss,SSS} %l %n %m %n
+log4j.appender.FILE.File=${catalina.home}/logs/platform.log  
+
+log4j.appender.FILE2 = org.apache.log4j.RollingFileAppender
+log4j.appender.FILE2.MaxFileSize = 500KB
+
+log4j.logger.java.sql.ResultSet=ERROR  
+log4j.logger.org.apache=ERROR  
+log4j.logger.java.sql.Connection=dubug  
+log4j.logger.java.sql.Statement=dubug
+log4j.logger.java.sql.PreparedStatement=ERROR 

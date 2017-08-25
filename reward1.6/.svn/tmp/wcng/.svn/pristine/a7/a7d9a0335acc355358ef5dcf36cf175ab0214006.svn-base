@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>注册商户</title>
+<link href="${basepath}/assets/plugin/mui/dist/css/mui.min.css"
+	rel="stylesheet" />
+<link href="${basepath}/assets/def/css/tips.css" rel="stylesheet" />
+<link href="${basepath}/assets/plugin/mui/dist/css/mui.picker.css" rel="stylesheet" />
+<link href="${basepath}/assets/plugin/mui/dist/css/mui.poppicker.css" rel="stylesheet" />
+<style type="text/css">
+.mui-page-content {
+	padding: 0;
+}
+
+.header .img {
+	background: url("${basepath}/assets/def/images/tenant.png") no-repeat
+		center center;
+	width: 100%;
+	min-height: 150px;
+	display: block;
+	background-size: 150px auto;
+}
+.mui-btn-gray{
+	background-color: lightgray;
+}
+.mui-checkbox input[type=checkbox]:before,.mui-checkbox input[type=checkbox]:checked:before
+	{
+	content: none;
+}
+
+.mui-checkbox input[type=checkbox] {
+	background: url("${basepath}/assets/def/images/edit1.png") no-repeat
+		left center;
+	background-size: 20px;
+}
+
+.mui-checkbox input[type=checkbox]:checked {
+	background: url("${basepath}/assets/def/images/edit.png") no-repeat left
+		center;
+	background-size: 20px;
+}
+.mui-input-row label font{ 
+    color: #EA4F16;
+    margin: 0 5px;
+    font-size: 24px;
+    line-height: 1.6;
+    float: left;}
+    .mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active{ color: #EA4F16;}
+    .mui-segmented-control.mui-segmented-control-inverted .mui-control-item{ color: #bdbdbd;}
+    .mui-segmented-control.mui-segmented-control-inverted~.mui-slider-progress-bar{    background-color: #EA4F16;}
+.bindstep p i{ float:left; display:inline-block; font-style:normal; width:20px; height:20px; background:#fc865b; color:#fff; border-radius:10px;  text-align:center;}
+.bindstep p span{ padding-left:25px; display:block;}
+    .mui-input-row .mui-input-password~.mui-icon-eye{
+    position: absolute;
+    top: 50px;
+}
+    .mui-input-row .mui-input-password ~.mui-icon-eye {
+	background: url("${basepath}/assets/def/images/bind-audit11.png") center
+		8px no-repeat;
+	background-size: 25px;
+}
+
+.mui-input-row .mui-input-password ~.mui-icon-eye.mui-active {
+	background: url("${basepath}/assets/def/images/bind-audit12.png") center
+		8px no-repeat;
+	background-size: 25px;
+}
+
+.mui-icon-eye:before {
+	content: none;
+}
+</style>
+</head>
+
+<body>
+	<!--页面主结构开始-->
+	<div id="center" class="mui-views">
+		<div class="mui-view">
+			<div class="mui-navbar" style="display: none;"></div>
+			<div class="mui-pages"></div>
+		</div>
+	</div>
+
+	<div id="regpage">
+		<!--页面标题栏开始-->
+		<div class="mui-page-content" id="scroll-content_detail">
+			<div class="scroller">
+				<a href="#resultpage" id="rega" style="display: none;"></a>
+				<div class="plat-content">
+				<div id="slider" class="mui-slider">
+						<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-6"></div>
+						<div class="mui-slider-group">
+							<div id="item1mobile" class="mui-slider-item mui-control-content mui-active" style='border-bottom:0;'>
+					<form name="storeInfo" id="storeInfo" enctype="multipart/form-data"
+						method="post" accept="image/gif"
+						action="${basepath}/rs/external/merchants/registerMerchants">
+						<input type="hidden" name="empId" value="${loginVo.empId}">
+						<input type="hidden" name="storeId">
+						<input type="hidden" name="merId">
+						<div class="plat-subtitle" style="height:auto; margin: 20px 0 12px;">
+							支持手机和PC端统一管理多家店铺、手机端独立管理店铺。
+							<button type="button" class="mui-btn mui-btn-red" id="updateInfo" 
+							style="float: right;margin: 0;padding: 3px 5px;display: none;">修改信息</button>
+						</div>
+						
+						<div class="mui-input-group">
+						<div class="mui-input-row">
+								<label><font>*</font>品牌名称</label> 
+								<input type="text" class="" value="" placeholder="请输入商户名称，如：众赏" name="orgName" maxlength="50">
+							</div>
+							<div class="mui-input-row">
+								<label><font>*</font>公司名称</label> 
+								<input type="text" class="" value="" placeholder="请输入营业执照上的公司名称" name="merName" maxlength="50">
+							</div>
+						</div>
+						<div class="mui-input-group">
+							<input type="hidden" name="phone">
+						</div>
+						<div class="mui-content-padded mui-text-center" id="photoDiv">
+							<p>
+								<a class="header"> <span class="img"></span></a>
+							</p>
+							<p>上传营业执照</p>
+						</div>
+						<!-- <div class="plat-subtitle">店铺信息（非必输项）</div> -->
+						<div class="mui-input-group">
+							<div class="mui-input-row">
+								<label id="System.store.type"><font>*</font>分类</label>
+								<a id='showCityPicker' class="mui-btn-block" type='button' style='color:#000; font-size:15px; text-align:right; padding-right:15px;'>请选择 ...</a>
+								<input name ="type" type="hidden">
+								<input name ="codeType" type="hidden">
+							</div>
+							<div class="mui-input-row">
+								<label id="System.store.type"><font>*</font>所在地区</label>
+								<a id='showCityPicker3' class="mui-btn-block" style='color:#000; font-size:15px; text-align:right; padding-right:15px;'>请选择 ...</a> 
+								<input name ="provinceId" type="hidden">
+								<input name ="cityId" type="hidden">
+								<input name ="areaId" type="hidden">
+							</div>
+							<div class="mui-input-row">
+							<input type="text" class=""
+									placeholder="请填写详细地址，不必重复填写省市区信息" name="address" maxlength="100">
+							</div>
+							<div class="mui-input-row">
+								<label style='width:45%;'>商户负责人姓名</label> 
+								<input style='width:55%;' type="text" class="" placeholder="请输入你的全名" name="legalName">
+							</div>
+							
+							<div class="mui-input-row">
+								<label style="width:20%;">邮箱</label> 
+								<input style='width:80%;' type="text" class="" placeholder="请输入邮箱地址（方便获取更多资料）" name="email">
+							</div>
+						</div>
+						
+						<div class="mui-input-row mui-checkbox mui-left" id="agreementDiv">
+							<input value="Item 1" type="checkbox" checked="checked" id = "agreementBox" style="left:10px;">
+							<p style="margin-top: 8px; padding-left: 38px;">
+								我同意"<a style="color: #EA4F16;" id="agreement">众赏商户协议</a>"
+							</p>
+						</div>
+						<div>
+							<div class="mui-content-padded tips-reginfo-submit">
+								<button type="button" style="display: none"
+									class="mui-btn mui-btn-warning mui-btn-block" id="regbnt">提交</button>
+								<input type="hidden" name="filePath" id="filePath" value="">
+							</div>
+
+						</div>
+
+					</form></div>
+
+			</div>
+		</div>
+	</div>
+
+
+
+</body>
+
+<script type="text/javascript"
+	src="${basepath}/assets/plugin/require.js"></script>
+<script type="text/javascript"
+	src="${basepath}/assets/def/js/tips/tips.js"></script>
+ <script type="text/javascript"
+	src="${basepath}/views/template/web/tips/tenant/def/registerMerchants.js?v=2312432423423432"></script>
+ 
+ 
+<script src="${basepath}/assets/plugin/mui/dist/js/mui.min.js"></script>
+<script src="${basepath}/assets/plugin/mui/js/mui.picker.js"></script>
+<script src="${basepath}/assets/plugin/mui/js/mui.poppicker.js"></script>
+
+<script type="text/javascript" src="${basepath}/assets/def/js/tips/areaWap.js"></script>
+<script type="text/javascript" src="${basepath}/assets/def/js/tips/dataWap.js"></script>
+ 
+ <script type="text/javascript">
+
+	var orgCode = "${loginVo.openId}";
+	require(
+			[ "jquery", "mui", "mui_view", "addr", "common" ,"jweixin"],
+			function($$, mui, mui_view, addr, tools,wx) {
+				
+				RegisterMerchants.init();
+				//AreaWap.init("storeInfo","005","005002","005002003");
+
+				try{tools.initWeiXin(addr);}catch(e){console.log(e);}
+				function uploadImg(){
+
+					 // alert(2)
+					  wx.chooseImage({
+						  //  count: 1, // 默认9
+						    sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+						    sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+						    success: function (res) {
+						        var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+						        var localId=localIds[0];
+						        $$(".header").children(".img").css("background-image","url('"+localId+"')");
+						        wx.uploadImage({
+						            localId: localId, // 需要上传的图片的本地ID，由chooseImage接口获得
+						            isShowProgressTips: 1, // 默认为1，显示进度提示
+						            success: function (res) {
+						                var serverId = res.serverId; // 返回图片的服务器端ID
+						                addr.uploadImg("serverId="+serverId+"&empId="+0,function(data){
+						                	//alert(data.imgUrl);
+						                	$$('#filePath').val(data.imgUrl);
+						                });
+						            }
+						        });
+						    }
+						});
+				}
+				  //点击修改头像
+				  $$(".header").on("tap",function(){
+					  uploadImg();
+				  })
+				  //点击修改头像
+				  $$("#photoImg").on("tap",function(){
+					  uploadImg();
+				  })
+	});
+
+/* 	//分类 所选地区
+	(function($, doc) {
+		$.init();
+		$.ready(function() {
+
+			//级联示例
+			var cityPicker = new $.PopPicker({
+				layer: 2
+			});
+			cityPicker.setData(cityData);
+			var showCityPickerButton = doc.getElementById('showCityPicker');
+			var cityResult = doc.getElementById('cityResult');
+			showCityPickerButton.addEventListener('tap', function(event) {
+				cityPicker.show(function(items) {
+					showCityPicker.innerText = "分类:" + items[0].text + " " + items[1].text;
+					//返回 false 可以阻止选择框的关闭
+					//return false;
+				});
+			}, false);
+			//-----------------------------------------
+			//					//级联示例
+			var cityPicker3 = new $.PopPicker({
+				layer: 3
+			});
+			cityPicker3.setData(cityData3);
+			var showCityPickerButton = doc.getElementById('showCityPicker3');
+			showCityPickerButton.addEventListener('tap', function(event) {
+				cityPicker3.show(function(items) {
+					showCityPicker3.innerText = "中国:" + (items[0] || {}).text + " " + (items[1] || {}).text + " " + (items[2] || {}).text;
+					//返回 false 可以阻止选择框的关闭
+					//return false;
+				});
+			}, false);
+		});
+	})(mui, document); */
+</script>
+
+
+
+
+
+</html>

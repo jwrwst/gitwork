@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/store/external/service/impl
+END
+ExItEvaluateInfoServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/store/external/service/impl/ExItEvaluateInfoServiceImpl.java
+END
+ExStoreAuthServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/store/external/service/impl/ExStoreAuthServiceImpl.java
+END
+BsStoreEmpServiceDividedImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/store/external/service/impl/BsStoreEmpServiceDividedImpl.java
+END
+ExStoreAuthDetailServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/store/external/service/impl/ExStoreAuthDetailServiceImpl.java
+END
+ExBsStoreEmpServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/store/external/service/impl/ExBsStoreEmpServiceImpl.java
+END
+ExBsStoreInfoServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/store/external/service/impl/ExBsStoreInfoServiceImpl.java
+END
+ExItRewardInfoServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/store/external/service/impl/ExItRewardInfoServiceImpl.java
+END
+ExStoreStatisticInfoServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/store/external/service/impl/ExStoreStatisticInfoServiceImpl.java
+END
+ExStoreExtRewardServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/store/external/service/impl/ExStoreExtRewardServiceImpl.java
+END

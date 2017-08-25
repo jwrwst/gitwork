@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/sms/external/utils
+END
+DesHelper.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/sms/external/utils/DesHelper.java
+END
+SmsTemplateUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/sms/external/utils/SmsTemplateUtils.java
+END
+MD5.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/sms/external/utils/MD5.java
+END
+SDKHttpClient.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/sms/external/utils/SDKHttpClient.java
+END
+Sms.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/sms/external/utils/Sms.java
+END
+Main.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/sms/external/utils/Main.java
+END
+HttpClientUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/sms/external/utils/HttpClientUtil.java
+END

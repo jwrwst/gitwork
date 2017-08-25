@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/wechat/external/common/wxv3Pay/pay
+END
+Notify.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/wechat/external/common/wxv3Pay/pay/Notify.java
+END
+WxPayDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/wechat/external/common/wxv3Pay/pay/WxPayDto.java
+END
+Wx3Pay.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/wechat/external/common/wxv3Pay/pay/Wx3Pay.java
+END
+WxPayResult.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/wechat/external/common/wxv3Pay/pay/WxPayResult.java
+END

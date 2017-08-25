@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.weixin.dao.WeixinQrcodeDao">
+    
+	<sql id="weixinQrcodeColumns">
+		a.id AS "id",
+		a.ticket AS "ticket",
+		a.scene_id AS "sceneId",
+		a.type AS "type",
+		a.expire_seconds AS "expireSeconds",
+		a.url AS "url",
+		a.create_date AS "createDate",
+		a.remarks  AS "remarks"
+	</sql>
+	
+	<sql id="weixinQrcodeJoins">
+	</sql>
+    
+	<select id="get" resultType="WeixinQrcode">
+		SELECT 
+			<include refid="weixinQrcodeColumns"/>
+		FROM weixin_qrcode a
+		<include refid="weixinQrcodeJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="WeixinQrcode">
+		SELECT 
+			<include refid="weixinQrcodeColumns"/>
+		FROM weixin_qrcode a
+		<include refid="weixinQrcodeJoins"/>
+		<where>
+			
+			<if test="type != null and type != ''">
+				AND a.type = #{type}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="WeixinQrcode">
+		SELECT 
+			<include refid="weixinQrcodeColumns"/>
+		FROM weixin_qrcode a
+		<include refid="weixinQrcodeJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO weixin_qrcode(
+			id,
+			ticket,
+			scene_id,
+			type,
+			expire_seconds,
+			url,
+			create_date,
+			remarks
+		) VALUES (
+			#{id},
+			#{ticket},
+			#{sceneId},
+			#{type},
+			#{expireSeconds},
+			#{url},
+			#{createDate},
+			#{remarks}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE weixin_qrcode SET 	
+			ticket = #{ticket},
+			scene_id = #{sceneId},
+			type = #{type},
+			expire_seconds = #{expireSeconds},
+			url = #{url}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM weixin_qrcode
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	  <head>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	    <title>众赏-添加分成人员</title>
+	    <link href="${basepath}/assets/plugin/mui/dist/css/mui.min.css" rel="stylesheet"/>
+	    <link href="${basepath}/assets/def/css/tips.css" rel="stylesheet"/>
+	    <link rel="shortcut icon" href="${basepath}/assets/favicon.ico" />
+	    <style type="text/css">
+	        .mui-page-content{
+		       padding-top: 0px;
+		    }
+	    </style>
+	  </head>
+	  
+	  <body> 	  	
+	    <!--页面主结构开始-->
+		<div id="center" class="mui-views">
+			<div class="mui-view">	
+			    <div class="mui-navbar" style="display: none;">
+				</div>	
+				<div class="mui-pages">
+				</div>
+			</div>
+		</div>
+
+
+		<div id="resultpage"  class="mui-page">
+			<div class="mui-navbar-inner mui-bar mui-bar-nav" style="display:none;">
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+					<span class="mui-icon mui-icon-left-nav"></span>
+				</button>
+				<h1 class="mui-text-left mui-title">绑定成功</h1>
+			</div>
+		
+			<div class="mui-page-content">
+			<div class="scroller">
+			    <a href="#resultpage" id="rega" style="display:none;"></a>
+				<div class="plat-content">
+				   <div class="mui-content">
+					<div style="text-align: center;height:120px;padding:10px; ">
+							<div style="width:100%;text-align: center;font-weight:bold;padding:10px 10px;">
+								<p id="successTips" style='text-align: left; color: #EA4F16;'><img alt="" src="${basepath}/assets/def/images/success.png"  class="successImg" style='width:20px !important;height:20px !important; margin-right:5px; display:inline-block;'>您已成为&nbsp;<span class="manager"></span>&nbsp;店铺的分成人员。</p>
+								<p style="font-size:1.2em;">关注众赏公众号，进行收入查询</p>
+							</div>
+                    <div style="width:100%;">
+							<p style='text-align:left;'>1、长按二维码，关注众赏公众号。</p>
+							<img alt="" src="${basepath}/assets/def/images/qrcode_weixin.jpg" style="width:40%; margin:0 auto;">
+							<p style='text-align:left;'>2、进入公众号后，点击我的 > 我是员工。</p>
+							<img alt="" src="${basepath}/assets/def/images/bindofficers.png" style="width:80%; margin:0 auto;"></div>
+                    </div>					
+					<div style="display:none;">
+						<div class="mui-content-padded tips-reginfo-submit" >		        
+					        <button  type="button" class="mui-btn mui-btn-warning mui-btn-block" id="comeMain" >进入店铺首页</button>					        	       
+					    </div>
+					</div>
+				  </div>
+				</div>
+				
+			  </div>	
+			</div>
+		</div>
+			
+
+		
+	  </body>
+	  
+	  <script src="${basepath}/assets/plugin/require.js"></script>
+	  <script type="text/javascript" src="${basepath}/assets/def/js/tips/tips.js"></script>
+	  <script type="text/javascript">
+	  var storeId = "${loginVo.storeId}";
+	  var empId = "${loginVo.empId}";
+	  var data="${loginVo.data}"
+	  require(["jquery","mui","mui_view","addr","common"],function($$,mui,mui_view,addr,tools){
+		  
+		  //初始化单页view
+		  var viewApi = mui('#center').view({
+		  	defaultPage: '#resultpage'
+		  });
+		  
+		  //加载基础数据
+		  addr.getStore("storeId="+storeId,function(data){
+			  if(data!=null&&data.resultMessage.messageCode=="0000"){
+				  var json=data.resultData.body.result;
+				  $$(".manager").html(json.storeName);
+			  }
+		  });
+	
+		  mui('.mui-content-padded').on('tap','#comeMain',function(e) {
+			   window.location.href = '${basepath}/storelogin.xhtml?state=1&data='+data;		  
+	      });  
+
+
+	  
+	  });
+	  </script>
+</html>			

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+	  <head>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	    <title>众赏-我的收入</title>
+	    <link href="${basepath}/assets/plugin/mui/dist/css/mui.min.css" rel="stylesheet"/>
+	    <link href="${basepath}/assets/def/css/tips.css" rel="stylesheet"/>
+	    <link rel="shortcut icon" href="${basepath}/assets/favicon.ico" />
+	    <style type="text/css">
+		    .mui-page-content{
+		       padding-top: 0px;
+		    }
+	    </style>
+	  </head>
+	  
+	  <body> 	  	
+	    <!--页面主结构开始-->
+		<div id="center" class="mui-views">
+			<div class="mui-view">	
+			    <div class="mui-navbar" style="display: none;">
+				</div>	
+				<div class="mui-pages">
+				</div>
+			</div>
+		</div>		  
+		
+		<!-- 提取现金页 -->
+		<div id="cashlogpage" class="mui-page" >
+		  <!--页面标题栏开始-->
+		  <div class="mui-navbar-inner mui-bar mui-bar-nav">	
+		  				
+		  </div>
+		  <div class="mui-page-content"  id="scroll-content">
+		     <div class="scroller"> 
+		  	  <div class="plat-content">
+			  	 <div class="plat-toptitle mui-navbar-inner" style ="font-weight:bold;line-height: 30px;border-bottom:1px solid #ccc;" >
+							提现记录
+				 </div>
+			     <ul class="mui-table-view" id="template-cashlog-li-content">
+			     	
+			     </ul>
+			 </div>				
+				
+			</div>
+				
+          </div>
+		</div>
+			
+	
+		 
+	  </body>
+	  
+	  <script src="${basepath}/assets/plugin/require.js"></script>
+	  <script type="text/javascript" src="${basepath}/assets/def/js/tips/tips.js"></script>
+	  <!--提现纪录  -->
+	  <script type="text/template" id="template-cashlog-li">   
+			{{#each data}} 			        	          
+				<li class="mui-table-view-cell mui-media">
+					<a href="javascript:;">
+						{{#js_compare "this.status == 1"}}
+							<span class="mui-media-object mui-pull-right" >未到账</span>
+						{{else}}
+							<span class="mui-media-object mui-pull-right mui-icon iconfont icon-gou" ></span>                            
+						{{/js_compare}}
+						<div class="mui-media-body">
+							<span style="font-weight:bold;">{{cash}}</span>
+							<p class='mui-ellipsis'>{{createTimeStr}}</p>
+						</div>
+					</a>
+				</li>
+			{{/each}}		  			
+  	  </script>	 
+	  
+	  <script type="text/javascript">
+	  require(["jquery","mui","mui_view","template7","addr","common"],function($$,M,mui_view,template7,addr,tools){		 
+		  
+		  $$(document).ready(function(){
+			  
+			  //初始化单页view
+			  var viewApi = mui('#center').view({
+			  		defaultPage: '#cashlogpage'
+			  });		  
+		      
+			  //加载数据
+			  loaddata();	
+			  
+		  });
+	  });
+	  
+
+	  //加载分页数据
+	  var pageNo=1;
+	  var loaddata = function(){
+		  var addr = require("addr");
+		  var tools = require("common");
+		  var json={"numPerPage":10,"empId":tools.global.empId,"pageNum":pageNo};
+		  if(pageNo>tools.global.page.totalPages){
+			  try{jQuery("#loading_data_text").html("没有更多数据了")}catch(e){};
+			  tools.global.page.isDisplay="none";
+			  return;
+		  }
+		  addr.toCashListPage(JSON.stringify(json),function(data){
+			  if(data!=null&&data.resultMessage.messageCode=="0000" &&
+				  data.resultData.body.result!=null&&data.resultData.body.result.result.length!=0){
+				  var template = document.getElementById('template-cashlog-li').innerHTML;
+				  var compiled = Template7(template).compile();
+				  
+				  var compiledRendered = compiled({data:data.resultData.body.result.result });
+				  jQuery("#template-cashlog-li-content").append(compiledRendered);
+				  
+				  pageNo++;
+				  tools.global.page.totalPages = data.resultData.body.result.totalPages;				 
+			  }else{
+				  tools.global.page.isDisplay="none";
+			  }
+			  
+			  //没有纪录
+			  try{
+				  if(data.resultData.body.result.totalPages==0){
+					  jQuery(".norecord").show();
+				  }
+			  }catch(e){jQuery(".norecord").show();}
+			  
+		  });
+	  }
+
+
+	  </script>
+</html>			

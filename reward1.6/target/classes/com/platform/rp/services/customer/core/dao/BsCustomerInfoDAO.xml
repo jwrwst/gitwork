@@ -1,0 +1,32 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.platform.rp.services.customer.core.dao.BsCustomerInfoDAO">
+    
+    <resultMap type="com.platform.rp.services.customer.core.dao.entity.BsCustomerInfoEntity" id="bsCustomerInfoEntity">
+       	<result column="birthday" property="birthday" />
+       	<result column="createdtime" property="createdtime" />
+		<result column="customer_id" property="customerId" />
+		<result column="source" property="source" />
+		<result column="gender" property="gender" />
+		<result column="head_url" property="headUrl" />
+		<result column="member_level" property="memberLevel" />
+		<result column="mobile_phone" property="mobilePhone" />
+		<result column="name" property="name" />
+		<result column="openId" property="openId" />
+		
+    </resultMap>
+     
+   <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="com.platform.rp.services.customer.core.dao.entity.BsCustomerInfoEntity">
+		insert into bs_customer_info(birthday,createdtime,customer_id,source,gender,head_url,member_level,mobile_phone,name,openId)
+		values(#{birthday},#{createdtime},#{customerId},#{source},#{gender},#{headUrl},#{memberLevel},#{mobilePhone},#{name},#{openId})
+	</insert>
+    
+    
+    <select id="getInfoByOpenId" resultMap="bsCustomerInfoEntity" parameterType="string">
+         select t.* from bs_customer_info t
+         <where>            
+                t.openId = #{openId}            
+         </where>         
+    </select>
+    
+  
+</mapper>

@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/wechat/external/common/wxv3Pay/utils/http
+END
+HttpResultType.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/wechat/external/common/wxv3Pay/utils/http/HttpResultType.java
+END
+HttpClientConnectionManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/wechat/external/common/wxv3Pay/utils/http/HttpClientConnectionManager.java
+END
+TrustAnyTrustManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/wechat/external/common/wxv3Pay/utils/http/TrustAnyTrustManager.java
+END
+HttpResponse.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/wechat/external/common/wxv3Pay/utils/http/HttpResponse.java
+END
+HttpRequest.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/wechat/external/common/wxv3Pay/utils/http/HttpRequest.java
+END
+MySSLSocketFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/wechat/external/common/wxv3Pay/utils/http/MySSLSocketFactory.java
+END
+HttpConnect.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/wechat/external/common/wxv3Pay/utils/http/HttpConnect.java
+END

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>众赏</title>
+<link href="${basepath}/assets/plugin/mui/dist/css/mui.min.css"
+	rel="stylesheet" />
+<link href="${basepath}/assets/def/css/tips.css" rel="stylesheet" />
+<style>
+html,body {
+	margin: 0;
+	overflow-x: hidden;
+}
+</style>
+</head>
+
+<!--页面主结构开始-->
+<header class="mui-bar mui-bar-nav">
+	<span class="mui-pull-right"> <span
+		class="mui-icon iconfont icon-up"
+		style="position: absolute; left: 90px; top: 6px; color: #cccccc; font-size: 12px !important;"></span>
+		<select class="mui-btn mui-btn-block mui-pull-right"
+		style="width: 96px; background: transparent; position: absolute; left: 0;"
+		name="dateType" id="dateType">
+			<option value="0">很久以前</option>
+	</select>
+	</span> <a class="mui-icon mui-icon-plusempty mui-pull-right"
+		style="color: #EA4F16;"></a>
+</header>
+<!-- 出现遮罩层 -->
+<div class="scroller" style="margin-top: 50px;">
+	<a href="#resultpage" id="rega" style="display: none;"></a>
+	<div class="plat-content">
+		<form name="storeInfo" id="storeInfo">
+		
+				<!-- <button type="button" class="mui-btn mui-btn-warning mui-btn-block"
+					style="padding: 15px 10px; text-align: left; border-radius: 5px 5px 0 0;">
+					修改信息<a class="mui-icon mui-icon-closeempty mui-badge"
+						style="font-size: 24px; background: none; color: #fff;"></a>
+				</button> -->
+			<div class="plat-subtitle">联系人信息</div>
+			<div class="mui-input-group">
+				<div class="mui-input-row">
+					<label>姓名</label> <input type="text" class="mui-input-clear"
+						readonly="readonly" name="createUser" maxlength="50">
+				</div>
+				<div class="mui-input-row">
+					<label>手机号</label> <input type="text" class="mui-input-clear"
+						readonly="readonly" name="createMobile" maxlength="20">
+				</div>
+			</div>
+			<div class="plat-subtitle">商户信息</div>
+			<div class="mui-input-group">
+				<div class="mui-input-row">
+					<label>姓名</label> <input type="text" class="mui-input-clear"
+						readonly="readonly" name="tenantName" maxlength="100">
+				</div>
+				<div class="mui-input-row">
+					<label id="System.store.type">分类</label> <span
+						class="mui-icon  iconfont icon-up"
+						style="right: 0px; font-size: 12px !important;"></span> <select
+						class="mui-btn mui-btn-block"
+						style="width: 50%; background: transparent; padding-right: 20px; text-align: center;"
+						name="tenantType">
+					</select>
+				</div>
+				<div class="mui-input-row">
+					<label>地址</label> <input type="text" class="mui-input-clear"
+						readonly="readonly" name="address" maxlength="100">
+				</div>
+				<div class="mui-input-row">
+					<label>电话</label> <input type="text" class="mui-input-clear"
+						readonly="readonly" name="telphone" maxlength="30">
+				</div>
+				<div class="mui-input-row">
+					<label>邮箱</label> <input type="text" readonly="readonly"
+						class="mui-input-clear" name="email" maxlength="100">
+				</div>
+
+			</div>
+
+
+			<div class="mui-content-padded mui-text-center">
+
+				<p>
+					<a href="#picture" class="mui-btn-block"
+						style="width: 60%; margin: 0 20%;"><img alt="营业执照图"
+						src="${basepath}/assets/def/images/tenant.png"
+						style="width: 100%;"></a> 营业执照
+				</p>
+
+			</div>
+			<!-- <div id="picture"
+							class="mui-popover mui-popover-action mui-popover-bottom">
+							<ul class="mui-table-view">
+								<li class="mui-table-view-cell"><a href="#">拍照</a></li>
+								<li class="mui-table-view-cell"><a href="#">从手机相册选择</a></li>
+							</ul>
+							<ul class="mui-table-view">
+								<li class="mui-table-view-cell"><a href="#picture"><b>取消</b></a>
+								</li>
+							</ul>
+						</div> -->
+			<div class="plat-subtitle">店铺信息</div>
+			<div class="mui-input-group">
+				<div class="mui-input-row">
+					<label>名称</label> <input type="text" class="mui-input-clear"
+						readonly="readonly" name="storeName" maxlength="100">
+				</div>
+				<div class="mui-input-row">
+					<label>地址</label> <input type="text" class="mui-input-clear"
+						readonly="readonly" name="storeaddress" maxlength="100">
+				</div>
+				<div class="mui-input-row">
+					<label>电话</label> <input type="text" class="mui-input-clear"
+						readonly="readonly" name="storetelphone" maxlength="30">
+				</div>
+			</div>
+
+			<!-- <div>
+							<div class="mui-content-padded tips-reginfo-submit">
+								<input type="hidden" name="create_openId"
+									value="${loginVo.openId}"> <input type="hidden"
+									name="nickname" value="${loginVo.nickname}"> <input
+									type="hidden" name="sex" value="${loginVo.sex}"> <input
+									type="hidden" name="province" value="${loginVo.province}">
+								<input type="hidden" name="city" value="${loginVo.city}">
+								<input type="hidden" name="country" value="${loginVo.country}">
+								<input type="hidden" name="headimgurl"
+									value="${loginVo.headimgurl}">
+							</div>
+
+						</div> -->
+
+
+		</form>
+	</div>
+
+</div>
+</div>
+</div>
+
+</body>
+<script src="${basepath}/assets/plugin/require.js"></script>
+<script type="text/javascript"
+	src="${basepath}/assets/def/js/tips/tips.js"></script>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,334 @@
+.font16{
+	font-size: 16px;
+	font-weight: bold;
+}
+
+h3.caption {
+	color: #000;
+}
+
+h3.caption span {
+	font-size:14px;
+	
+}
+
+.portlet.box .portlet-title .tools>a.collapse,.portlet.solid .portlet-title .tools>a.collapse,.portlet.box .portlet-title .tools>a.expand,.portlet.solid .portlet-title .tools>a.expand
+	{
+	width: 20px;
+	height: 20px;
+	margin-top: 10px;
+	display: block;
+	border-radius: 25px !important;
+	overflow: hidden;
+}
+
+.portlet.box .portlet-title .tools>a.collapse,.portlet.solid .portlet-title .tools>a.collapse
+	{
+	background:
+		url(/views/template/cusAdmin/media/image/portlet-expand-icon-white.png)
+		center center #e02222 no-repeat;
+	background-size: 12px;
+}
+
+.portlet.box .portlet-title .tools>a.expand,.portlet.solid .portlet-title .tools>a.expand
+	{
+	background:
+		url(/views/template/cusAdmin/media/image/portlet-collapse-icon-white.png)
+		center center #e02222 no-repeat;
+	background-size: 12px;
+}
+
+.control-title {
+	font-weight: bold;
+	width: 75px;
+	float: left;
+	font-size:14px;
+	text-align:left;
+	line-height:30px;
+}
+
+input.screening—time {
+	width: 80px;
+	background: none;
+	border: 1px solid lightgray;
+}
+
+input.active {
+	border: 1px solid #e02222;
+	background: none;
+	color: #e02222;
+}
+
+#selectTime input.active {
+	border: 1px solid lightgray;
+	background: none;
+	color: #555;
+}
+
+#selectTime {
+	margin-left: 10px;
+}
+#selectTime span{
+	height:30px;
+	line-height:30px;
+    float:left;
+    margin:0 10px 10px 0;
+    display:inline-block;
+    }
+.caption span{/* 
+	margin-left: 7px; */
+	font-size: 14px;
+}
+
+.caption .caption_left{
+	margin-left: 35px;
+	font-weight: 800;
+}
+.selecttime_zidingyi input {
+	margin:0 10px 10px 0;
+	float:left;
+	line-height:28px;
+}
+
+input.select_store_checkbox {
+	margin-right: 5px;
+	margin-top: 0;
+}
+
+span.select_store_title {
+	margin-right: 15px;
+	display:inline-block;
+	line-height:30px;
+}
+
+.chart_button,.chart_button_1{
+	margin-left: 75px;
+	background: #e02222;
+	border: none;
+	color: #fff;
+	padding: 5px 20px;
+	height:30px;
+	display:inline-block;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+/*---------------------------------------rili css--------------------------------------------*/
+.date_selector,.date_selector * {
+	width: auto;
+	height: auto;
+	border: none;
+	background: none;
+	margin: 0;
+	padding: 0;
+	text-align: left;
+	text-decoration: none;
+}
+
+.date_selector {
+	background: #fbfbfb;
+	border: 1px solid #ccc;
+	padding: 10px;
+	margin: 0;
+	margin-top: -1px;
+	position: absolute;
+	z-index: 100000;
+	display: none;
+	border-radius: 3px;
+	box-shadow: 0 0 5px #aaa;
+	box-shadow: 0 2px 2px #ccc;
+	width: 220px;
+}
+
+.date_selector_ieframe {
+	position: absolute;
+	z-index: 99999;
+	display: none;
+}
+
+.date_selector .nav {
+	width: 100%;
+}
+
+.date_selector .nav p {
+	clear: none;
+	margin: 0;
+}
+
+.date_selector .month_nav,.date_selector .year_nav {
+	margin: 0 0 3px 0;
+	padding: 0;
+	display: block;
+	position: relative;
+	text-align: center;
+}
+
+.date_selector .month_nav {
+	float: left;
+	width: 55%;
+}
+
+.date_selector .year_nav {
+	float: right;
+	width: 42%;
+	margin-right: -8px;
+}
+
+.date_selector .month_name,.date_selector .year_name {
+	font-weight: bold;
+	line-height: 20px;
+}
+
+.date_selector .button {
+	display: block;
+	position: absolute;
+	top: 0;
+	width: 18px;
+	height: 18px;
+	line-height: 16px;
+	font-weight: bold;
+	color: #000;
+	text-align: center;
+	font-size: 12px;
+	overflow: hidden;
+	border: 1px solid #ccc;
+	border-radius: 2px;
+}
+
+.date_selector .button:hover,.date_selector .button.hover {
+	background: #ef3636;
+	color: #fff;
+	cursor: pointer;
+	border-color: #3a930d;
+}
+
+.date_selector .prev {
+	left: 0;
+}
+
+.date_selector .next {
+	right: 0;
+}
+
+.date_selector table {
+	border-spacing: 0;
+	border-collapse: collapse;
+	clear: both;
+	margin: 0;
+	width: 220px;
+}
+
+.date_selector th,.date_selector td {
+	width: 2.5em;
+	height: 2em;
+	padding: 0 !important;
+	text-align: center !important;
+	color: #666;
+	font-weight: normal;
+}
+
+.date_selector th {
+	font-size: 12px;
+}
+
+.date_selector td {
+	border: 1px solid #f1f1f1;
+	line-height: 2em;
+	text-align: center;
+	white-space: nowrap;
+	color: #000;
+	background: #fff;
+}
+
+.date_selector td.today {
+	background: #eee;
+}
+
+.date_selector td.unselected_month {
+	color: #ccc;
+}
+
+.date_selector td.selectable_day {
+	cursor: pointer;
+}
+
+.date_selector td.selected {
+	background: #e02222;
+	color: #fff;
+	font-weight: bold;
+}
+
+.date_selector td.selectable_day:hover,.date_selector td.selectable_day.hover
+	{
+	background: #ef3636;
+	color: #fff;
+}
+.control-group table{
+	font-size:14px;
+}
+.borderdown{
+	
+	border-bottom:1px dashed lightgray;
+}
+.charts_total{ 
+	padding:10px 0;
+	font-size:16px;
+	height:70px;
+	width:12.5%;
+    float:left;
+	line-height:35px;
+	text-align:center;
+	
+}
+.charts_total span{ 
+	width:100%;
+	display:block;
+	color:#e02222;
+	margin-top:5px;
+}
+.charts_tabs{
+	height: 30px;
+	margin:20px 0 15px;
+	width: auto !important;
+	display: inline-block;
+	overflow: hidden;
+	border-radius: 5px !important;
+	border: 1px solid lightgray;
+}
+.charts_tabs a{
+	padding: 5px 30px;
+	display: inline-block;
+	border-right:1px solid lightgray;
+	float:left;
+}
+.charts_tabs a:nth-child(3){
+	border:none;
+}
+.charts_tabs a:hover{
+	background: #3d3d3d;
+	color: #fff;
+	border: none;
+	margin-left: 0;
+	text-decoration:none;
+}
+.charts_tabs a.active{
+	background: #3d3d3d;
+	color: #fff;
+	border: none;
+	margin-right: 0;
+}
+#amountCountTrend,#empCountTrend,div#countTrend {
+	font-size: 30px;
+	line-height: 150px;
+	color: #ee0022;
+	text-align: center;
+}
+
+.echarts-tooltip {
+	font-size: 13px;
+	line-height: 20px;
+	text-align: left;
+}
+/*-----------------------------------------------------------------------------------*/

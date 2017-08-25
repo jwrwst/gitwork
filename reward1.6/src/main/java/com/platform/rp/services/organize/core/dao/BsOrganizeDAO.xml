@@ -1,0 +1,152 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.platform.rp.services.organize.core.dao.BsOrganizeDAO">
+    
+    <resultMap type="com.platform.rp.services.organize.core.dao.entity.BsOrganizeEntity" id="bsOrganizeEntity">
+        <result column="org_id" property="orgId" />
+        <result column="org_code" property="orgCode" />
+       	<result column="org_name" property="orgName" />
+       	<result column="parent_code" property="parentCode" />
+		<result column="qrcode" property="qrcode" />
+		<result column="m_key" property="m_key" />
+		<result column="status" property="status" />
+		<result column="create_time" property="createTime" />
+		<result column="update_time" property="updateTime" />
+		<result column="schema" property="schema" />
+		<result column="remark" property="remark" />
+		
+    </resultMap>
+    
+    <sql id="page">
+		<if test="start > -1">
+			<if test="pageSize > 0">
+				limit #{start}, #{pageSize}
+			</if>
+			<if test="pageSize == 0 or pageSize == '' or pageSize &lt; 0">
+				limit #{start}
+			</if>
+		</if>
+	</sql>
+    
+    
+    <insert id="save" useGeneratedKeys="true" keyProperty="orgId" parameterType="com.platform.rp.services.organize.core.dao.entity.BsOrganizeEntity">
+		insert into bs_organize(org_code,org_name,parent_code,qrcode,m_key,status,create_time,update_time,`schema`,leap)
+		values(#{orgCode},#{orgName},#{parentCode},#{qrcode},#{m_key},#{status},#{createTime},#{updateTime},#{schema},#{leap})
+	</insert>
+	
+    <update id="update" parameterType="com.platform.rp.services.organize.core.dao.entity.BsOrganizeEntity">
+		update bs_organize
+		<set>
+		    <if test="parentCode != null and parentCode != ''"> parent_code = #{parentCode}, </if>	
+			<if test="orgName != null and orgName != ''"> org_name = #{orgName}, </if>			
+			<if test="updateTime != null and updateTime != ''"> update_time = #{updateTime}, </if>
+			<if test="status != null"> status = #{status}, </if>
+			<if test="remark != null and remark != '' "> remark = #{remark}, </if>
+			<if test="leap != 0"> leap = #{leap}, </if>
+		</set>
+		<where>
+		    org_code = #{orgCode}		    
+		</where>
+	</update>
+    
+    
+	<select id="get" resultMap="bsOrganizeEntity"  parameterType="long">
+		select * from bs_organize where id = #{id}
+	</select>
+    
+    <select id="getInfoByOrgCode" resultMap="bsOrganizeEntity" parameterType="string">
+         select t.* from bs_organize t
+         <where>            
+                t.org_code = #{orgCode}            
+         </where>         
+    </select>
+    
+    
+    <select id="getInfoByOrgName" resultMap="bsOrganizeEntity" parameterType="string">
+         select t.* from bs_organize t
+         <where>            
+                t.org_Name = #{orgName}            
+         </where>         
+    </select>
+    <select id="getList" resultMap="bsOrganizeEntity" >
+         select t.* from bs_organize t
+         <where>            
+                t.schema = #{orgCode}  and  status != 4
+               <if test="status != null and status != 0"> and status = #{status} </if>	               		          
+         </where>    
+         order by  convert(t.org_name  using gbk) collate gbk_chinese_ci   
+    </select>
+      
+    
+    <!-- 查询微信账号下的商户信息 --> 
+    <select id="findMerchantsInfoEntityByOpenId" resultMap="bsOrganizeEntity" parameterType="string">
+       SELECT 	o.org_code ,o.org_name ,o.`status`,o.remark,  
+       		m.account ,o.schema 
+        FROM bs_organize o 
+			LEFT JOIN bs_merchants_info m on m.org_code = o.org_code
+			LEFT JOIN bs_merchants_employee me on me.org_code = m.org_code
+			LEFT JOIN bs_employee_info e on me.emp_id = e.emp_id
+         <where>            
+                e.wx_account = #{openId} 
+                and m.status = 1 
+               <if test="status != null and status != 0">and o.status = #{status} </if>
+               <if test="status == null || status == 0">and o.`status` !=4 </if>
+         </where>         
+    </select>
+    
+    <select id="findParentOrg" resultMap="bsOrganizeEntity" parameterType="string">
+        SELECT 	o.org_code ,o.org_name ,o.`status`,o.remark,    e.wx_account ,
+       		m.account ,o.schema 
+		  FROM bs_organize o 
+					LEFT JOIN bs_organize po on po.parent_code = o.org_code
+					LEFT JOIN bs_merchants_info m on m.org_code = po.org_code
+					LEFT JOIN bs_merchants_employee me on me.org_code = m.org_code
+					LEFT JOIN bs_employee_info e on me.emp_id = e.emp_id
+         <where>            
+                e.wx_account = #{openId} 
+                and m.status = 1 
+               <if test="status != null and status != 0">and o.status = #{status} </if>
+               <if test="status == null || status == 0">and o.`status` !=4 </if>
+         </where>   
+		GROUP BY o.org_code      
+    </select>
+
+    <select id="count" resultType="int" parameterType="map">
+		select count(1) from bs_organize  
+		<where>  
+		     status != 4  and parent_code = '0'        
+               <if test="startTime != null and startTime != ''"> and create_time gt= #{startTime} </if>  
+               <if test="endTime != null and endTime != ''"> and create_time lt= #{endTime} </if>  
+               <if test="orgName != null and orgName != '' "> and org_name like  CONCAT('%','${orgName}','%' ) </if>                    		          
+         </where>  
+	</select>
+    
+    <select id="getPage" resultMap="bsOrganizeEntity" parameterType="map">
+		 select * from bs_organize
+		 <where>  
+		     status != 4  and parent_code = '0'        
+               <if test="startTime != null and startTime != ''"> and create_time gt= #{startTime} </if>  
+               <if test="endTime != null and endTime != ''"> and create_time lt= #{endTime} </if>  
+               <if test="orgName != null and orgName != '' "> and org_name like  CONCAT('%','${orgName}','%' ) </if>                    		          
+         </where>  
+		 order by create_time desc 		
+		<include refid="page" /> 
+	</select>
+  
+    <select id="getlevelList" resultType = "string"  parameterType="list">
+         select org_code from bs_organize t where        
+         t.parent_code in                		          
+    	 <foreach collection="orgCodes" index="index" item="orgCode" open="("
+			    separator="," close=")">
+			   	#{orgCode}   
+			</foreach>
+    </select>
+  
+    <select id="getListByParentCode" resultMap="bsOrganizeEntity"  parameterType="string">
+        select * from bs_organize o
+		 <where>  
+			status = 2 and  o.parent_code = #{parentCode} 
+			<if test="schema != null and schema != '' ">and `schema`= #{schema}</if>			
+            <if test="orgName != null and orgName != '' "> and o.org_name like CONCAT('%','${orgName}','%' ) </if>   
+		</where>
+    </select>
+</mapper>

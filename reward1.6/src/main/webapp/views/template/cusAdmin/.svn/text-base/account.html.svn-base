@@ -1,0 +1,482 @@
+
+[#include "model/header-unmenu.html"]
+<meta charset="utf-8" />
+<style type='text/css'>
+body {
+	overflow-x: hidden;
+}
+
+.controls {
+	margin-right: 20%;
+}
+
+#box input {
+	padding: 6px;
+}
+
+#spanRandomCade {
+	margin-top: 10px;
+	color: #e02222;
+}
+.portlet.box.blue{ border:none;}
+
+[class^="m-icon-"]{margin:10px 0 0 5px;}
+</style>
+
+
+	<div class="row-fluid" style='display:block;'>
+		<div class="tabbable tabbable-custom boxless span12" style='width:60%; display:block; min-width:800px; overflow:hidden; margin:0 20%;'>
+
+				<ul class="nav nav-tabs" style="display:none;">
+
+					<li class="active"><a href="#tab_1" data-toggle="tab" id="tabBaseInfo"></a></li>
+					<li><a href="#tab_2" data-toggle="tab"></a></li>
+					<li><a href="#tab_3" data-toggle="tab"></a></li>
+					<li><a href="#tab_4" data-toggle="tab" id="orgManagerId"></a></li>						
+
+				</ul>
+				<div class="tab-content" >
+
+					<div class="tab-pane active" id="tab_1">
+
+						<div class="portlet box">
+							
+
+							<div class="portlet-body form">
+								<form name='forms' action="#" id="queryForm" class="form-horizontal">
+									<h3 class="form-section merchantsdis">账户与安全</h3>
+									<!-- <div class="control-group">
+
+										<label class="control-label" for="orgName">账户名称</label>
+			
+										<div class="controls">
+			
+											<input type="text" name="phone" readonly='true'
+												class="m-wrap span12" placeholder="请输入商户绑定的手机号码">
+			
+										</div>
+			
+									</div> -->
+									<div class="control-group">
+			
+										<label class="control-label" for="orgName">绑定手机号</label>
+			
+										<div class="controls">
+											<input type="text" name="" readonly='true' id="showPhone"
+												style='width: 65%;' class="m-wrap span12"
+												placeholder="请输入商户绑定的手机号码">
+											<a  href="#tab_2" data-toggle="tab" class="btn red" id="changePhone"
+												style='height: 34px; padding: 0 10px; line-height: 34px; float: right;'>更换手机号<i class="m-icon-swapright m-icon-white"></i></a>
+										</div>
+			
+									</div>
+									<div class="control-group">
+										<label class="control-label" for="orgName">登录密码</label>
+										<div class="controls">
+											<a  href="#tab_4" data-toggle="tab" class="btn blue"
+												style='height: 34px; padding: 0; line-height: 34px; width: 100%;'>修改密码<i class="m-icon-swapright m-icon-white"></i></a>
+										</div>
+									</div>
+									
+								</form>								
+							
+							</div>
+										
+						</div>
+					
+				 	</div>
+				 	
+				 	<!--  -->
+				 	
+				 	<div class="tab-pane" id="tab_2">
+
+						<div class="portlet box blue">
+							
+
+							<div class="portlet-body form">
+								<form name='forms' action="#" id="queryForm" class="form-horizontal">
+									<h3 class="form-section merchantsdis">账户与安全</h3>
+									<div class="control-group">
+
+											<label class="control-label" for="orgName">绑定手机号</label>
+				
+											<div class="controls">
+												<input type="text" name="" readonly="readonly"
+													class="m-wrap span12" placeholder="请输入商户绑定的手机号码" id="phone">
+											</div>
+				
+										</div>
+										<div class="control-group">
+											<div class="controls">
+												<input type="text" name="" class="m-wrap span12" style='width: 65%; float: left;' placeholder="请输入验证码" maxlength="4" id="msgCode">
+												<!-- 
+												<img src="" style='width: 90px; float: left; margin: 0 5px; height: 32px;' id="randomCodeImg"/>
+												<a style='height: 34px; line-height: 34px;' href="#" id="clickChangeImg">看不清楚？换一张</a>
+												 -->
+												<button type="button" class="btn" id="getMsgCode"
+													style='height: 34px; padding: 0 10px; line-height: 34px; float: right;'>获取验证码</button>
+											</div>
+										</div>
+										<div class="form-actions">
+											<button type="button" class="btn blue" id="nextRefindPassword">下一步</button>
+												<a  href="#tab_1" data-toggle="tab" class="btn cancel">取消</a>
+											<!-- <button type="button" class="btn" style='margin-left: 20px;' id="cancle">取消</button> -->
+										</div>
+									
+									
+								</form>								
+							
+							</div>
+										
+						</div>
+					
+				 	</div>
+				 	
+				 	<!-- 第三步 -->
+				 	
+				 	<div class="tab-pane" id="tab_3">
+
+						<div class="portlet box blue">
+							
+
+							<div class="portlet-body form">
+								<form name='forms' action="#" id="queryForm"
+									class="form-horizontal">
+									<h3 class="form-section merchantsdis">账户与安全</h3>
+									<div class="control-group">
+
+										<label class="control-label" for="orgName" style='margin-top:33px;'>绑定手机号</label>
+			
+										<div class="controls">
+										<P style='color: #FF9999;'>手机号将作为今后帐号登录和找回密码的依据</P>
+											<input type="text" name="" id="newPhone" class="m-wrap span12" placeholder="请输入新手机号" maxlength="11">
+										</div>
+									</div>
+									<div class="control-group">
+			
+										<div class="controls">
+											<input type="text" name="" id="msgCodeInput" style='width: 65%;' class="m-wrap span12"
+												placeholder="请输入验证码" maxlength="4">
+											<button type="button" class="btn" id="verificationCode"
+												style='height: 34px; padding: 0 10px; line-height: 34px; float: right;'>获取验证码</button>
+										</div>
+			
+									</div>
+									<div class="form-actions">
+										<button type="button" class="btn blue" id="affirm">确定</button>
+										<a  href="#tab_1" data-toggle="tab" class="btn cancel">取消</a>
+										<!-- <button type="button" class="btn" style='margin-left: 20px;' id="cancle">取消</button> -->
+									</div>
+									
+								</form>								
+							
+							</div>
+										
+						</div>
+					
+				 	</div>
+				 	
+				 	<!--  -->
+				 	
+				 	<div class="tab-pane" id="tab_4">
+
+						<div class="portlet box ">
+							
+
+							<div class="portlet-body form">
+								<form name='forms1' action="#" id="queryForm"
+									class="form-horizontal">
+									<h3 class="form-section merchantsdis">账户与安全</h3>
+									<div class="control-group">
+
+										<label class="control-label" for="orgName">登录密码</label>
+			
+										<div class="controls">
+			
+											<input type="password" id="oldPassword" class="m-wrap span12" placeholder="请输入原登录密码">
+			
+										</div>
+			
+									</div>
+									<div class="control-group">
+			
+										<div class="controls" style='position: relative;'>
+											<P style='color: #FF9999;'>密码需6-20个字符</P>
+											<span id='box'> 
+											<input type="text" id="newPassword" name='password' class="m-wrap span12" placeholder="请输入新登录密码"></span>
+											<span id='click'
+												style='position: absolute; top: 35px; right: 5px;'> <a
+												href="javascript:txt()"
+												style='width: 25px; height: 25px; display: inline-block; background: url(/assets/def/images/bind-audit12.png) center center no-repeat; background-size: 25px;'></a></span>
+			
+										</div>
+			
+									</div>
+									<div class="form-actions">
+										<button type="button" class="btn blue" id="affirmSetPassword">确定</button>
+										<a  href="#tab_1" data-toggle="tab" class="btn cancel" id="tab_4_cancel">取消</a>
+										<!-- <button type="button" class="btn" style='margin-left: 20px;'>取消</button> -->
+									</div>
+									
+								</form>								
+							
+							</div>
+										
+						</div>
+					
+				 	</div>
+				 	
+				 	<!--  -->
+				 	
+				 	
+				 </div>
+				 
+			</div>
+			
+		</div>
+										
+		
+
+	
+	[#include "model/footer-unmenu.html"]
+	<script src="def/cus_addr.js" type="text/javascript"></script> 
+	<script type="text/javascript">
+		var contentPath=App.path;
+		var Account = {
+			init:function(){
+				var url = addrManage.mer.getLoingInfo;
+				ajaxJson(url,"",function(data){
+					var successCode=data.resultMessage.messageCode;
+					if(successCode=="0000"){
+						var phone=data.resultData.body.result.account;
+						//debugger;
+						$("#phone").val(phone);
+						$("#showPhone").val(phone);
+						Account.initLitenters();
+						//Account.clickChangeImg();
+					}else{
+						var errorMsg=data.resultMessage.messageText;
+						alert(errorMsg);
+					}
+				});
+			},
+			initLitenters:function(){
+				$('#affirmSetPassword').click(function(){
+					Account.affirmSetPassword();
+				});
+				$('#nextRefindPassword').click(function(){
+					Account.nextRefindPassword();
+				});
+				$("#cancle").click(function(){
+					Account.cancle();
+				});
+// 				$("#clickChangeImg").click(function(){
+// 					Account.clickChangeImg();
+// 				});
+				//
+				$("#verificationCode").click(function(){
+					var url = addrManage.mer.checkAccount;
+					var phone=$("#newPhone").val();
+					//var merId = $("#merId").val();
+					getJson(url,"account="+phone+"&merId="+null,function(data){
+						if(data!=null&&data.resultMessage.messageCode=="0000"){
+							
+							Account.send(phone,"verificationCode");
+						}else{
+							$("input[id='newPhone']").val("");
+							 alert(data.resultMessage.messageText);
+						}
+					});
+				});
+				$("#getMsgCode").click(function(){
+					var phone =$("#phone").val();
+					Account.send(phone,"getMsgCode");
+				});
+				$('#affirm').click(function(){
+					Account.affirm();
+				});
+				
+			},
+// 			validateVerificationCode:function(randomCodeInput){
+// 				var randomCodeCheck=/^[0-9a-zA-Z]{4}$/;
+// 				if (!randomCodeCheck.test(randomCodeInput)) {
+// 					alert("验证码长度必须为4位,并且不能为空！");
+// 					$("#randomCodeInput").focus();
+// 					return false;
+// 				}else{
+// 					//$("#spanRandomCade").css("color","green");
+// 					//$("#spanRandomCade").html("密码格式无误");
+// 				}
+// 				return true;
+// 			},
+			nextRefindPassword:function(){
+				var msgCode=$("#msgCode").val();
+				if(msgCode.length<4){
+					alert("请输入正确的短信验证码!");
+					return false;
+				}
+// 				var flag=Account.validateVerificationCode(msgCode);
+// 				if(!flag){
+// 					return false;
+// 				}
+				var phone =$("#phone").val();
+				if(phone.length<11){
+					alert("请输入正确的手机号!");
+					return false;
+				}
+				//var params="phone="+phone+"&verificationCode="+msgCode;
+				//var url=contentPath+"/rs/external/merchants/wap/nextRefindPassword?v="+Math.random();
+				var params={"phone":phone,"msgCode":msgCode};
+				var datastr=JSON.stringify(params);
+				var url=addrManage.sms.validateCode;
+				//getJson(url,params,function(data){
+				ajaxJson(url,datastr,function(data){
+					var successCode=data.resultMessage.messageCode;
+					if(successCode=="0000"){
+						//跳转到下一个页面【切换显示页签】
+						$("#tab_2").removeClass("active");
+						$("#tab_3").addClass("active");
+					}else{
+						var errorMsg=data.resultData.body.result;
+						//var errorMsg=data.resultMessage.messageText;
+						alert(errorMsg);
+						//$("#spanRandomCade").html(errorMsg);
+					}
+				});
+			},
+			cancle:function(){
+				window.location.href='account.xhtml';
+			},
+// 			clickChangeImg:function(){
+// 				$("#randomCodeImg").attr("src",contentPath+"/rs/external/merchants/wap/randomCode?v=" + Math.random());
+// 			},
+			//
+			send:function(phone,id){
+				var lock=false;
+				if(phone.length<11){
+				     alert("请正确输入手机号码");
+				     lock = false;
+				     return ;
+				}
+				if(lock){
+					return ;
+				}
+				lock = true;
+				var i = 60;
+				function verificationCode(){
+					setTimeout(function(){
+						$("#"+id).html(i--+"s");
+						if(i>=0){
+							//console.log(i);
+							verificationCode();
+						}else{
+							error();
+						}
+					}, 1000);
+				}
+				verificationCode();
+				function error(){
+					i = 0;
+					//console.log('end');
+					lock = false;
+					$("#"+id).html("获取验证码");
+				}
+				var params="&phone="+phone;
+				addrManage.gainCode(params,function(datas){
+					var status = datas.resultMessage.status;
+					if(status == 0){			
+						var res = datas.resultData.body.result;
+						if(res.statusCode == 1){
+							//跳转到下一个页面【切换显示页签】
+							//$("#tab_3").removeClass("active");
+							//$("#tab_4").addClass("active");
+							alert("发送成功,请注意查收!");
+						}else{
+							error();
+							alert(res.description);	
+						}
+					}else{			
+						error();
+						alert(datas.resultMessage.messageText);
+					}
+				})
+			},
+			affirm : function(){
+				//校验短信验证码
+				var newPhone=$("#newPhone").val();
+				if(newPhone.length<11){
+				     alert("请正确输入手机号码");
+				     lock = false;
+				     return ;
+				}
+				var newMsgCode=$("#msgCodeInput").val();
+				if(newMsgCode.length<4){
+					alert("请输入正确的短信验证码!");
+					return false;
+				}
+				var phone =$("#phone").val();
+				var msgCode=$("#msgCode").val();
+				var params={"phone":phone,"msgCode":msgCode,"newMobile":newPhone,"newMsgCode":newMsgCode};
+				var datastr=JSON.stringify(params);
+				var url = addrManage.mer.updateBindMobile;
+				ajaxJson(url,datastr,function(data){
+					if(data!=null&&data.resultMessage.messageCode=="0000"){
+						//验证成功进入下面页面
+						alert("更换手机号成功");
+						$("#tab_4_cancel").click();	
+					}else{
+						//验证失败则进行错误信息提示
+						alert(data.resultMessage.messageText);
+					}
+				});
+			},
+			affirmSetPassword : function(){
+				//重置密码
+				var oldPassword=$("#oldPassword").val();
+				if(oldPassword.length<0){
+					alert("请输入正确的原登录密码");
+					return;
+				}
+				var newPassword=$("#newPassword").val();
+				if(newPassword.length<6 || newPassword.length>20){
+					alert("密码位数为6-20位,请正确输入新密码位数");
+					return;
+				}
+				//验证输入信息
+				var params={"password":newPassword,"srcPassword":oldPassword,"account":$("#phone").val()};
+				var datastr=JSON.stringify(params);
+				var url = addrManage.mer.updatePassword;
+				ajaxJson(url,datastr,function(data){
+					var successCode=data.resultMessage.messageCode;
+					if(successCode=="0000"){
+						$("#newPassword").val("");
+						$("#oldPassword").val("");
+						alert("修改成功");
+						//window.localStorage.removeItem('orgCode');
+						$("#tab_4_cancel").click();
+					}else{
+						var errorMsg=data.resultMessage.messageText;
+						alert(errorMsg);
+					}
+				});
+			}
+		}
+		Account.init();
+		
+		//
+		function ps() {
+			if (this.forms1.password.type = "password")
+				box.innerHTML = "<input class='m-wrap span12' type=\"html\" name=\"password\" value=" + this.forms1.password.value + ">";
+			click.innerHTML = "<a style='width:25px;height:25px; display:inline-block;background: url(/assets/def/images/bind-audit12.png) center center no-repeat; background-size: 25px;' href=\"javascript:txt()\"></a>"
+		}
+
+		function txt() {
+			if (this.forms1.password.type = "text")
+				box.innerHTML = "<input class='m-wrap span12' type=\"password\" name=\"password\" value=" + this.forms1.password.value + ">";
+			click.innerHTML = "<a style='width:25px;height:25px; display:inline-block;background: url(/assets/def/images/bind-audit11.png) center center no-repeat; background-size: 25px;' href=\"javascript:ps()\"></a>"
+		}
+	</SCRIPT>
+</body>
+</html>
+
+

@@ -1,0 +1,32 @@
+<project name="hdl-applet" default="staticFile" basedir=".">
+    <description>
+    	
+    </description>
+  <!-- set global properties for this build -->
+  <property name="staticFileDir"  location="/usr/local/nginx/html/"/>
+
+  <property name="warFileDir"  location="/usr/local/tomcat/webapps/"/>
+  <property name="jenkinsFileDir1"  location="/var/lib/jenkins/workspace/"/>
+  <property name="jenkinsFileDir2"  location="/target/"/>
+	
+  <target name="staticFile">
+  	<mkdir dir="${staticFileDir}/${ant.project.name}"/>
+    <copy todir="${staticFileDir}/${ant.project.name}" overwrite="true" >
+    	<fileset dir="src/main/webapp">
+      	 <include name="**/*.html" />  
+      	 <include name="**/*.js" />  
+      	 <include name="**/*.css" />  
+      	 <include name="**/*.jpg" />  
+      	 <include name="**/*.jpeg" />  
+      	 <include name="**/*.gif" />  
+      	 <include name="**/*.png" />  
+      </fileset>
+    </copy>
+  	
+  	<!--
+    <copy todir="${warFileDir}" file="${jenkinsFileDir1}/${ant.project.name}/${jenkinsFileDir2}/${ant.project.name}.war" overwrite="true" >
+    </copy>
+    -->
+  </target>
+
+</project>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.ituber.dao.ReqRequirementResourceDao">
+    
+	<sql id="reqRequirementResourceColumns">
+		a.id AS "id",
+		a.req_id AS "reqId",
+		a.resource_id AS "resourceId",
+		a.status AS "status",
+		a.stop_reason AS "stopReason",
+		a.join_date AS "joinDate",
+		a.estimated_quit_date AS "estimatedQuitDate",
+		a.quit_date AS "quitDate",
+		a.quit_reason AS "quitReason",
+		a.evaluation AS "evaluation",
+		a.created AS "created",
+		a.modified AS "modified"
+	</sql>
+	
+	<sql id="reqRequirementResourceJoins">
+	</sql>
+    
+	<select id="get" resultType="ReqRequirementResource">
+		SELECT 
+			<include refid="reqRequirementResourceColumns"/>
+		FROM req_requirement_resource a
+		<include refid="reqRequirementResourceJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="ReqRequirementResource">
+		SELECT 
+			<include refid="reqRequirementResourceColumns"/>
+		FROM req_requirement_resource a
+		<include refid="reqRequirementResourceJoins"/>
+		<where>
+			
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="ReqRequirementResource">
+		SELECT 
+			<include refid="reqRequirementResourceColumns"/>
+		FROM req_requirement_resource a
+		<include refid="reqRequirementResourceJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO req_requirement_resource(
+			req_id,
+			resource_id,
+			status,
+			stop_reason,
+			join_date,
+			estimated_quit_date,
+			quit_date,
+			quit_reason,
+			evaluation,
+			created,
+			modified
+		) VALUES (
+			#{reqId},
+			#{resourceId},
+			#{status},
+			#{stopReason},
+			#{joinDate},
+			#{estimatedQuitDate},
+			#{quitDate},
+			#{quitReason},
+			#{evaluation},
+			#{created},
+			#{modified}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE req_requirement_resource SET 	
+			req_id = #{reqId},
+			resource_id = #{resourceId},
+			status = #{status},
+			stop_reason = #{stopReason},
+			join_date = #{joinDate},
+			estimated_quit_date = #{estimatedQuitDate},
+			quit_date = #{quitDate},
+			quit_reason = #{quitReason},
+			evaluation = #{evaluation},
+			created = #{created},
+			modified = #{modified}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM req_requirement_resource
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

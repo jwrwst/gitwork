@@ -1,0 +1,74 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.platform.rp.services.sys.core.dao.SysRoleInfoDAO">
+	
+    <resultMap id="sysRoleInfoVoMap" type="com.platform.rp.services.sys.inner.vo.SysRoleInfoVo">
+        <id column="sys_role_id" property="sysRoleId" />
+		<result column="role_name" property="roleName" />
+		<result column="create_time" property="createTime" />
+		<result column="upd_time" property="updTime" />
+		<result column="create_user_id" property="createUserId" />
+		<result column="upd_user_id" property="updUserId" />
+    </resultMap>
+    
+    <resultMap id="sysRoleInfoEntityMap" type="com.platform.rp.services.sys.core.dao.entity.SysRoleInfoEntity">
+        <id column="sys_role_id" property="sysRoleId" />
+		<result column="role_name" property="roleName" />
+		<result column="create_time" property="createTime" />
+		<result column="upd_time" property="updTime" />
+		<result column="create_user_id" property="createUserId" />
+		<result column="upd_user_id" property="updUserId" />
+    </resultMap>
+    
+    <sql id="page">
+        <if test="start > -1">
+            <if test="end > 0">
+                limit #{start}, #{end}
+            </if>
+        </if>
+    </sql>
+
+	<select id="getSysRoleInfoPage" resultMap="sysRoleInfoVoMap" parameterType="string">
+		select * from sys_role_info sys
+		<if test="roleName != null">
+		    where instr(sys.role_name, #{roleName}) &gt; 0
+		</if> 
+		order by sys.upd_time desc
+		<include refid="page" />
+	</select>
+
+
+	<select id="getSysRoleInfoList" resultMap="sysRoleInfoVoMap">
+		select * from sys_role_info
+	</select>
+
+	<select id="getSysUserInfo" resultType="com.platform.rp.services.sys.inner.vo.SysAuthInfoVo">
+		select sys.sys_auth_id sysAuthId, sys.auth_name authName, sys.auth_code
+		authCode,
+		sys.parent_id parentId, sys.auth_type authType, sys.auth_url authUrl,
+		sys.create_time createTime,
+		sys.upd_time updTime, sys.create_user_id createUserId, sys.upd_user_id updUserId,
+		sys.sort sort from Sys_Auth_Info sys order by sys.parentId,sys.sort
+	</select>
+
+	<select id="get" parameterType="int" resultMap="sysRoleInfoEntityMap">
+	    select * from sys_role_info sys where sys.sys_role_id=#{id}
+	</select>
+	
+	<delete id="delete" parameterType="int">
+		delete from sys_role_info where sys_role_id=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.platform.rp.services.sys.core.dao.entity.SysRoleInfoEntity">
+	    update sys_role_info
+	    set 
+	   	role_name = #{roleName},
+	   	upd_time = #{updTime},
+	   	upd_user_id = #{updUserId}
+	    where sys_role_id = #{sysRoleId}
+	</update>
+	
+	<insert id="save" useGeneratedKeys="true" keyProperty="sysRoleId" parameterType="com.platform.rp.services.sys.core.dao.entity.SysRoleInfoEntity">
+	    insert into sys_role_info(role_name,create_time,upd_time,create_user_id,upd_user_id)
+	    values(#{roleName},#{createTime},#{updTime},#{createUserId},#{updUserId})
+	</insert>
+</mapper>

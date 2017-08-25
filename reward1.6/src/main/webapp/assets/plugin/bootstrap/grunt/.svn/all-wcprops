@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/webapp/assets/plugin/bootstrap/grunt
+END
+shrinkwrap.js
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/webapp/assets/plugin/bootstrap/grunt/shrinkwrap.js
+END
+bs-glyphicons-data-generator.js
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/webapp/assets/plugin/bootstrap/grunt/bs-glyphicons-data-generator.js
+END
+bs-raw-files-generator.js
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/webapp/assets/plugin/bootstrap/grunt/bs-raw-files-generator.js
+END
+bs-lessdoc-parser.js
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/webapp/assets/plugin/bootstrap/grunt/bs-lessdoc-parser.js
+END

@@ -1,0 +1,64 @@
+ERROR 2015-03-21 15:34 freemarker.runtime>>Error executing FreeMarker template (_Log4JLoggerFactory.java:60) 
+FreeMarker template error:
+The following has evaluated to null or missing:
+==> page  [in template "${className}Mapper.xml" at line 22, column 19]
+
+----
+Tip: If the failing expression is known to be legally refer to something that's null or missing, either specify a default value like myOptionalVar!myDefault, or use <#if myOptionalVar??>when-present<#else>when-missing</#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthesis: (myOptionalVar.foo)!myDefault, (myOptionalVar.foo)??
+----
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: #{page.pageOffset}  [in template "${className}Mapper.xml" at line 22, column 17]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.InvalidReferenceException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.InvalidReferenceException.getInstance(InvalidReferenceException.java:108)
+	at freemarker.core.UnexpectedTypeException.newDesciptionBuilder(UnexpectedTypeException.java:60)
+	at freemarker.core.UnexpectedTypeException.<init>(UnexpectedTypeException.java:40)
+	at freemarker.core.NonHashException.<init>(NonHashException.java:46)
+	at freemarker.core.Dot._eval(Dot.java:45)
+	at freemarker.core.Expression.eval(Expression.java:76)
+	at freemarker.core.Expression.evalToNumber(Expression.java:95)
+	at freemarker.core.NumericalOutput.accept(NumericalOutput.java:55)
+	at freemarker.core.Environment.visit(Environment.java:257)
+	at freemarker.core.MixedContent.accept(MixedContent.java:57)
+	at freemarker.core.Environment.visit(Environment.java:257)
+	at freemarker.core.Environment.process(Environment.java:235)
+	at freemarker.template.Template.process(Template.java:262)
+	at com.eoma.autocoding.Generator.gen(Generator.java:151)
+	at com.eoma.autocoding.Generator.main(Generator.java:158)
+ERROR 2015-03-21 15:35 freemarker.runtime>>Error executing FreeMarker template (_Log4JLoggerFactory.java:60) 
+FreeMarker template error:
+The following has evaluated to null or missing:
+==> page  [in template "${className}Mapper.xml" at line 22, column 19]
+
+----
+Tip: If the failing expression is known to be legally refer to something that's null or missing, either specify a default value like myOptionalVar!myDefault, or use <#if myOptionalVar??>when-present<#else>when-missing</#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthesis: (myOptionalVar.foo)!myDefault, (myOptionalVar.foo)??
+----
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: #{page.pageOffset}  [in template "${className}Mapper.xml" at line 22, column 17]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.InvalidReferenceException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.InvalidReferenceException.getInstance(InvalidReferenceException.java:108)
+	at freemarker.core.UnexpectedTypeException.newDesciptionBuilder(UnexpectedTypeException.java:60)
+	at freemarker.core.UnexpectedTypeException.<init>(UnexpectedTypeException.java:40)
+	at freemarker.core.NonHashException.<init>(NonHashException.java:46)
+	at freemarker.core.Dot._eval(Dot.java:45)
+	at freemarker.core.Expression.eval(Expression.java:76)
+	at freemarker.core.Expression.evalToNumber(Expression.java:95)
+	at freemarker.core.NumericalOutput.accept(NumericalOutput.java:55)
+	at freemarker.core.Environment.visit(Environment.java:257)
+	at freemarker.core.MixedContent.accept(MixedContent.java:57)
+	at freemarker.core.Environment.visit(Environment.java:257)
+	at freemarker.core.Environment.process(Environment.java:235)
+	at freemarker.template.Template.process(Template.java:262)
+	at com.eoma.autocoding.Generator.gen(Generator.java:151)
+	at com.eoma.autocoding.Generator.main(Generator.java:158)

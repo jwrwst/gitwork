@@ -1,0 +1,79 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.platform.rp.services.sys.core.dao.SysCodeClassDAO">
+    
+    <resultMap id="sysCodeClassEntityMap" type="com.platform.rp.services.sys.core.dao.entity.SysCodeClassEntity">
+        <id column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="value" property="value" />
+		<result column="useable" property="useable" />
+		<result column="description" property="description" />
+		<result column="updatedtime" property="updatedtime" />
+    </resultMap>
+    
+    <resultMap id="sysCodeClassVoMap" type="com.platform.rp.services.sys.inner.vo.SysCodeClassVo">
+        <id column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="value" property="value" />
+		<result column="useable" property="useable" />
+		<result column="description" property="description" />
+		<result column="updatedtime" property="updatedtime" />
+    </resultMap>
+    
+    <sql id="page">
+        <if test="start > -1">
+            <if test="end > 0">
+                limit #{start}, #{end}
+            </if>
+        </if>
+    </sql>
+    
+    <sql id="selectColumn">
+        id,name,value,useable,description,updatedtime
+    </sql>
+    
+    <insert id="save" parameterType="com.platform.rp.services.sys.core.dao.entity.SysCodeClassEntity" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_code_class(name,value,useable,description)
+        values(#{name},#{value},#{useable},#{description})
+    </insert>
+    
+    <update id="update" parameterType="com.platform.rp.services.sys.core.dao.entity.SysCodeClassEntity">
+        update sys_code_class
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="value != null">
+                value = #{value},
+            </if>
+            <if test="useable != null">
+                useable = #{useable},
+            </if>
+            <if test="description != null">
+                description = #{description},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+    
+    <select id="get" resultType="com.platform.rp.services.sys.core.dao.entity.SysCodeClassEntity" parameterType="int">
+		select
+		<include refid="selectColumn" />
+		from sys_code_class where id = #{id}
+	</select>
+	
+    <delete id="delete" parameterType="int">
+		delete from sys_code_class where id = #{id}
+	</delete>
+    
+	<select id="getListPage" resultMap="sysCodeClassVoMap" parameterType="com.platform.rp.services.sys.core.dao.entity.SysCodeClassEntity">
+		select
+		<include refid="selectColumn" />
+		from sys_code_class
+		<if test="name != null">
+		    where instr(name, #{name}) > 0
+		</if>
+		order by updatedtime desc
+		<include refid="page" />
+	</select>
+
+</mapper>

@@ -1,0 +1,66 @@
+######web\u5730\u5740
+web.url=
+######\u670d\u52a1\u5668\u57df\u540d  \u5fae\u4fe1\u83b7\u53d6appid
+host=http://192.168.0.110:8080
+
+############# \u56fe\u7247\u5b58\u50a8\u8def\u5f84 ##############
+uploadfile = /opt/server/image-server/apache-tomcat-18000/webapps
+
+############# \u662f\u5426\u6267\u884c\u4efb\u52a1 ##############
+isExecuteTask = 1;
+
+############# \u77ed\u5730\u5740   \u4e8c\u7ef4\u7801  /web/qrcode ###
+short.url=http://localhost
+
+############# \u652f\u4ed8\u5b9d\u914d\u7f6e #################
+alipay.gateway=http://wappaygw.alipay.com/service/rest.htm?
+alipay.notifyUrl=http://wect.haidilao.com:8003/hdl-applet/alipay/alipay.xhtml
+alipay.seller_email=bjhdl@haidilao.com
+alipay.partner=2088311123182956
+alipay.key=eywynoyxjbmhfd93z9s46hra2f237ugl
+
+############# \u5fae\u4fe1\u914d\u7f6e    #################
+wx.appId=wxdc59821989625888
+wx.secret.key=7841efa3f18381d1b6846c9cfb8d627a
+#\u83b7\u53d6token\u5730\u5740
+wx.oauthurl=https://api.weixin.qq.com/sns/oauth2/access_token
+wx.authorize=https://open.weixin.qq.com/connect/oauth2/authorize
+wx.userinfo=https://api.weixin.qq.com/sns/userinfo
+#\u5546\u6237\u4fe1\u606f
+wxpay.partnerKey=dashangtech321tipsdashangtech321
+wxpay.partner=1324943801
+wxpay.notifyUrl=http://www.321tips.cn/wxNotify/wxNotify.xhtml
+
+############## \u8df3\u8f6c\u5730\u5740    ###################
+#\u5fae\u4fe1\u5165\u53e3\u5730\u5740
+wx.login = /rs/wechat/goBaseLogin
+#\u5e97\u957f\u7ba1\u7406
+wx.url1 = /storelogin.xhtml
+#\u6211\u7684\u6536\u5165
+wx.url2 = /melogin.xhtml
+#\u7528\u6237\u6253\u8d4f
+wx.url3 = /waplogin.xhtml
+#\u5546\u5bb6\u6ce8\u518c
+wx.url4 = /reglogin.xhtml
+#\u5546\u6237\u7ba1\u7406
+wx.url5 = /merchants.xhtml
+#\u6dfb\u52a0\u5e97\u957f
+wx.url6 = /addmanager.xhtml
+#\u6dfb\u52a0\u5206\u6210\u4eba\u5458
+wx.url61 = /adddivided.xhtml
+#\u6dfb\u52a0\u7ba1\u7406\u4eba\u5458
+wx.url62 = /addorgperson.xhtml
+#\u6dfb\u52a0\u5e97\u5458
+wx.url7 = /addwaiter.xhtml
+#\u533a\u57df\u7ba1\u7406
+wx.url8 = /orgmanage.xhtml
+#\u6388\u6743PC\u7aef\u767b\u5f55
+wx.url9 = /rs/external/merchants/getEmpId
+
+#\u77ed\u4fe1\u63a5\u53e3\u53c2\u6570
+#\u8f6f\u4ef6\u5e8f\u5217\u53f7,\u8bf7\u901a\u8fc7\u4ebf\u7f8e\u9500\u552e\u4eba\u5458\u83b7\u53d6
+sms.sn = 49475
+sms.key = AC00203
+sms.password = Gu#gong9msg
+sms.url= http://114.113.154.5/sms.aspx?action=send
+

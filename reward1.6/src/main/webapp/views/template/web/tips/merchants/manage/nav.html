@@ -1,0 +1,44 @@
+﻿﻿<nav class="mui-bar mui-bar-tab store-menu" style="z-index:9999999999">
+			<a class="mui-tab-item" href="javascript:void(0)" id="dynamic" data-menu="dynamic"
+			onclick="switchepages1()">
+				<span class="mui-icon iconfont icon-store-list" data-class="icon-time"></span>
+				<span class="mui-tab-label">店铺管理</span>
+			</a>
+			<a class="mui-tab-item" href="javascript:void(0)" id="range" data-menu="range"
+			onclick="switchepages2()">
+				<span class="mui-icon iconfont icon-range" data-class="icon-range"></span>
+				<span class="mui-tab-label">排行</span>
+			</a>
+			<a class="mui-tab-item" href="javascript:void(0)" id="statistics" data-menu="statistics"
+			onclick="switchepages3()">
+				<span class="mui-icon iconfont icon-serverteen" data-class="icon-serverteen"></span>
+				<span class="mui-tab-label">统计</span>
+			</a>
+			<a class="mui-tab-item" href="#setting_menu" id='merchantsnotes' data-id="setting_menu" data-menu="setting_menu" style=""
+			onclick="switchepages4()" >
+				<span class="mui-icon iconfont icon-storemanage" data-class="icon-setting" ></span>
+				<span class="mui-tab-label">商户信息</span>
+			</a>
+		</nav>
+
+<script type="text/javascript">
+	var type = ${type};
+	var parentCode = '';
+	<#if param??>
+		parentCode = '${param.data}';
+	</#if>
+	if(parentCode !=''){
+		type = 1;
+	}
+	if(type==1){
+		document.getElementById("merchantsnotes").style.display = "none"; 
+		if(document.getElementById("userInfo"))
+		document.getElementById("userInfo").style.display = "none"; 
+	}
+</script>	
+<script type="text/javascript">
+
+
+
+
+</script>

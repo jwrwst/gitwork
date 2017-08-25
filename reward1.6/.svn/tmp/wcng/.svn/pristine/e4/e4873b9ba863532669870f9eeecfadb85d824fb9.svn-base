@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+	  <head>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	    <title>众赏-添加店长</title>
+	    <link href="${basepath}/assets/plugin/mui/dist/css/mui.min.css" rel="stylesheet"/>
+	    <link href="${basepath}/assets/def/css/tips.css" rel="stylesheet"/>
+	    <link rel="shortcut icon" href="${basepath}/assets/favicon.ico" />
+	    <style type="text/css">
+	        .mui-page-content{
+		       padding-top: 0px;
+		    }
+	    </style>
+	  </head>
+	  
+	  <body> 	  	
+	    <!--页面主结构开始-->
+		<div id="center" class="mui-views">
+			<div class="mui-view">	
+			    <div class="mui-navbar" style="display: none;">
+				</div>	
+				<div class="mui-pages">
+				</div>
+			</div>
+		</div>
+		
+		<div id="welcomepage"  class="mui-page" >
+			<div class="mui-navbar-inner mui-bar mui-bar-nav" style="display:none;">
+			</div>
+		
+			<div class="mui-page-content"  id="scroll-content">
+			  <div class="scroller">
+				<div class="plat-content">
+					  <a href="#resultpage" id="rega" style="display:none;"></a>
+					  <form  id="form1" style="padding-top:30px;">
+						   <!--页面主结构开始-->
+							<div>
+								<p style="display: block; text-align: center; font-size: 18px; margin: 30px 10px;">绑定为<a><span class="manager"></span></a>的店长</p>
+							</div>
+							<div class="mui-input-group">
+								<div class="mui-input-row">
+									<label>姓名</label> <input type="text" class="mui-input-clear" style=""
+										placeholder="请输入您的真实姓名" name="createUser" maxlength="50" value="${loginVo.name}">
+							
+								</div>
+							
+							</div>
+							<p style="margin:10px;">请输入真实姓名，以便于人员管理。</p>
+							 <input type="hidden" name="create_openId" value="${loginVo.openId}">	
+<!-- 							    <input type="hidden" name="nickname" value="${loginVo.nickname}"> -->
+						    <input type="hidden" name="sex" value="${loginVo.sex}">
+						    <input type="hidden" name="province" value="${loginVo.province}">
+						    <input type="hidden" name="city" value="${loginVo.city}">	
+						    <input type="hidden" name="country" value="${loginVo.country}">
+						    <input type="hidden" name="headimgurl" value="${loginVo.headimgurl}">	
+						    <input type="hidden" name="empId" value="${loginVo.empId}">
+						    <input type="hidden" name="storeId" value="${loginVo.storeId}">
+						    
+						</form>		
+						<div class="mui-content-padded tips-reginfo-submit">  
+						  
+							<a  class="mui-btn mui-btn-warning mui-btn-block"
+								id="regMain">绑定为店长</a>
+						</div>
+						
+				    
+
+				</div>
+				
+			</div>	
+			</div>
+		</div>
+	     
+		
+			
+		<div id="resultpage"  class="mui-page">
+			<div class="mui-navbar-inner mui-bar mui-bar-nav" style="display:none;">
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+					<span class="mui-icon mui-icon-left-nav"></span>
+				</button>
+				<h1 class="mui-text-left mui-title">绑定成功</h1>
+			</div>
+		
+			<div class="mui-page-content">
+			<div class="scroller">
+			
+				<div class="plat-content">
+				   <div class="mui-content">
+					<div style="text-align: center;height:120px;padding:30px; ">
+							<div style="width:100%;float: left;text-align: center;"><img alt="" src="${basepath}/assets/def/images/success.png" class=successImg style="width:7em;"></div>
+							<div style="width:100%;float: left;text-align: center;font-weight:bold;padding:10px 10px;">
+								<p style="font-size:1.0em;color:#EA4F16;margin-bottom:30px;line-height:30px;"  id="successTips">您已成为&nbsp;<span class="manager"></span>&nbsp;店铺的店长<br>请长按下方二维码，关注众赏公众号</p>
+							</div>
+							<div style="width:100%;float: left;text-align: center;"><img alt="" src="${basepath}/assets/def/images/qrcode_weixin.jpg" style="width:40%"></div>
+                    </div>					
+					<div style="display:none;">
+						<div class="mui-content-padded tips-reginfo-submit" >		        
+					        <button  type="button" class="mui-btn mui-btn-warning mui-btn-block" id="comeMain" >进入店铺首页</button>					        	       
+					    </div>
+					</div>
+				  </div>
+				</div>
+				
+			  </div>	
+			</div>
+		</div>
+			
+
+		
+	  </body>
+	  
+	  <script src="${basepath}/assets/plugin/require.js"></script>
+	  <script type="text/javascript" src="${basepath}/assets/def/js/tips/tips.js"></script>
+	  <script type="text/javascript">
+	  var storeId = "${loginVo.storeId}";
+	  var empId = "${loginVo.empId}";
+	  var data="${loginVo.data}"
+	  require(["jquery","mui","mui_view","addr","common"],function($$,mui,mui_view,addr,tools){
+		  
+		  //初始化单页view
+		  var viewApi = mui('#center').view({
+		  	defaultPage: '#welcomepage'
+		  });
+		  
+
+		  //加载基础数据
+		  var storename ;
+		  addr.getStore("storeId="+storeId,function(data){
+			  if(data!=null&&data.resultMessage.messageCode=="0000"){
+				  var json=data.resultData.body.result;
+				  storename = json.storeName;
+				  $$(".manager").html(json.storeName);
+			  }
+		  });
+		  
+		  //绑定
+		  mui('.mui-content-padded').on('tap','#regMain',function(e) {
+			  var data = $$("#form1").serializeJson();
+				var datastr=JSON.stringify(data);
+				var _this =this;
+				if(data.createUser == ""){
+					tools.toastTip(null,"请输入您名称");
+					return;
+				}
+				var loading = tools.loading();
+				window.setTimeout(function(){
+					loading.close();
+				}, 2000);
+				data.nickname = data.createUser;
+				addr.saveManagerStore(datastr,function(resdata){
+					loading.close();
+					if(resdata!=null&&resdata.resultMessage.messageCode=="0000"){
+						localStorage.setItem("_type", 2);
+						localStorage.setItem("_name", storename);
+						window.location.href = '${basepath}/views/template/web/tips_merchants_bindsuccess.xhtml?param.type=2';
+					}
+				});
+				
+				
+				
+			  //document.getElementById("rega").href="#resultpage";
+			  //mui.trigger(document.getElementById("rega"),'tap');	
+	      });
+	  
+	  });
+	  </script>
+</html>			

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.weixin.dao.WeixinUserDao">
+    
+	<sql id="weixinUserColumns">
+		a.id AS "id",
+		a.url AS "url",
+		a.nickname AS "nickname",
+		a.sex AS "sex",
+		a.address AS "address",
+		a.open_id AS "openId",
+		a.create_time AS "createTime"
+	</sql>
+	
+	<sql id="weixinUserJoins">
+	</sql>
+    
+	<select id="get" resultType="WeixinUser">
+		SELECT 
+			<include refid="weixinUserColumns"/>
+		FROM weixin_user a
+		<include refid="weixinUserJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="WeixinUser">
+		SELECT 
+			<include refid="weixinUserColumns"/>
+		FROM weixin_user a
+		<include refid="weixinUserJoins"/>
+		<where>
+			
+			<if test="nickname != null and nickname != ''">
+				AND a.nickname LIKE 
+					<if test="dbName == 'oracle'">'%'||#{nickname}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{nickname}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{nickname},'%')</if>
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="WeixinUser">
+		SELECT 
+			<include refid="weixinUserColumns"/>
+		FROM weixin_user a
+		<include refid="weixinUserJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO weixin_user(
+			id,
+			url,
+			nickname,
+			sex,
+			address,
+			open_id,
+			create_time
+		) VALUES (
+			#{id},
+			#{url},
+			#{nickname},
+			#{sex},
+			#{address},
+			#{openId},
+			#{createTime}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE weixin_user SET 	
+			url = #{url},
+			nickname = #{nickname},
+			sex = #{sex},
+			address = #{address},
+			open_id = #{openId},
+			create_time = #{createTime}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM weixin_user
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

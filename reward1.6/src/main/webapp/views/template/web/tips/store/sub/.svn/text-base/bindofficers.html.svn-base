@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>众赏</title>
+<link href="${basepath}/assets/plugin/mui/dist/css/mui.min.css"
+	rel="stylesheet" />
+<link href="${basepath}/assets/def/css/tips.css" rel="stylesheet" />
+<link rel="shortcut icon" href="${basepath}/assets/favicon.ico" />
+</head>
+
+<body>
+	<!--页面主结构开始-->
+
+	<!--页面标题栏开始-->
+	<div class="mui-content" id="scroll-content">
+		<div>
+			<p class="mui-icon iconfont icon_banding"
+				style="display: block; text-align: center; margin: 40px auto 10px;"></p>
+			<p
+				style="display: block; text-align: center; font-size: 18px; margin: 10px;">绑定为分成人员</p>
+		</div>
+		<form>
+			<div class="mui-input-group">
+				<div class="mui-input-row">
+					<label>姓名</label> <input type="text" placeholder="请输入真实姓名，以便于人员管理"
+						name="name" maxlength="100">
+				</div>
+
+				<div class="mui-input-row">
+					<label>职位</label> <input type="text" placeholder="请输入您的职位"
+						name='office'>
+				</div>
+
+			</div>
+
+			<div>
+				<div class="mui-content-padded tips-reginfo-submit">
+					<input type="hidden" name="storeId" id="storeId" value="">
+					<input type="hidden" name="updateUser" id="updateUser" value="">
+					<button type="button" class="mui-btn mui-btn-warning mui-btn-block"
+						id="regbnt">绑定为分成人员</button>
+				</div>
+
+			</div>
+
+
+		</form>
+
+		<!-- 页面底部标题 -->
+	</div>
+</body>
+
+<script src="${basepath}/assets/plugin/require.js"></script>
+<script type="text/javascript"
+	src="${basepath}/assets/def/js/tips/tips.js"></script>
+</html>

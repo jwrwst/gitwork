@@ -1,0 +1,60 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.platform.rp.services.store.core.dao.BsStoreEmployeeDividedDAO">
+
+    <insert id="save" parameterType="com.platform.rp.services.store.core.dao.entity.BsStoreEmployeeDividedEntity" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO bs_store_employee_divided (store_id,emp_id,status,update_time)
+        VALUES (#{storeId}, #{empId}, #{status}, #{updateTime})
+
+    </insert>
+    
+    
+    <delete id="deleteByStoreIdAndEmpId">
+		delete from bs_store_employee_divided where store_id = #{storeId} and emp_id = #{empId}
+	</delete>
+	
+    <delete id="delete">
+		delete from bs_store_employee_divided where store_id = #{storeId} 
+	</delete>
+	
+    <update id="update" parameterType="com.platform.rp.services.store.core.dao.entity.BsStoreEmployeeDividedEntity">
+        update bs_store_employee_divided
+        <set>     
+			status = #{status},
+			update_time = now()	
+        </set>
+        where store_id = #{storeId}
+    </update>
+    
+    <select id="getEmpListByStoreId"  resultType="com.platform.rp.services.store.external.vo.BsStoreEmployeeDividedVo" parameterType="long">
+       SELECT
+			a.emp_id empId,
+			b. NAME empName,
+			b.nickname empNickName,
+			b.job_title jobTitle,
+			b.head_pic headPic,
+			s.emp_id rewardEmpId,sum(s.percent) percent,sum(s.money) money
+		FROM
+			bs_store_employee_divided a
+			LEFT JOIN bs_employee_info b	ON a.emp_id = b.emp_id
+			LEFT JOIN bs_store_ext_reward s ON s.emp_id = b.emp_id and  s.store_id = #{storeId} 
+         WHERE a.store_id = #{storeId} and a.status =1 group by a.emp_id
+    </select>
+    
+    <select id="getEmpList"  resultType="com.platform.rp.services.store.external.vo.BsStoreEmployeeDividedVo" parameterType="long">
+       SELECT
+			a.emp_id empId,
+			b. NAME empName,
+			b.nickname empNickName,
+			b.job_title jobTitle,
+			b.head_pic headPic
+		FROM
+			bs_store_employee_divided a
+			LEFT JOIN bs_employee_info b ON a.emp_id = b.emp_id
+         WHERE a.store_id = #{storeId} and a.status =1 
+    </select>
+    
+
+    <select id="getCountByOpenIdAndStoreId" resultType="int" parameterType="string">
+         select count(1) from bs_store_employee_divided s left join bs_employee_info e on s.emp_id = e.emp_id where wx_account = #{openId}  and s.store_id = #{storeId}  and s.status = 1
+    </select>
+</mapper>

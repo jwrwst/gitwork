@@ -1,0 +1,356 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.platform.rp.services.statistics.core.dao.ComprehensiveSatisicsDAO">
+
+    <sql id="page">
+		<if test="start > -1">
+			<if test="pageSize > 0">
+				limit #{start}, #{pageSize}
+			</if>
+			<if test="pageSize == 0 or pageSize == '' or pageSize &lt; 0">
+				limit #{start}
+			</if>
+		</if>
+	</sql>
+    <sql id="orderby">
+        ORDER BY amountCount desc
+    </sql>
+    <sql id="shopownerDivided_sql">
+       LEFT JOIN (
+	  		SELECT re.store_id,ROUND(SUM(re.paid),2) AS shopownerDivided,
+	  		 DATE_FORMAT(re.busdate,'%Y-%m-%d') as busdate
+	        FROM bs_store_employee bs
+	        RIGHT JOIN it_record_emp_log re ON re.store_id = bs.store_id AND re.emp_id = bs.emp_id
+	       WHERE re.record_type = 2  
+    </sql>
+    <sql id="selectAll">
+      DATE_FORMAT(ir.busdate,'%Y-%m-%d') as dateVal,ir.store_Id as storeId,COUNT(DISTINCT ir.customer_id) AS cusCount,
+       	COUNT(DISTINCT ir.emp_id) AS empCount,COUNT(ir.emp_id) as count,round(SUM(ir.reward_amount),2) as amountCount ,
+       	si.store_name as storeName
+    </sql>
+    
+    <sql id="reward_info_where">      
+		<where>
+		    ir.`status` = 2
+		    AND ir.store_Id in 
+              <foreach collection="storeIds" index="index" item="tag" open="("
+			    separator="," close=")">
+			   	#{tag}
+			  </foreach>
+            AND ir.busdate   &gt;= #{startTime} AND ir.busdate   &lt;= #{endTime}
+		</where>
+    </sql>
+    
+    <sql id="reward_info_code_where">    
+	  	<where>  	    
+	  	    ms.`schema` = #{orgCode} and  ir.`status` = 2
+	  	</where>
+    </sql>
+    <!-- 实时动态 -->
+	<select id="findRealTimeDynamicPage" resultType="com.platform.rp.services.statistics.core.dao.entity.ComprehensiveSatisicsEntity">
+	
+		SELECT
+			ir.id,ir.receivable,ir.remark,
+			ir.emp_id AS empId,
+			nickname as empName,					
+			DATE_FORMAT(ir.create_time, '%Y-%m-%d %H:%I:%s') AS dateVal,
+			ir.store_Id AS storeId,
+			ir.paid AS amountCount,
+			si.store_name AS storeName,
+			ir.record_type as type
+		FROM
+			 it_record_emp_log ir
+		LEFT JOIN bs_store_info si ON ir.store_id = si.store_id
+		LEFT JOIN bs_merchants_store ms ON ms.store_id = ir.store_id  
+	  	<where>  	    
+	  	    ms.`schema` = #{orgCode} 
+	  	</where>
+		ORDER BY 	ir.create_time desc
+		<include refid="page" />
+	</select>
+
+	<select id="findRealTimeDynamicCount" resultType="int" parameterType="map">
+		SELECT
+	  		count(*)  
+		FROM it_reward_info ir
+	  	LEFT JOIN bs_merchants_store ms on ms.store_id = ir.store_id
+		<include refid="reward_info_code_where"></include>
+	</select>
+	
+	<select id="findRealTimeDynamicAll" resultType="com.platform.rp.services.statistics.core.dao.entity.ComprehensiveSatisicsEntity">
+		SELECT * FROM (
+			SELECT
+			ms.org_code,ms.`schema`,
+				COUNT(DISTINCT ir.customer_id) AS cusCount,
+	       		COUNT(DISTINCT ir.emp_id) AS empCount,
+	       		COUNT(ir.emp_id) as count,
+	       		round(SUM(ir.reward_amount),2) as amountCount 		
+			FROM it_reward_info ir 
+		  LEFT JOIN bs_merchants_store ms on ms.store_id = ir.store_id
+		<include refid="reward_info_code_where"></include>
+		)t1  LEFT JOIN (			
+			  SELECT 
+			  		org_code,ms.`schema`,ROUND(SUM(re.paid),2) AS shopownerDivided
+			   <!--  FROM bs_store_employee bs
+			    LEFT JOIN it_record_emp_log re ON re.store_id = bs.store_id AND re.emp_id = bs.emp_id
+			  	LEFT JOIN bs_merchants_store ms on ms.store_id = bs.store_id -->
+			  	FROM it_record_emp_log re
+				LEFT JOIN bs_merchants_store ms ON ms.store_id = re.store_id
+			    WHERE re.record_type = 2 
+					and ms.`schema` = #{orgCode}
+				)t2 on t1.`schema` = t2.`schema`	
+	</select>
+	
+    
+    <!-- 报表 -->
+    <select id="findCharStatistcs"  resultType="com.platform.rp.services.statistics.core.dao.entity.ComprehensiveSatisicsEntity">
+       SELECT DATE_FORMAT(busdate,'%m-%d') as dateVal,store_Id as storeId,
+       COUNT(DISTINCT emp_id) AS empCount,COUNT(emp_id) as count,round(SUM(reward_amount),2) as amountCount  
+       FROM it_reward_info ir
+        
+		
+	  	<!-- it_reward_info 公共条件 -->
+		<include refid="reward_info_where"></include>
+		 
+        GROUP BY store_Id ,DATE_FORMAT(busdate,'%Y%m%d') ORDER BY busdate
+    </select>
+    
+    <select id="findCharStatistcsAllStore"  resultType="com.platform.rp.services.statistics.core.dao.entity.ComprehensiveSatisicsEntity">
+       SELECT DATE_FORMAT(busdate,'%m-%d') as dateVal,0 as storeId,
+       COUNT(DISTINCT emp_id) AS empCount,COUNT(emp_id) as count,round(SUM(reward_amount),2) as amountCount  
+       FROM it_reward_info ir
+        
+		
+	  	<!-- it_reward_info 公共条件 -->
+		<include refid="reward_info_where"></include>
+		
+        GROUP BY DATE_FORMAT(busdate,'%Y%m%d') ORDER BY busdate
+    </select>
+    <select id="findAllCharStatistcs"  resultType="com.platform.rp.services.statistics.core.dao.entity.ComprehensiveSatisicsEntity">
+       SELECT DATE_FORMAT(busdate,'%m-%d') as dateVal,store_Id as storeId,COUNT(DISTINCT customer_id) AS cusCount,
+       COUNT(DISTINCT emp_id) AS empCount,COUNT(emp_id) as count,round(SUM(reward_amount),2) as amountCount 
+       FROM it_reward_info ir
+        
+		
+	  	<!-- it_reward_info 公共条件 -->
+		<include refid="reward_info_where"></include>
+		
+    </select>
+    
+    <!-- 分成统计 -->
+    <select id="findAllShopownerDivided"  resultType="com.platform.rp.services.statistics.core.dao.entity.ComprehensiveSatisicsEntity">
+    SELECT
+		round(SUM(if(s.emp_id is null,0,ir.paid)), 2) AS shopownerDivided,
+	
+		round(SUM(if(m.emp_id is null,0,ir.paid)), 2) AS merDivided,
+	
+		round(SUM(if(md.emp_id is null,0,ir.paid)), 2) AS empDivided
+	FROM
+		it_record_emp_log ir
+		LEFT JOIN (SELECT emp_id from bs_store_employee 
+		<where>
+            store_Id in 
+              <foreach collection="storeIds" index="index" item="tag" open="("
+			    separator="," close=")">
+			   	#{tag}
+			  </foreach>
+        </where>    GROUP BY emp_id  ) s on s.emp_id = ir.emp_id
+		LEFT JOIN (SELECT emp_id from bs_merchants_employee me
+		LEFT JOIN bs_merchants_store ms on ms.org_code = me.org_code
+		<where>
+            store_Id in 
+              <foreach collection="storeIds" index="index" item="tag" open="("
+			    separator="," close=")">
+			   	#{tag}
+			  </foreach>
+        </where>
+          GROUP BY emp_id) m on m.emp_id = ir.emp_id
+		LEFT JOIN (SELECT emp_id from bs_store_employee_divided 
+		<where>
+            store_Id in 
+              <foreach collection="storeIds" index="index" item="tag" open="("
+			    separator="," close=")">
+			   	#{tag}
+			  </foreach>
+        </where> GROUP BY emp_id) md on md.emp_id = ir.emp_id
+        <where>
+            record_type = 2  AND ir.store_Id in 
+              <foreach collection="storeIds" index="index" item="tag" open="("
+			    separator="," close=")">
+			   	#{tag}
+			  </foreach>
+            AND ir.busdate   &gt;= #{startTime} AND ir.busdate   &lt;= #{endTime}
+        </where>  
+    </select>
+    
+    
+	<select id="findStoreRankingPage" resultType="com.platform.rp.services.statistics.core.dao.entity.ComprehensiveSatisicsEntity">
+		SELECT * FROM (
+		SELECT
+	  		<include refid="selectAll"></include>
+		FROM it_reward_info ir
+	  	LEFT JOIN bs_store_info si ON ir.store_id = si.store_id 
+	  	<!-- it_reward_info 公共条件 -->
+		<include refid="reward_info_where"></include>
+		
+		GROUP BY ir.store_id )si		
+		<include refid="shopownerDivided_sql" />	
+         AND re.busdate   &gt;= #{startTime} AND re.busdate   &lt;= #{endTime}
+	     GROUP BY re.store_id) t ON t.store_id = si.storeId
+		ORDER BY si.amountCount desc
+		<include refid="page" />
+	</select>
+
+	<select id="findStoreRankingCount" resultType="int" parameterType="map">
+		SELECT count(*) FROM (
+		SELECT
+	  		1  
+		FROM it_reward_info ir
+	  	LEFT JOIN bs_store_info si ON ir.store_id = si.store_id
+	  	<!-- it_reward_info 公共条件 -->
+		<include refid="reward_info_where"></include>
+		
+		GROUP BY ir.store_id )t
+	</select>
+	
+	<select id="findStaffRankingPage" resultType="com.platform.rp.services.statistics.core.dao.entity.ComprehensiveSatisicsEntity">
+		SELECT * FROM (SELECT
+	  		ei.name AS empName,si.store_name  AS storeName,ir.store_Id  AS storeId,COUNT(DISTINCT ir.customer_id) AS cusCount,COUNT(ir.emp_id) AS COUNT,
+	 		 ROUND(SUM(ir.reward_amount),2) AS amountCount
+		FROM it_reward_info ir
+	  	LEFT JOIN bs_store_info si ON ir.store_id = si.store_id
+	  	LEFT JOIN bs_employee_info  ei ON ei.emp_id = ir.emp_id
+	  	<!-- it_reward_info 公共条件 -->
+		<include refid="reward_info_where"></include>
+		
+		GROUP BY ir.store_id,ir.emp_id)t ORDER BY t.amountCount desc
+		<include refid="page" />
+	</select>
+
+	<select id="findStaffRankingCount" resultType="int" parameterType="map">
+		SELECT count(*) FROM (SELECT 1		
+		FROM it_reward_info ir
+	  	LEFT JOIN bs_store_info si ON ir.store_id = si.store_id
+	  	LEFT JOIN bs_employee_info  ei ON ei.emp_id = ir.emp_id
+	  	
+	  	<!-- it_reward_info 公共条件 -->
+		<include refid="reward_info_where"></include>
+		
+		GROUP BY ir.emp_id)t
+	</select>
+	<!-- 日志 -->
+	<select id="findLogsByDataPage" resultType="com.platform.rp.services.statistics.core.dao.entity.ComprehensiveSatisicsEntity">		
+		SELECT * FROM (
+	    SELECT IFNULL(shopownerDivided,0) AS shopownerDivided,
+		<include refid="selectAll"></include>
+      	FROM it_reward_info ir
+	  	LEFT JOIN bs_store_info si ON ir.store_id = si.store_id	  
+        
+		<include refid="shopownerDivided_sql" />
+        AND re.busdate   &gt;= #{startTime} AND re.busdate   &lt;= #{endTime}
+		AND re.store_Id in 
+        <foreach collection="storeIds" index="index" item="tag" open="("
+			    separator="," close=")">
+			#{tag}
+	 	</foreach>
+	     GROUP BY  DATE_FORMAT(re.busdate,'%Y-%m-%d')) t 
+	     ON t.busdate = DATE_FORMAT(ir.busdate,'%Y-%m-%d')
+		
+	  	<!-- it_reward_info 公共条件 -->
+		<include refid="reward_info_where"></include>
+		
+        GROUP BY DATE_FORMAT(ir.busdate,'%Y%m%d') 
+         )t ORDER BY dateVal DESC
+		<include refid="page" />
+	</select>
+
+	<select id="findLogsByDataCount" resultType="int" parameterType="map">
+		SELECT count(1) FROM (
+		SELECT 1 FROM it_reward_info ir
+		
+	  	<!-- it_reward_info 公共条件 -->
+		<include refid="reward_info_where"></include>
+		
+        GROUP BY DATE_FORMAT(ir.busdate,'%Y%m%d') )t
+	</select>
+	
+	<select id="findLogsByDataDetail" resultType="com.platform.rp.services.statistics.core.dao.entity.ComprehensiveSatisicsEntity">		
+		SELECT * FROM (SELECT IFNULL(shopownerDivided,0) AS shopownerDivided,
+		<include refid="selectAll"></include>
+      	FROM it_reward_info ir
+	  	LEFT JOIN bs_store_info si ON ir.store_id = si.store_id	  
+		<include refid="shopownerDivided_sql" />
+		 AND re.busdate = #{busdata} 
+	     GROUP BY re.store_id) t 
+	     ON t.store_id = ir.store_id		
+	  	<!-- it_reward_info 公共条件 -->
+		    
+		<where>
+		    ir.`status` = 2
+		    AND ir.store_Id in 
+              <foreach collection="storeIds" index="index" item="tag" open="("
+			    separator="," close=")">
+			   	#{tag}
+			  </foreach>
+            AND ir.busdate = #{busdata} 
+		</where>
+		
+        GROUP BY ir.store_id )t
+		<include refid="orderby" />
+		<include refid="page" />
+	</select>
+	<!-- 门店汇总 -->
+	<select id="findStoreSummaryPage" resultType="com.platform.rp.services.statistics.core.dao.entity.ComprehensiveSatisicsEntity">		
+
+	    SELECT IFNULL(shopownerDivided,0) AS shopownerDivided,
+		<include refid="selectAll"></include>
+      	FROM it_reward_info ir
+	  	LEFT JOIN bs_store_info si ON ir.store_id = si.store_id	  
+        
+		<include refid="shopownerDivided_sql" />
+        AND re.busdate   &gt;= #{startTime} AND re.busdate   &lt;= #{endTime}
+		AND re.store_Id in 
+        <foreach collection="storeIds" index="index" item="tag" open="("
+			    separator="," close=")">
+			#{tag}
+	 	</foreach>
+	     GROUP BY re.store_id) t 
+	     ON t.store_id = ir.store_id
+		
+	  	<!-- it_reward_info 公共条件 -->
+		<include refid="reward_info_where"></include>
+		
+       GROUP BY ir.store_id 
+		<include refid="page" />
+	</select>
+
+	<select id="findStoreSummaryCount" resultType="int" parameterType="map">
+		SELECT count(1) FROM (
+		SELECT 1 FROM it_reward_info ir
+		
+	  	<!-- it_reward_info 公共条件 -->
+		<include refid="reward_info_where"></include>
+		
+        GROUP BY ir.store_id)t
+	</select>
+	
+	
+	<select id="findStoreSummaryDetail" resultType="com.platform.rp.services.statistics.core.dao.entity.ComprehensiveSatisicsEntity">		
+		SELECT * FROM (SELECT IFNULL(shopownerDivided,0) AS shopownerDivided,
+		<include refid="selectAll"></include>
+      	FROM it_reward_info ir
+	  	LEFT JOIN bs_store_info si ON ir.store_id = si.store_id	  
+		<include refid="shopownerDivided_sql" />	
+        AND re.busdate   &gt;= #{startTime} AND re.busdate   &lt;= #{endTime}
+		AND re.store_Id = #{storeId} 
+	     GROUP BY  DATE_FORMAT(re.busdate,'%Y-%m-%d')) t 
+	     ON t.busdate = DATE_FORMAT(ir.busdate,'%Y-%m-%d')
+	     
+		<where>
+		     ir.store_Id = #{storeId} 	and	ir.`status` = 2
+       		AND ir.busdate   &gt;= #{startTime} AND ir.busdate   &lt;= #{endTime}
+		</where>      
+        GROUP BY DATE_FORMAT(ir.busdate,'%Y%m%d')  )t
+        ORDER BY dateVal DESC
+		<include refid="page" />
+	</select>
+</mapper>

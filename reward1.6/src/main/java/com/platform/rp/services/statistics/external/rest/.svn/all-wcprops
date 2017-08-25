@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/statistics/external/rest
+END
+IWapSatisticsRest.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/statistics/external/rest/IWapSatisticsRest.java
+END
+IComprehensiveSatisicsRest.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/statistics/external/rest/IComprehensiveSatisicsRest.java
+END
+IExportStatisticsRest.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/statistics/external/rest/IExportStatisticsRest.java
+END

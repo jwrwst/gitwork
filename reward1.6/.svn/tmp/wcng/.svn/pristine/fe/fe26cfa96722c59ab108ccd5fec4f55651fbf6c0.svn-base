@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>众赏</title>
+<link href="${basepath}/assets/plugin/mui/dist/css/mui.min.css"
+	rel="stylesheet" />
+<link href="${basepath}/assets/def/css/tips.css" rel="stylesheet" />
+<style>
+	body{
+		background-color: #F6F1EE;
+		width: 100%;
+		height:100%;
+	}
+
+</style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+		<h1 class="mui-title">商户管理</h1>
+	</header>
+	<p style="margin:200px 10px 0; text-align: center;font-size: 16px;">您还没有任何商户<br />快创建第一个商户吧~</p>
+	<div class="tips-reginfo-submit" style="position:absolute;left:10px; bottom:20px; right:10px;">
+	<button type='button' class="mui-btn mui-btn-warning mui-btn-block" id="registerNewUser" onclick="registerNewUser()">注册新商户</button></div>
+
+</body>
+
+<script type="text/javascript">
+	function registerNewUser(){
+		window.location.href = "/rs/external/merchants/toRegister";	
+	}
+</script>	
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

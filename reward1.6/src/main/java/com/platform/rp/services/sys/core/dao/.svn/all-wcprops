@@ -1,0 +1,113 @@
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/sys/core/dao
+END
+SysAuthInfoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/sys/core/dao/SysAuthInfoDAO.java
+END
+SysUserInfoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/sys/core/dao/SysUserInfoDAO.java
+END
+SysAreaInfoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/sys/core/dao/SysAreaInfoDAO.java
+END
+SysCodeInfoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/sys/core/dao/SysCodeInfoDAO.java
+END
+SysRoleAuthDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/sys/core/dao/SysRoleAuthDAO.java
+END
+SysRoleInfoDAO.xml
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/sys/core/dao/SysRoleInfoDAO.xml
+END
+SysRoleInfoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/sys/core/dao/SysRoleInfoDAO.java
+END
+SysRoleAuthDAO.xml
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/sys/core/dao/SysRoleAuthDAO.xml
+END
+SysAreaInfoDAO.xml
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/sys/core/dao/SysAreaInfoDAO.xml
+END
+SysCodeInfoDAO.xml
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/sys/core/dao/SysCodeInfoDAO.xml
+END
+SysUserInfoDAO.xml
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/sys/core/dao/SysUserInfoDAO.xml
+END
+SysAuthInfoDAO.xml
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/sys/core/dao/SysAuthInfoDAO.xml
+END
+SysOprateInfoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/sys/core/dao/SysOprateInfoDAO.java
+END
+SysCodeClassDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/sys/core/dao/SysCodeClassDAO.java
+END
+SysUserRoleDetailDAO.xml
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/sys/core/dao/SysUserRoleDetailDAO.xml
+END
+SysUserRoleDetailDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/sys/core/dao/SysUserRoleDetailDAO.java
+END
+SysCodeClassDAO.xml
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/sys/core/dao/SysCodeClassDAO.xml
+END
+SysOprateInfoDAO.xml
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/sys/core/dao/SysOprateInfoDAO.xml
+END

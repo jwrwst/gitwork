@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.weixin.dao.WeixinTemplateDao">
+    
+	<sql id="weixinTemplateColumns">
+		a.id AS "id",
+		a.template_id AS "templateId",
+		a.title AS "title",
+		a.primary_industry AS "primaryIndustry",
+		a.deputy_industry AS "deputyIndustry",
+		a.count AS "count",
+		a.example AS "example"
+	</sql>
+	
+	<sql id="weixinTemplateJoins">
+	</sql>
+    
+	<select id="get" resultType="WeixinTemplate">
+		SELECT 
+			<include refid="weixinTemplateColumns"/>
+		FROM weixin_template a
+		<include refid="weixinTemplateJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="WeixinTemplate">
+		SELECT 
+			<include refid="weixinTemplateColumns"/>
+		FROM weixin_template a
+		<include refid="weixinTemplateJoins"/>
+		<where>
+			
+			<if test="templateId != null and templateId != ''">
+				AND a.template_id = #{templateId}
+			</if>
+			<if test="title != null and title != ''">
+				AND a.title LIKE 
+					<if test="dbName == 'oracle'">'%'||#{title}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{title}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{title},'%')</if>
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="WeixinTemplate">
+		SELECT 
+			<include refid="weixinTemplateColumns"/>
+		FROM weixin_template a
+		<include refid="weixinTemplateJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO weixin_template(
+			id,
+			template_id,
+			title,
+			primary_industry,
+			deputy_industry,
+			count,
+			example
+		) VALUES (
+			#{id},
+			#{templateId},
+			#{title},
+			#{primaryIndustry},
+			#{deputyIndustry},
+			#{count},
+			#{example}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE weixin_template SET 	
+			template_id = #{templateId},
+			title = #{title},
+			primary_industry = #{primaryIndustry},
+			deputy_industry = #{deputyIndustry},
+			count = #{count}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM weixin_template
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

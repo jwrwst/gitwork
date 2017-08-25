@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.weixin.dao.WeixinConfigDao">
+    
+	<sql id="weixinConfigColumns">
+		a.id AS "id",
+		a.config_describe AS "configDescribe",
+		a.config_key AS "configKey",
+		a.config_value AS "configValue",
+		a.create_date AS "createDate"
+	</sql>
+	
+	<sql id="weixinConfigJoins">
+	</sql>
+    
+	<select id="get" resultType="WeixinConfig">
+		SELECT 
+			<include refid="weixinConfigColumns"/>
+		FROM weixin_config a
+		<include refid="weixinConfigJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="WeixinConfig">
+		SELECT 
+			<include refid="weixinConfigColumns"/>
+		FROM weixin_config a
+		<include refid="weixinConfigJoins"/>
+		<where>
+			
+			<if test="configDescribe != null and configDescribe != ''">
+				AND a.config_describe LIKE 
+					<if test="dbName == 'oracle'">'%'||#{configDescribe}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{configDescribe}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{configDescribe},'%')</if>
+			</if>
+			<if test="configKey != null and configKey != ''">
+				AND a.config_key LIKE 
+					<if test="dbName == 'oracle'">'%'||#{configKey}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{configKey}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{configKey},'%')</if>
+			</if>
+			<if test="configValue != null and configValue != ''">
+				AND a.config_value LIKE 
+					<if test="dbName == 'oracle'">'%'||#{configValue}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{configValue}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{configValue},'%')</if>
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="WeixinConfig">
+		SELECT 
+			<include refid="weixinConfigColumns"/>
+		FROM weixin_config a
+		<include refid="weixinConfigJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO weixin_config(
+			id,
+			config_describe,
+			config_key,
+			config_value,
+			create_date
+		) VALUES (
+			#{id},
+			#{configDescribe},
+			#{configKey},
+			#{configValue},
+			#{createDate}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE weixin_config SET 	
+			config_describe = #{configDescribe},
+			config_key = #{configKey},
+			config_value = #{configValue}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM weixin_config
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>众赏</title>
+<link href="${basepath}/assets/plugin/mui/dist/css/mui.min.css"
+	rel="stylesheet" />
+<link href="${basepath}/assets/def/css/tips.css" rel="stylesheet" />
+<style>
+html,body {
+	margin: 0;
+	overflow-x: hidden;
+}
+
+.mui-content-padded {
+	margin: 10px 20px;
+	padding: 10px;
+	border-radius: 5px;
+	background: #fb7c3d;
+	background: -moz-linear-gradient(top, #fb7c3d 0%, fa6731 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fb7c3d),
+		color-stop(100%, fa6731));
+	background: -webkit-linear-gradient(top, #fb7c3d 0%, fa6731 100%);
+	background: -o-linear-gradient(top, #fb7c3d 0%, fa6731 100%);
+	background: -ms-linear-gradient(top, #fb7c3d 0%, fa6731 100%);
+	background: linear-gradient(to bottom, #fb7c3d 0%, fa6731 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fb7c3d',
+		endColorstr='fa6731', GradientType=0);
+	background: #fb7c3d;
+}
+
+:root .mui-content-padded {
+	filter: none;
+}
+
+.header-contains {
+	width: 100px;
+	height: 100px;
+	display: block;
+	overflow: hidden;
+	margin: 10px auto 30px;
+}
+
+.header-contains img {
+	width: 100%;
+	border-radius: 50%;
+}
+
+.mui-content-padded p,.mui-content-padded a {
+	color: #fff;
+	text-align: center;
+}
+
+p.rewardbg {
+	margin: 50px auto 10px;
+	color:#feb797; background :
+	url(${basepath}/assets/def/images/rewardbg.png) no-repeat center center;
+	background-size: 100%;
+}
+
+.rewardselect {
+	display: block;
+	overflow: hidden;
+	text-align: center;
+	height: 36px;
+}
+
+.rewardselect a {
+	display: inline-block;
+	padding: 8px 15px;
+	background: #fb9566;
+	border-radius: 15px;
+	margin: 0 5px;
+	color: #fff;
+}
+
+.reward input[type=button] {
+	background: url(${basepath}/assets/def/images/rewardbtn.png) no-repeat;
+	background-size: 100%;
+	height: 80px;
+	border: none;
+	margin: 20px auto 0;
+}
+::-webkit-input-placeholder{color:#fff;}
+::-moz-placeholder{color:#fff;}
+:-moz-placeholder{color:#fff;}
+</style>
+</head>
+<body>
+	<!-- <header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">账户与安全</h1>
+	</header> -->
+	<!--页面主结构开始-->
+	<div class="mui-content">
+		<div class='mui-content-padded'>
+			<p style='text-align: left;'>众赏旗舰</p>
+			<div class="header-contains">
+				<!-- <a class="header"> -->
+				<span class="img"><img
+					src='${basepath}/assets/def/images/logo.png' /></span>
+				<!-- <span class="edit">修改头像</span>
+				</a> -->
+			</div>
+			<div class='reward'>
+				<p>
+					打赏给<a style='font-size: 18px;'>院长</a>
+				</p>
+				<p style='margin: 5px;'>
+					<input type='text' placeholder='6.88'
+						style="width: 50%; padding:5px; height: 46px; line-height: 46px; margin: 0 auto; background: #f36022; color: #fff; font-size: 36px !important; border: none;" />元
+				</p>
+				<p style='font-size: 24px;'>祝您事事顺</p>
+				<p class='rewardbg'>热门打赏金额</p>
+				<div class='rewardselect'>
+					<a href='#'>2.89元</a><a href='#'>3.88元</a><a href='#'>1.66元</a>
+				</div>
+				<p style='margin-bottom:0;'>
+					<input type='button' class="mui-btn mui-btn-block" value='确认打赏'>
+				</p>
+				<p>自愿打赏，不退款哦~</p>
+			</div>
+			<div></div>
+
+		</div>
+	</div>
+
+</body>
+<script src="${basepath}/assets/plugin/require.js"></script>
+<script type="text/javascript"
+	src="${basepath}/assets/def/js/tips/tips.js"></script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

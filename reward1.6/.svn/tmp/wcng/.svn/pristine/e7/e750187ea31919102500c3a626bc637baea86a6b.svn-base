@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>众赏</title>
+<link href="${basepath}/assets/plugin/mui/dist/css/mui.min.css"
+	rel="stylesheet" />
+<link href="${basepath}/assets/def/css/tips.css" rel="stylesheet" />
+<style>
+	body{
+		background-color: #F6F1EE;
+		width: 100%;
+		height:100%;
+	}
+	.mui-table-view-cell:after{
+		height: 0;
+	}
+	/* .mui-navigate-right{
+		margin-left: 15px;
+		border-bottom: 1px solid #eaeaea;
+	} */
+	.mui-table-view-cell{
+		padding-left: 0;
+		border-bottom: 1px solid #eaeaea;
+	}
+	.mui-bar-tab{
+		height: 0;
+	}
+</style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+		<span class="mui-pull-right"> <span
+			class="mui-icon iconfont icon-up"
+			style="position: absolute; left: 90px; top: 6px; color: #cccccc; font-size: 12px !important;"></span>
+			<select class="mui-btn mui-btn-block mui-pull-right"
+			style="width: 96px; background: transparent; position: absolute; left: 0;"
+			name="dateType" id="merchantsInfo">
+		</select>
+		</span><p style="text-align: right; font-size: 14px;line-height: 44px;color: #EA4F16;">账户与安全</p>
+	</header>
+	<div style="margin-top: 50px;position: relative;" >
+	<div style="width: 100%;height: 50px;border-bottom: 1px solid #e2dfdf;">
+		<input type="text" class="mui-input-clear"placeholder="搜索" name="storeaddress" maxlength="100" style="text-indent: 25px;margin-left: 5%;text-align:left;margin-top:2px;border: none;width: 90%; float: left;">
+		<a class="mui-icon mui-icon-search" style="position: absolute;left:8%;line-height: 45px;color: #999"></a>
+	</div>	
+		<div class="mui-content-padded" style="padding: 5px 10px; display: inline;">
+						<a class="mui-pull-left" style="color: #EA4F16;"> <span
+							class="mui-icon mui-icon-compose" style="margin-left: 24px;padding-bottom: 10px;margin-top:2px;"></span>
+						</a> <a class="mui-pull-right" style="color: #EA4F16;"><span
+							class="mui-icon mui-icon-plusempty" style="margin-right:24px;padding-bottom: 10px;margin-top:2px;"></span></a>
+		</div>
+		 <div class="mui-content" style="clear: both;">
+			<ul class="mui-table-view" style="padding-left: 15px;">
+				<li class="mui-table-view-cell"><a
+					class="mui-navigate-right"> 众赏旗舰店1 </a></li>
+				<li class="mui-table-view-cell"><a
+					class="mui-navigate-right"> 众赏旗舰店2 </a></li>
+				<li class="mui-table-view-cell"><a
+					class="mui-navigate-right"> 众赏旗舰店3 </a></li>
+				<li class="mui-table-view-cell"><a
+					class="mui-navigate-right"> 众赏旗舰店4 </a></li>
+			</ul>
+		</div>		 		
+	</div>	
+	<footer class="mui-bar mui-bar-tab me-menu" style="line-height: 44px;text-align:center;">
+		<div style="width:49.9%;float: left;border-right: 1px solid #999;">门店管理</div><div style="width:50%;float: left;">商户信息</div>
+	</footer>
+	
+
+</body>
+<script src="${basepath}/assets/plugin/require.js"></script>
+<script type="text/javascript"
+	src="${basepath}/assets/def/js/tips/tips.js"></script>
+	
+ <script type="text/javascript"
+			src="${basepath}/views/template/web/tips/merchant/def/manage.js?v=9432424234234384"></script>
+			
+<script type="text/javascript">
+require([ "jquery", "mui", "mui_view", "addr", "common", "ftscroller" ],
+		function($$, mui, mui_view, addr, tools) {
+			// 初始化单页view
+			addr.findMerchantsInfoEntity(
+					"",
+					function(datas) {
+						datas = datas.resultData.body.result;
+						var isAdd = false;
+						for (var i = 0; i < datas.length; i++) {
+							var da = datas[i];
+							////记录所有的商户
+							$$("#merchantsInfo").append('<option value="' + da.orgCode + '">' + da.orgName+ '</option>');
+							
+						}
+						
+						
+						
+				});
+});
+</script>	
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

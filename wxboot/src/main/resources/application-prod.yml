@@ -1,0 +1,13 @@
+#服务配置
+server:
+ port: 8080
+ context-path: /jeeboot
+ 
+spring:
+ freemarker:
+  cache: false
+  checkTemplateLocation: true
+  contentType: text/html
+  suffix: .html
+  templateEncoding: UTF-8
+  templateLoaderPath: classpath:/templates/

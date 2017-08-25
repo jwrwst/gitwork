@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/employee/external/service
+END
+IExBsEmployeeExtRewardService.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/employee/external/service/IExBsEmployeeExtRewardService.java
+END
+IExEmployeeHomepageService.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/employee/external/service/IExEmployeeHomepageService.java
+END
+IExItRecordCashLogService.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/employee/external/service/IExItRecordCashLogService.java
+END
+IExBsEmployeeInfoService.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/employee/external/service/IExBsEmployeeInfoService.java
+END
+IExBsEmployeeExtEvaluateService.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/employee/external/service/IExBsEmployeeExtEvaluateService.java
+END
+IExItRecordEmpLogService.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/employee/external/service/IExItRecordEmpLogService.java
+END

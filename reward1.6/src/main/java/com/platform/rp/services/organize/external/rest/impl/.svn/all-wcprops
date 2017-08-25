@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/work/!svn/ver/1937/branch/reward_1.6/src/main/java/com/platform/rp/services/organize/external/rest/impl
+END
+ExBsOrganizeRestImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/organize/external/rest/impl/ExBsOrganizeRestImpl.java
+END
+ExBsMerchantsRewardRestImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/organize/external/rest/impl/ExBsMerchantsRewardRestImpl.java
+END
+ExBsMerchantsInfoRestImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/work/!svn/ver/1937/branch/reward_1.6/src/main/java/com/platform/rp/services/organize/external/rest/impl/ExBsMerchantsInfoRestImpl.java
+END
+ExBsMerchantsEmployeeRestImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/organize/external/rest/impl/ExBsMerchantsEmployeeRestImpl.java
+END

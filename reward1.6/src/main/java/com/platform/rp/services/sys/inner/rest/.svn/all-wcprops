@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/sys/inner/rest
+END
+ISysRoleInfoRest.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/sys/inner/rest/ISysRoleInfoRest.java
+END
+ISysRoleAuthRest.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/sys/inner/rest/ISysRoleAuthRest.java
+END
+ISysCodeInfoRest.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/sys/inner/rest/ISysCodeInfoRest.java
+END
+ISysUserInfoRest.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/sys/inner/rest/ISysUserInfoRest.java
+END

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util-4.0.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+        http://cxf.apache.org/jaxws 
+    	http://cxf.apache.org/schemas/jaxws.xsd
+        ">
+
+    
+	<context:component-scan base-package="com.platform.rp" />
+	<!-- enable autowire -->
+	<context:annotation-config />
+	<aop:aspectj-autoproxy />
+	
+	
+	<!-- JDBC proerty -->
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations" >
+			<list>
+				<value>classpath:jdbc.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- JDBC database -->
+	<bean id="dbcpDataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${db.jdbc.driverClassName}" />
+		<property name="url" value="${db.jdbc.databaseurl}" />
+		<property name="username" value="${db.jdbc.username}" />
+		<property name="password" value="${db.jdbc.password}" />
+		<property name="maxActive" value="${db.jdbc.maxActive}" />
+		<property name="maxWait" value="${db.jdbc.maxWait}" />
+		<property name="defaultAutoCommit" value="false" />
+		<property name="defaultReadOnly" value="false" />
+		<property name="validationQuery" value="SELECT 1" />
+		<property name="connectionInitSqls" >
+		    <list>
+		        <value>SET NAMES utf8mb4</value>
+		    </list>
+		    
+		</property>
+	</bean>
+
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy"> 
+		<constructor-arg ref="dbcpDataSource" />
+	</bean>
+	
+	
+	<!-- 
+	<bean id="dataSource"
+		class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="java:comp/env/jdbc/rc"/>
+	</bean> -->
+	
+	<!-- transaction  -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+  
+   <tx:advice id="transactionInterceptor" transaction-manager="transactionManager">
+      <tx:attributes>
+        <tx:method name="service" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+        <tx:method name="get*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+        <tx:method name="save*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+        <tx:method name="add*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+        <tx:method name="update*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+        <tx:method name="delete*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+        <tx:method name="synchronized*" propagation="REQUIRED" isolation="READ_UNCOMMITTED" rollback-for="java.lang.Exception"/>
+      </tx:attributes>
+   </tx:advice>
+   
+   <aop:config>
+    <aop:pointcut id="serviceBeans" expression="bean(*ServiceImpl)"/>
+    <aop:advisor
+         pointcut-ref="serviceBeans"
+         advice-ref="transactionInterceptor"/>
+   </aop:config>
+	
+	
+	<!-- ====================MYBATIS========================== -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="typeAliasesPackage" value="com.platform.rp.**.entity" />
+	</bean>
+	<!-- scan for mappers and let them be autowired -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.platform.rp.services.**.dao" />
+	</bean>
+
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
+
+	<bean id="applicationContextUtil" class="com.platform.rp.common.application.ApplicationContextUtil" />
+	
+	<util:properties id="system" location="classpath:system.properties" />
+
+    
+</beans>

@@ -1,0 +1,128 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.platform.rp.services.store.core.dao.ItRewardInfoDAO">
+
+     <resultMap type="com.platform.rp.services.store.external.vo.StoreRewardStatisticVo" id="storeRewardStatisticVoMap">
+        <result column="perdaycount" property="perDayCount" />
+		<result column="perdaymoney" property="perDayMoney" />
+		<result column="perdayempcount" property="perDayEmpCount" />
+		<result column="rewardtime" property="rewardTime" />
+		<result column="busdate" property="busDate" />
+	</resultMap>
+	
+    <resultMap type="com.platform.rp.services.employee.external.vo.EmployeeRankVo" id="employeeRankVoMap">
+		<result column="rankdata" property="rankData" />
+		<result column="empnickname" property="empNickname" />
+		<result column="createtime" property="createTime" />
+		<result column="empname" property="empName" />
+	</resultMap>
+	
+    <resultMap type="com.platform.rp.services.store.core.dao.entity.ItRewardInfoEntity" id="itRewardInfoEntity">
+		<result column="customer_id" property="customerId" />
+		<result column="emp_id" property="empId" />
+		<result column="store_id" property="storeId" />
+		<result column="get_type" property="getType" />
+		<result column="createdtime" property="createdtime" />
+		<result column="paytime" property="paytime" />
+		<result column="reward_amount" property="rewardAmount" />
+		<result column="reward_type" property="rewardType" />
+		<result column="status" property="status" />
+		<result column="busdate" property="busdate" />
+	</resultMap>
+	
+    <resultMap type="com.platform.rp.services.employee.external.vo.EmployeeRankDetailVo" id="employeeRankDetailVoMap">
+        <result column="daymoney" property="dayData" />
+		<result column="weekmoney" property="weekData" />
+		<result column="monthmoney" property="monthData" />
+		<result column="empnickname" property="empNickname" />
+		<result column="jobnumber" property="jobNumber" />
+		<result column="updatetime" property="updateTime" />
+	</resultMap>
+	
+    <sql id="page">
+		<if test="start > -1">
+			<if test="pageSize > 0">
+				limit #{start}, #{pageSize}
+			</if>
+			<if test="pageSize == 0 or pageSize == '' or pageSize &lt; 0">
+				limit #{start}
+			</if>
+		</if>
+	</sql>
+    
+    <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="com.platform.rp.services.store.core.dao.entity.ItRewardInfoEntity">
+		insert into it_reward_info (customer_id,emp_id,store_id,reward_amount,reward_type,get_type,status,order_num,paytime,busdate)
+		values(#{customerId},#{empId},#{storeId},#{rewardAmount},#{rewardType},#{getType},#{status},#{orderNum},#{paytime},#{busdate})
+	</insert>
+	
+    <delete id="deleteByOrderNum" parameterType="string">
+        delete from it_reward_info where order_num = #{orderNum}
+    </delete>
+    
+    <update id="update" parameterType="com.platform.rp.services.store.core.dao.entity.ItRewardInfoEntity">
+        update it_reward_info 
+        <set>
+            status=#{status},paytime=#{paytime}
+        </set>
+        where order_num = #{orderNum}
+    </update>
+
+    <!-- zs:修改为storeId可以多个 -->
+ 	<select id="getStoreRewardStatisticByStoreID" resultMap="storeRewardStatisticVoMap">
+        select createdtime as rewardtime, busdate as busdate, count(1) as perdaycount, sum(reward_amount) as perdaymoney, count(distinct emp_id) as perdayempcount 
+        from it_reward_info 
+        <where>
+           <!--  store_id = #{storeId}  -->
+            store_Id in 
+              <foreach collection="storeId" index="index" item="tag" open="("
+			    separator="," close=")">
+			   	#{tag}
+			  </foreach>
+            and get_type = 0 and status = 2
+            <if test = "busDateStart != null and busDateStart != 0 and busDateEnd != null and busDateEnd != 0 "> and busdate &gt;= #{busDateStart} and busdate &lt;= #{busDateEnd}</if>
+        </where>
+        group by busdate
+	</select>
+
+ 	<sql id="filter_where">
+ 	    <if test = "filter == 'day'"> and a.createdtime &gt;= #{startDay} and a.createdtime &lt;= #{endDay} </if>
+        <if test = "filter == 'yesterday'"> and a.createdtime &gt;= #{startYesterday} and a.createdtime &lt;= #{endYesterday}</if>
+        <if test = "filter == 'week'"> and a.createdtime &gt;= #{startWeek} and a.createdtime &lt;= #{endWeek}</if>
+        <if test = "filter == 'lastweek'"> and a.createdtime &gt;= #{startLastWeek} and a.createdtime &lt;= #{endLastWeek}</if>
+        <if test = "filter == 'month'"> and a.createdtime &gt;= #{startMonth} and a.createdtime &lt;= #{endMonth}</if>
+        <if test = "filter == 'lastmonth'"> and a.createdtime &gt;= #{startLastMonth} and a.createdtime &lt;= #{endLastMonth}</if>
+        <if test = "filter == 'custom'"> and a.busdate &gt;= #{startTime} and a.busdate &lt;= #{endTime}</if>
+ 	</sql>
+	
+    <select id="count" resultType="int" parameterType="map">
+		select count(1) from it_reward_info a
+		<where>
+            a.store_id = #{storeId} and a.emp_id = #{empId} and a.get_type = 0 and a.status = 2
+            <include refid="filter_where" />
+        </where>
+	</select>
+	
+    <select id="getPage" resultMap="employeeRankVoMap" parameterType="map">
+		select a.createdtime as createtime, a.reward_amount as rankdata, b.nickname as empnickname, b.name as empname 
+        from it_reward_info a, bs_employee_info b
+        <where>
+            a.store_id = #{storeId} and a.emp_id = #{empId} and a.get_type = 0 and a.status = 2 and a.emp_id = b.emp_id
+            <include refid="filter_where" />
+        </where>
+        order by a.createdtime desc 
+		<include refid="page" />
+	</select>
+	
+    <select id="getRewardInfoByOrderNum" resultMap="itRewardInfoEntity" parameterType="string">
+        select * from it_reward_info where order_num = #{orderNum}
+    </select>
+    
+    <select id="getEmployeeRewardRankDetail" resultMap="employeeRankDetailVoMap" parameterType="map">
+		SELECT sum(if(a.busdate = #{dayStart}, a.reward_amount, null)) as daymoney, 
+			   sum(if(a.busdate >= #{weekStart}, a.reward_amount, null)) as weekmoney, 
+			   sum(if(a.busdate >= #{monthStart}, a.reward_amount, null)) as monthmoney, 
+			   b.nickname as empnickname, b.job_number as jobnumber
+		FROM it_reward_info a, bs_employee_info b
+		where a.store_id = #{storeId} and a.emp_id = #{empId}  and a.get_type = 0 and a.status = 2 and b.emp_id = a.emp_id
+	</select>
+	
+</mapper>

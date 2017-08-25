@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	  <head>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	    <title>众赏</title>
+	    <link href="${basepath}/assets/plugin/mui/dist/css/mui.min.css" rel="stylesheet"/>
+	    <link href="${basepath}/assets/def/css/tips.css" rel="stylesheet"/>
+	  </head>
+	  
+	  <body> 	  	
+	    <!--页面主结构开始-->
+		<div id="center" class="mui-views">
+			<div class="mui-view">	
+			    <div class="mui-navbar">
+				</div>	
+				<div class="mui-pages">
+				</div>
+			</div>
+		</div>	
+	     
+		<div id="regpage" class="mui-page" >
+		  <!--页面标题栏开始-->
+		  <div class="mui-navbar-inner mui-bar mui-bar-nav">				
+				<h1 class="mui-text-left mui-title"  style="font-weight:bold;margin-left:-24px;">店铺信息</h1>
+		  </div>
+		  <div class="mui-page-content"  style="padding-bottom: 50px;">
+			     <form name = "storeInfo" id="storeInfo">
+					<div class="title mui-navbar-inner" style ="font-weight:bold" >
+						店铺信息
+					</div>
+					<div class="mui-input-group">
+						<div class="mui-input-row">
+							<label>店铺名称</label>
+							<input type="text" class="mui-input-clear" placeholder="请输入店铺名称" name="storeName">
+						</div>
+						<div class="mui-input-row">
+								<label id="System.store.type">开启功能</label>
+								<span class="mui-icon mui-icon-arrowdown" style="margin:5px;position: absolute;right:0px;z-index:100"></span>								
+								<select class="mui-btn mui-btn-block" style="width:50%" name="storeType" id="storeType">									
+								</select>								
+						</div>
+						<div class="mui-input-row">
+							<label>默认打赏金额</label>
+							<input type="text"  class="mui-input-clear" placeholder="" name="rewardMoney">
+						</div>
+						<div class="mui-input-row">
+							<label>顾客不可修改</label>
+							<input name="isUpdate" value="1" type="checkbox" >
+						</div>						
+					</div>
+					
+					<div>
+						<div class="mui-content-padded tips-reginfo-submit" >
+						    <input type="hidden" name="storeId" value="">							           
+					        <button class="mui-btn mui-btn-warning mui-btn-block" id="regbnt">保存修改</button>					        	     
+					    </div>
+					      
+					</div>
+			
+	
+				</form>
+             </div>
+		</div>
+		
+	  </body>
+	  <script src="${basepath}/assets/plugin/require.js"></script>
+	  <script type="text/javascript" src="${basepath}/assets/def/js/tips/tips.js"></script>
+	  <script type="text/javascript">
+	  require(["jquery","mui","mui_view","addr","common","template7"],function($$,M,mui_view,addr,tools,template7){
+		  //初始化单页view
+		  var viewApi = mui('#center').view({
+		  	defaultPage: '#regpage'
+		  });
+		  
+		  $$(document).ready(function(){
+			  tipManage.getClassType("codeClass=System.store.type", function(data){
+				  if(data&&data.resultMessage.messageCode=="0000"){
+					  var list = data.resultData.body.result;
+					  var strHtml=[];
+					  for(var i=0;i<list.length;i++){
+						  strHtml.push("<option value='"+list[i].value+"'>"+list[i].name+"</option>")
+					  }
+					  $$("#storeType").html("");
+					  $$("#storeType").html(strHtml.join(""));
+				  }
+			  });
+		  });
+		  
+	
+		
+		  mui('.mui-content-padded').on('tap','#regbnt',function(e) {
+			    var data = $$("#storeInfo").serializeJson();
+				var datastr=JSON.stringify(data);
+				var _this =this;
+					
+				tipManage.saveStore(datastr,function(resdata){
+	
+				});
+				
+		  });	  
+	  
+	  });
+
+	  
+
+	  </script>
+</html>			

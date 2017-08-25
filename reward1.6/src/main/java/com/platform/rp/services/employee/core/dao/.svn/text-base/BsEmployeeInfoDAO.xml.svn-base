@@ -1,0 +1,164 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.platform.rp.services.employee.core.dao.BsEmployeeInfoDAO">
+    
+    <resultMap type="com.platform.rp.services.employee.core.dao.entity.BsEmployeeInfoEntity" id="bsEmployeeInfoEntity">
+       	<result column="emp_id" property="empId" />
+       	<result column="emp_code" property="empCode" />
+		<result column="name" property="name" />
+		<result column="gender" property="gender" />
+		<result column="birthday" property="birthday" />
+		<result column="idcard" property="idcard" />
+		<result column="mobile" property="mobile" />
+		<result column="nickname" property="nickname" />
+		<result column="entrydate" property="entrydate" />
+		<result column="postion" property="postion" />
+		<result column="level" property="level" />
+		<result column="jobable" property="jobable" />
+		<result column="home_address" property="homeAddress" />
+		<result column="store_id" property="storeId" />
+		<result column="job_number" property="jobNumber" />
+		<result column="head_pic" property="headPic" />
+		<result column="qr_code" property="qrCode" />
+		<result column="signature" property="signature" />
+		<result column="alipay_account" property="alipayAccount" />
+		<result column="wx_account" property="wxAccount" />
+		<result column="emotion" property="emotion" />
+		<result column="avocation" property="avocation" />
+		<result column="modifiedtime" property="modifiedtime" />
+		<result column="modifieder" property="modifieder" />
+		<result column="createdtime" property="createdtime" />
+		<result column="constellation" property="constellation" />
+		<result column="creator" property="creator" />
+		<result column="qqNumber" property="qqNumber" />
+		<result column="bankCard" property="bankCard" />
+		<result column="bankname" property="bankname" />
+    	<result column="weChatnumber" property="weChatnumber" />
+		<result column="gratitude" property="gratitude" />
+		<result column="value1" property="value1" />
+		<result column="value2" property="value2" />
+		<result column="value3" property="value3" />
+		<result column="value4" property="value4" />
+		<result column="value5" property="value5" />
+		<result column="store_name" property="storeName" />
+		<result column="job_title" property="jobTitle" />
+    </resultMap>
+    
+    	
+    <resultMap type="com.platform.rp.services.employee.external.vo.EmployeeHomepageBaseInfoVo" id="employeeHomepageInfoVoMap">
+        <result column="empId" property="employeeID" />
+        <result column="storeId" property="storeID" />
+		<result column="empnickname" property="empNickname" />
+		<result column="headpic" property="headPic" />
+		<result column="storename" property="storeName" />
+		<result column="rewardmoney" property="rewardMoney" />
+		<result column="isupdate" property="isUpdate" />
+		<result column="signature" property="signature" />
+		<result column="qr_code" property="qrCode" />
+		<result column="authcode" property="authCode" />
+		<result column="gratitude" property="gratitude" />
+		<result column="empname" property="empName" />
+		<result column="wish" property="wish" />
+	</resultMap>
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="empId" parameterType="com.platform.rp.services.employee.core.dao.entity.BsEmployeeInfoEntity">
+		insert into bs_employee_info(emp_code,name,gender,birthday,idcard,mobile,entrydate,postion,level,jobable,home_address,store_id,job_number,head_pic,qr_code,signature,alipay_account,wx_account,avocation,emotion,modifiedtime,modifieder,createdtime,constellation,creator,nickname,bankCard,bankname,qqNumber,weChatnumber,gratitude,
+			value1,value2,value3,value4,value5,job_title)
+		values(#{empCode},#{name},#{gender},#{birthday},#{idcard},#{mobile},#{entrydate},#{postion},#{level},#{jobable},#{homeAddress},#{storeId},#{jobNumber},#{headPic},#{qrCode},#{signature},#{alipayAccount},#{wxAccount},#{avocation},#{emotion},#{modifiedtime},#{modifieder},#{createdtime},#{constellation},#{creator},#{nickname},#{bankCard},#{bankname},#{qqNumber},#{weChatnumber},#{gratitude},
+			#{value1},#{value2},#{value3},#{value4},#{value5},#{jobTitle})
+	</insert>
+    
+   	<update id="update" parameterType="com.platform.rp.services.employee.core.dao.entity.BsEmployeeInfoEntity">
+		update bs_employee_info
+		<set>
+			<if test="name != null and name != ''"> name = #{name}, </if>
+			<if test="gender != null and gender != ''"> gender = #{gender}, </if>
+			<if test="birthday != null and birthday != ''"> birthday = #{birthday}, </if>
+			<if test="idcard != null and idcard != ''"> idcard = #{idcard}, </if>
+			<if test="mobile != null and mobile != ''"> mobile = #{mobile}, </if>
+			<if test="entrydate != null and entrydate != ''"> entrydate = #{entrydate}, </if>
+			<if test="postion != null and postion != ''"> postion = #{postion}, </if>
+			<if test="level != null and level != ''"> level = #{level}, </if>
+			<if test="jobable != null and jobable != ''"> jobable = #{jobable}, </if>
+			<if test="homeAddress != null and homeAddress != ''"> home_address = #{homeAddress}, </if>
+			<if test="storeId != 0 and storeId != null"> store_id = #{storeId}, </if>
+			<if test="jobNumber != null and jobNumber != ''"> job_number = #{jobNumber}, </if>
+			<if test="headPic != null and headPic != ''"> head_pic = #{headPic}, </if>
+			<if test="qrCode != null and qrCode != ''"> qr_code = #{qrCode}, </if>
+			<if test="signature != null and signature != ''"> signature = #{signature}, </if>
+			<if test="alipayAccount != null and alipayAccount != ''"> alipay_account = #{alipayAccount}, </if>
+			<if test="wxAccount != null and wxAccount != ''"> wx_account = #{wxAccount}, </if>
+			<if test="avocation != null and avocation != ''"> avocation = #{avocation}, </if>
+			<if test="emotion != null and emotion != ''"> emotion = #{emotion}, </if>			
+			<if test="modifiedtime != null and modifiedtime != ''"> modifiedtime = #{modifiedtime}, </if>
+			<if test="modifieder != null and modifieder != ''"> modifieder = #{modifieder}, </if>
+			<if test="constellation != null and constellation != ''"> constellation = #{constellation}, </if>
+			<if test="nickname != null and nickname != ''"> nickname = #{nickname}, </if>
+			<if test="bankCard != null and bankCard != ''"> bankCard = #{bankCard}, </if>
+			<if test="bankname != null and bankname != ''"> bankname = #{bankname}, </if>
+			<if test="qqNumber != null and qqNumber != ''"> qqNumber = #{qqNumber}, </if>
+			<if test="weChatnumber != null and weChatnumber != ''"> weChatnumber = #{weChatnumber}, </if>
+			<if test="gratitude != null and gratitude != ''"> gratitude = #{gratitude}, </if>
+			<if test="value1 != null and value1 != ''"> value1 = #{value1}, </if>
+			<if test="value2 != null and value2 != ''"> value2 = #{value2}, </if>
+			<if test="value3 != null and value3 != ''"> value3 = #{value3}, </if>
+			<if test="value4 != null and value4 != ''"> value4 = #{value4}, </if>
+			<if test="value5 != null and value5 != ''"> value5 = #{value5}, </if>
+			<if test="jobTitle != null and jobTitle != ''"> job_title = #{jobTitle}, </if>
+		</set>
+		where emp_id = #{empId}
+	</update>
+	
+	<delete id="delete" parameterType="long">
+		delete from bs_employee_info where emp_id = #{empId}
+	</delete>
+    
+	<select id="get"  resultMap="bsEmployeeInfoEntity" parameterType="long">
+		select * from bs_employee_info where emp_id = #{id}
+	</select>
+	
+    <select id="getInfoByOpenId" resultMap="bsEmployeeInfoEntity" parameterType="string">
+         select t.*,b.store_name from bs_employee_info t left join bs_store_info b on t.store_id=b.store_id
+         where wx_account = #{openId}
+    </select>
+    
+    <select id="getCountByOpenId" resultType="int" parameterType="string">
+         select count(1) from bs_employee_info e where wx_account = #{openId}
+    </select>
+    
+    <select id="getEmployeeInfoByEmpId" resultMap="bsEmployeeInfoEntity" parameterType="long">
+		Select t.*,b.store_name from bs_employee_info t left join bs_store_info b on t.store_id=b.store_id
+		where emp_id = #{empId}
+	</select>
+	
+    <select id="getEmpHomepageBaseInfoByEmpId" resultMap="employeeHomepageInfoVoMap" parameterType="long">
+		Select a.emp_id as empId, a.store_id as storeId, a.nickname as empnickname, a.name as empname, a.head_pic as headpic, a.signature as signature, a.gratitude as gratitude, a.qr_code as qrCode, b.store_name as storename, b.reward_money as rewardmoney, b.isUpdate as isupdate, c.auth_code as authcode ,b.wish 
+		from bs_employee_info a, bs_store_info b, bs_store_auth_detail c
+		where a.emp_id = #{empId} and b.store_id = a.store_id and c.store_id = a.store_id
+	</select>
+    
+    <sql id="page">
+		<if test="start > -1">
+			<if test="pageSize > 0">
+				limit #{start}, #{pageSize}
+			</if>
+			<if test="pageSize == 0 or pageSize == '' or pageSize &lt; 0">
+				limit #{start}
+			</if>
+		</if>
+	</sql>
+	
+    <select id="count" resultType="int" parameterType="map">
+		select count(1) from bs_employee_info where store_id = #{storeId} and (level = 2 or level = 3)
+	</select>
+	
+    <select id="getPage" resultType="com.platform.rp.services.employee.external.vo.EmployeeInfoVo" parameterType="map">
+		Select emp_id as empId, name as empName, job_number as jobNumber,nickname empNickName,head_pic headPic from bs_employee_info
+		where store_id = #{storeId} and (level = 2 or level = 3)
+		<include refid="page" />
+	</select>
+
+    <select id="getEmpByOreCode" resultMap="bsEmployeeInfoEntity" parameterType="string">
+		select e.* from bs_employee_info e LEFT JOIN bs_merchants_employee me ON e.emp_id = me.emp_id
+		where me.org_code = #{orgCode}
+	</select>
+</mapper>

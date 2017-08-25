@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/store/external/rest/impl
+END
+ExBsStoreInfoRestImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/store/external/rest/impl/ExBsStoreInfoRestImpl.java
+END
+ExItRewardInfoRestImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/store/external/rest/impl/ExItRewardInfoRestImpl.java
+END
+ExBsStoreEmpRestImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/store/external/rest/impl/ExBsStoreEmpRestImpl.java
+END
+ExStoreRankInfoRestImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/store/external/rest/impl/ExStoreRankInfoRestImpl.java
+END
+ExStoreAuthDetailRestImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/store/external/rest/impl/ExStoreAuthDetailRestImpl.java
+END
+ExStoreAuthRestImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/store/external/rest/impl/ExStoreAuthRestImpl.java
+END
+ExStoreExtRewardRestImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/store/external/rest/impl/ExStoreExtRewardRestImpl.java
+END
+ExStoreEmployeeManagerRestImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/store/external/rest/impl/ExStoreEmployeeManagerRestImpl.java
+END
+ExBsStoreEmployeeDividedRestImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/store/external/rest/impl/ExBsStoreEmployeeDividedRestImpl.java
+END
+ExStoreStatisticInfoRestImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/store/external/rest/impl/ExStoreStatisticInfoRestImpl.java
+END
+ExStoreDynamicInfoRestImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/store/external/rest/impl/ExStoreDynamicInfoRestImpl.java
+END

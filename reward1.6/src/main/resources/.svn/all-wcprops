@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/resources
+END
+system.properties
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/resources/system.properties
+END
+jdbc.properties
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/resources/jdbc.properties
+END
+oracle-jdbc.properties
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/resources/oracle-jdbc.properties
+END
+log4j.properties
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/resources/log4j.properties
+END
+jdbc_line.properties
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/resources/jdbc_line.properties
+END
+freemarker.properties
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/resources/freemarker.properties
+END
+jdbc_test.properties
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/resources/jdbc_test.properties
+END
+struts.xml
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/resources/struts.xml
+END
+system_test.properties
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/resources/system_test.properties
+END

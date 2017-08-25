@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="${package}.dao.I${className}DAO">
+	<!-- 返回值映射map -->
+	<resultMap id="${classNameLower}Mapper" type="${package}.model.${className}">
+		<#list table.columns as column>
+			<result property="${column.name}" column="${column.dbName}" />
+		</#list>
+	</resultMap>
+	
+	<!-- 查询数量公共sql -->
+	<sql id="count_Tail">
+		select count(1) from ${table.dbName} record
+	</sql>
+	
+	<!-- 分页公共sql -->
+	<sql id="pagination_tail">
+	  limit ${ r"#{page.index} , #{page.pageSize}"}
+	</sql>
+	<!-- 查询字段公共sql -->
+	<sql id="selectAllColumns">
+		<![CDATA[
+		SELECT
+		<#list table.columns as column>
+			 ${column.dbName}<#if column_has_next>,</#if> 
+		</#list>
+			FROM ${table.dbName} record
+		]]>
+	</sql>
+
+	<sql id="where_fragement">
+		where 1=1
+		<if test="entity!=null">
+			<#list table.columns as column>
+				<if test = ${"\""}${ r"entity." + column.name + r" != null and entity." +column.name + r" != ''" }${"\""}>
+					<![CDATA[ and record.${column.dbName}  = ${ r"#{entity." + column.name }} ]]>
+				</if>
+			</#list>
+		</if>
+	</sql>
+
+	<!-- 分页查询数据集合-->
+	<select id="selectListByPage" resultMap="${classNameLower}Mapper" >
+		<include refid="selectAllColumns"/>
+		<include refid="where_fragement" />
+		<if test="page!=null">
+			<include refid="pagination_tail" />
+		</if>
+	</select>
+	
+	<!-- 查询总数量 -->
+	<select id="selectCount" resultType="long">
+		<include refid="count_Tail"></include>
+		<include refid="where_fragement"></include>
+	</select>
+	
+	<!-- 查询单个实体 -->
+	<select id="selectOne" resultMap="${classNameLower}Mapper" >
+		<include refid="selectAllColumns"/>
+		<include refid="where_fragement" />
+	</select>
+	<select id="selectById" resultMap="${classNameLower}Mapper" >
+		<include refid="selectAllColumns"/>
+		where record.id = ${r"#{id}"}
+	</select>
+	
+	<!-- 新增 -->
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="${package}.model.${className}">
+		insert into ${table.dbName}(
+			<#list table.columns as column>
+				${column.dbName}<#if column_has_next>,</#if>
+			</#list>
+		)values(
+			<#list table.columns as column>
+				${ r"#{" + column.name + r"}" }<#if column_has_next>,</#if>
+			</#list>
+		)
+	</insert>
+	<!-- 编辑 -->
+	<update id="update" parameterType="${package}.model.${className}">
+		update ${table.dbName} record 
+			<set>
+			<#list table.columns as column>
+				<#if column.name != 'id' && column.name != 'create_time' >
+					<if test = ${"\""}${ column.name + r" != null and " +column.name + r" != ''" }${"\""}>
+						record.${column.dbName} = ${ r"#{" + column.name + r"}" }<#if column_has_next>,</#if>
+					</if>
+				</#if>
+			</#list>
+			</set>
+		where id = ${r'#{id}'}
+	</update>
+	
+	<!-- 删除 -->
+	<delete id="deleteByIds">
+		delete from ${table.dbName}
+		<if test=" codes != null and codes.length > 0 ">
+			where id in
+			<foreach collection="codes" open="(" separator="," close=")" item="code">
+				${r"#{code}"}
+			</foreach>
+		</if>
+		<if test=" codes == null or codes.length == 0 ">
+			where 1 = 3
+		</if>
+	</delete>
+	<delete id="delete">
+		delete from ${table.dbName}
+		where id = ${r"#{code}"}
+	</delete>
+	
+</mapper>

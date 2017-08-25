@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/work/!svn/ver/1937/branch/reward_1.6
+END
+pom.xml
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/work/!svn/ver/1935/branch/reward_1.6/pom.xml
+END
+.checkstyle
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/work/!svn/ver/1935/branch/reward_1.6/.checkstyle
+END
+build.xml
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/work/!svn/ver/1935/branch/reward_1.6/build.xml
+END
+.project
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/work/!svn/ver/1935/branch/reward_1.6/.project
+END
+.classpath
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/work/!svn/ver/1935/branch/reward_1.6/.classpath
+END

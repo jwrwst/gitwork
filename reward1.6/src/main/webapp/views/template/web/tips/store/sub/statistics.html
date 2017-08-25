@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+	  <head>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	    <title>众赏</title>
+	    <link href="${basepath}/assets/plugin/mui/dist/css/mui.min.css" rel="stylesheet"/>
+	    <link href="${basepath}/assets/def/css/tips.css" rel="stylesheet"/>
+	    <link rel="shortcut icon" href="${basepath}/assets/favicon.ico" />
+	    <style>
+			.chart {
+				height: 200px;
+				margin: 0px;
+				padding: 0px;
+			}
+			h5 {
+				margin-top: 30px;
+				font-weight: bold;
+			}
+			h5:first-child {
+				margin-top: 15px;
+			}
+			.statis-title{
+			  display:none;
+			}
+			.statis-placeholder{
+				height:220px;
+			}
+			.plat-title{
+			position: relative;
+			}
+
+		</style>
+	  </head>
+	  
+	  <body> 	  	
+	    <!--页面主结构开始-->
+		<div id="center" class="mui-views">
+			<div class="mui-view">	
+			    <div class="mui-navbar">
+				</div>	
+				<div class="mui-pages">
+				</div>
+			</div>
+		</div>	
+	     
+	    <!-- 列表  -->
+		<div id="regpage" class="mui-page" >		
+		  <!--页面标题栏开始-->
+		  <div class="mui-navbar-inner mui-bar mui-bar-nav">
+		      <span class="mui-pull-right">
+		            <span class="mui-icon iconfont icon-up" style="position: absolute;right:10px;top:6px;color:#cccccc;font-size:12px !important;"></span>								
+  					<select class="mui-btn mui-btn-block mui-pull-right" style="width:4.0em;background: transparent;padding-right:20px;position: absolute;right: 0;" name="dateType" id="dateType">	
+<!--   					    <option value="day">今日</option> -->
+<!--   					    <option value="yesterday">昨日</option> -->
+  					    <option value="week">本周</option>
+  					    <option value="lastweek">上周</option>
+  					    <option value="month">本月</option>
+  					    <option value="lastmonth">上月</option>								
+					</select>	
+		      </span>
+			  <h1 class="mui-title" style="font-weight:bold;">统计分析</h1>	 	  						
+		  </div>
+		  <div class="mui-page-content"  id="scroll-content">
+		  	<div class="scroller">		  		
+		  		<div class="plat-content">
+		  			<div class="charts-container" id="template-charts-content">
+		  				
+					</div>			
+				</div>
+				<!-- 页面底部标题 -->
+			</div>
+		  </div>		
+            
+		</div>
+		
+	   [#include '../model/menu.html']
+	  </body>
+
+<!-- 	 <script src="${basepath}/assets/plugin/echarts-m/source/echarts.js"></script>	  -->
+     <script src="${basepath}/assets/plugin/echarts-m/dist/echarts.js"></script>
+	 <script type="text/javascript" src="${basepath}/assets/def/js/tips/tips.js"></script>	 
+	 <script type="text/template" id="template-charts">
+			{{#each data}}
+				<div id="chartsObj{{@index}}" class="statis-placeholder"></div>
+			{{/each}}
+	 </script>
+	
+	 <script type="text/javascript">
+	 	var storeId = window.localStorage.getItem("storeId");
+		// 使用
+        require(
+            [
+                'echarts','addr',
+                'echarts/chart/line' ,// 使用柱状图就加载bar模块，按需加载
+                'mui','mui_view','jquery','template7'
+            ],
+            function (ec,addr,tools) {
+            	var viewApi = mui('#center').view({
+			  		defaultPage: '#regpage'
+			    });
+            	
+            	//图形定义参数                    				
+				var option = {
+						backgroundColor:"#ffffff",
+						title:{
+							show:true,
+							padding:10,
+							textStyle:{
+								fontSize:15
+							}
+						},
+					    tooltip : {
+					    	show:true,
+					        trigger: 'item',
+					        formatter:"{b} : {c}",
+					        backgroundColor: 'rgba(255,78, 0,0.7)',
+					        borderColor: '#333',
+					        borderRadius: 4,
+					        borderWidth: 0
+					    },					   
+					    toolbox: {
+					        show : false,
+					        feature : {
+					            mark : {show: true},
+					            dataView : {show: true, readOnly: false},
+					            saveAsImage : {show: true}
+					        }
+					    },
+					    calculable : false,
+					    xAxis : [
+					        {
+					            type : 'category',
+// 					            boundaryGap : false,
+					            data:[]
+					        }
+					    ],
+					    yAxis : [
+					        {
+					            type : 'value'
+					        }
+					    ],
+					    series : [
+					        {	
+					        	name:"",
+					            type:'line',
+// 					            markPoint : {
+// 					                data : [
+// 					                    {type : 'max', name: '最大值'},
+// 					                    {type : 'min', name: '最小值'}
+// 					                ]
+// 					            },
+					            itemStyle: {
+					                normal: {
+					                    color: 'tomato',
+					                    barBorderColor: 'tomato',
+					                    barBorderWidth: 6,
+					                    barBorderRadius:0,
+					                    label : {
+					                        show: true, position: 'top',textStyle:{color:"#000"}
+					                    }
+					                }
+					            },
+					            data:[]
+					        }
+					    ]
+				};
+        		
+            	
+                /**
+				var response ={data:[{title:"服务评级",rows:['周一','周二','周三','周四','周五','周六','周日'],data:[120, 132, 101, 134, 90, 230, 210]},
+            	                     {title:"评价人数",rows:['周一','周二','周三','周四','周五','周六','周日'],data:[120, 132, 101, 134, 90, 230, 210]},
+            	                     {title:"评价分布",rows:['周一','周二','周三','周四','周五','周六','周日'],data:[120, 132, 101, 134, 90, 230, 210]},
+            	                     {title:"打赏次数",rows:['周一','周二','周三','周四','周五','周六','周日'],data:[120, 132, 101, 134, 90, 230, 210]},
+            	                     {title:"打赏金额",rows:['周一','周二','周三','周四','周五','周六','周日'],data:[120, 132, 101, 134, 90, 230, 210]},
+            	                     {title:"收到打赏店员数",rows:['周一','周二','周三','周四','周五','周六','周日'],data:[120, 132, 101, 134, 90, 230, 210]}]};
+				**/
+				var chartArr=[];
+                addr.getStoreStatisticInfoByStoreID("storeId="+storeId+"&filter="+$("#dateType").val(),function(data){
+                	 if(data!=null&&data.resultMessage.messageCode=="0000"){
+                		 var jsondata= data.resultData.body.result;
+                		 var response ={data:jsondata};
+                		 
+                		//添加容器            	
+                     	var template = document.getElementById('template-charts').innerHTML;
+           			    var compiled = Template7(template).compile();
+           			    var compiledRendered = compiled(response);
+           			    $("#template-charts-content").append(compiledRendered);
+           			    $(".statis-placeholder").width($("body").width()); 
+           			    
+           			    // 基于准备好的dom，初始化echarts图表        				
+        				for(var i=0;i<response.data.length;i++){					
+        					var tempObj = response.data[i];        					
+        	                var charts = ec.init(document.getElementById('chartsObj'+i)); 
+        	                option.title.text=tempObj.title;
+        	                option.xAxis[0].data=tempObj.rows;
+        	                option.series[0].data=tempObj.data;
+        	                
+        	                charts.setOption(option);
+        	                chartArr.push(charts);
+        				}
+                	 }
+                });			
+                
+				/**
+				var response1 ={data:[{title:"服务评级",rows:['3/25','3/26','3/27','3/28','3/29','3/30','3/31'],data:[120, 132, 101, 108, 1000, 210, 230]},
+	            	                     {title:"评价人数",rows:['周一','周二','周三','周四','周五','周六','周日'],data:[120, 132, 101, 108, 100, 210, 230]},
+	            	                     {title:"评价分布",rows:['3/25','3/26','3/27','3/28','3/29','3/30','3/31'],data:[120, 132, 101, 134, 90, 230, 210]},
+	            	                     {title:"打赏次数",rows:['周一','周二','周三','周四','周五','周六','周日'],data:[120, 132, 101, 108, 1000, 210, 230]},
+	            	                     {title:"打赏金额",rows:['3/25','3/26','3/27','3/28','3/29','3/30','3/31'],data:[120, 132, 101, 134, 90, 230, 210]},
+	            	                     {title:"收到打赏店员数",rows:['周一','周二','周三','周四','周五','周六','周日'],data:[120, 132, 101, 134, 90, 230, 210]}]};
+				**/
+				//改变统计周期
+				$("#dateType").on("change",function(t){
+					addr.getStoreStatisticInfoByStoreID("storeId="+storeId+"&filter="+$("#dateType").val(),function(data){
+	                	 if(data!=null&&data.resultMessage.messageCode=="0000"){
+	                		 var jsondata= data.resultData.body.result;
+	                		 var response1 ={data:jsondata};
+					
+							for(var i=0;i<response1.data.length;i++){
+								var tempObj = response1.data[i];
+								var charts = ec.init(document.getElementById('chartsObj'+i));
+// 								charts.showLoading();
+// 								setTimeout(function(){charts.hideLoading();}, 500);
+								option.title.text=tempObj.title;
+				                option.xAxis[0].data=tempObj.rows;
+				                option.series[0].data=tempObj.data;
+				                charts.setOption(option);
+							}
+	                	 }
+	               	 
+	               });		
+					
+				});
+
+             
+            }
+        );
+		
+		
+		
+		
+    </script>
+</html>			

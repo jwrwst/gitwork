@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>众赏</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="${basepath}/assets/plugin/mui/dist/css/mui.min.css">
+		<link rel="stylesheet" href="${basepath}/assets/def/css/tips.css">
+		<link rel="shortcut icon" href="${basepath}/assets/favicon.ico" />
+		<style>
+			.mui-bar-popover {
+				width: 30%;
+			}
+			.mui-popover-arrow {
+/* 				display:none; */
+				
+			}
+			
+			.mui-popover .mui-popover-arrow:after{
+				    background: #EA4F16;
+			}
+			.mui-popover .mui-table-view {
+			    background-color: #EA4F16;	
+			    color: #fff;		
+			}
+			
+			.mui-popover {
+    			background-color: #EA4F16;
+    		}
+		</style>
+	</head>
+
+	<body>
+	</body>
+	<script>	   
+	   window.localStorage.setItem("empId", "${loginVo.empId}");
+	   window.localStorage.setItem("storeId", "${loginVo.storeId}");
+	   window.localStorage.setItem("tip_orgCode", null);
+	   window.location.href="${basepath}/views/template/web/tips_store_sub_dynamic.xhtml";
+	</script>
+</html>

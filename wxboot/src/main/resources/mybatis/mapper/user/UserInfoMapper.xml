@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wxboot.web.userinfo.dao.UserInfoDAO">
+	<!-- 返回值映射map -->
+	<resultMap id="userInfoMapper" type="com.wxboot.web.userinfo.model.UserInfo">
+			<result property="id" column="id" />
+			<result property="phone" column="phone" />
+			<result property="status" column="status" />
+			<result property="openid" column="openid" />
+			<result property="password" column="password" />
+			<result property="token" column="token" />
+			<result property="nickName" column="nick_name" />
+			<result property="userFace" column="user_face" />
+			<result property="userName" column="user_name" />
+			<result property="userCard" column="user_card" />
+			<result property="province" column="province" />
+			<result property="city" column="city" />
+			<result property="area" column="area" />
+			<result property="address" column="address" />
+			<result property="latitude" column="latitude" />
+			<result property="longitude" column="longitude" />
+			<result property="energy" column="energy" />
+			<result property="sex" column="sex" />
+			<result property="school" column="school" />
+			<result property="sign" column="sign" />
+			<result property="age" column="age" />
+	</resultMap>
+	
+	<!-- 查询数量公共sql -->
+	<sql id="count_Tail">
+		select count(1) from user_info record
+	</sql>
+	
+	<!-- 分页公共sql -->
+	<sql id="pagination_tail">
+	  limit #{page.index} , #{page.pageSize}
+	</sql>
+	<!-- 查询字段公共sql -->
+	<sql id="selectAllColumns">
+		<![CDATA[
+		SELECT
+			 id, 
+			 phone, 
+			 status, 
+			 openid, 
+			 password, 
+			 token, 
+			 nick_name, 
+			 user_face, 
+			 user_name, 
+			 user_card, 
+			 province, 
+			 city, 
+			 area, 
+			 address, 
+			 latitude, 
+			 longitude, 
+			 energy, 
+			 sex, 
+			 school, 
+			 sign, 
+			 age 
+			FROM user_info record
+		]]>
+	</sql>
+
+	<sql id="where_fragement">
+		where 1=1
+		<if test="entity!=null">
+				<if test = "entity.id != null and entity.id != ''">
+					<![CDATA[ and record.id  = #{entity.id} ]]>
+				</if>
+				<if test = "entity.phone != null and entity.phone != ''">
+					<![CDATA[ and record.phone  = #{entity.phone} ]]>
+				</if>
+				<if test = "entity.status != null and entity.status != ''">
+					<![CDATA[ and record.status  = #{entity.status} ]]>
+				</if>
+				<if test = "entity.openid != null and entity.openid != ''">
+					<![CDATA[ and record.openid  = #{entity.openid} ]]>
+				</if>
+				<if test = "entity.password != null and entity.password != ''">
+					<![CDATA[ and record.password  = #{entity.password} ]]>
+				</if>
+				<if test = "entity.token != null and entity.token != ''">
+					<![CDATA[ and record.token  = #{entity.token} ]]>
+				</if>
+				<if test = "entity.nickName != null and entity.nickName != ''">
+					<![CDATA[ and record.nick_name  = #{entity.nickName} ]]>
+				</if>
+				<if test = "entity.userFace != null and entity.userFace != ''">
+					<![CDATA[ and record.user_face  = #{entity.userFace} ]]>
+				</if>
+				<if test = "entity.userName != null and entity.userName != ''">
+					<![CDATA[ and record.user_name  = #{entity.userName} ]]>
+				</if>
+				<if test = "entity.userCard != null and entity.userCard != ''">
+					<![CDATA[ and record.user_card  = #{entity.userCard} ]]>
+				</if>
+				<if test = "entity.province != null and entity.province != ''">
+					<![CDATA[ and record.province  = #{entity.province} ]]>
+				</if>
+				<if test = "entity.city != null and entity.city != ''">
+					<![CDATA[ and record.city  = #{entity.city} ]]>
+				</if>
+				<if test = "entity.area != null and entity.area != ''">
+					<![CDATA[ and record.area  = #{entity.area} ]]>
+				</if>
+				<if test = "entity.address != null and entity.address != ''">
+					<![CDATA[ and record.address  = #{entity.address} ]]>
+				</if>
+				<if test = "entity.latitude != null and entity.latitude != ''">
+					<![CDATA[ and record.latitude  = #{entity.latitude} ]]>
+				</if>
+				<if test = "entity.longitude != null and entity.longitude != ''">
+					<![CDATA[ and record.longitude  = #{entity.longitude} ]]>
+				</if>
+				<if test = "entity.energy != null and entity.energy != ''">
+					<![CDATA[ and record.energy  = #{entity.energy} ]]>
+				</if>
+				<if test = "entity.sex != null and entity.sex != ''">
+					<![CDATA[ and record.sex  = #{entity.sex} ]]>
+				</if>
+				<if test = "entity.school != null and entity.school != ''">
+					<![CDATA[ and record.school  = #{entity.school} ]]>
+				</if>
+				<if test = "entity.sign != null and entity.sign != ''">
+					<![CDATA[ and record.sign  = #{entity.sign} ]]>
+				</if>
+				<if test = "entity.age != null and entity.age != ''">
+					<![CDATA[ and record.age  = #{entity.age} ]]>
+				</if>
+		</if>
+	</sql>
+
+	<!-- 分页查询数据集合-->
+	<select id="selectListByPage" resultMap="userInfoMapper" >
+		<include refid="selectAllColumns"/>
+		<include refid="where_fragement" />
+		<if test="page!=null">
+			<include refid="pagination_tail" />
+		</if>
+	</select>
+	
+	<!-- 查询总数量 -->
+	<select id="selectCount" resultType="long">
+		<include refid="count_Tail"></include>
+		<include refid="where_fragement"></include>
+	</select>
+	
+	<!-- 查询单个实体 -->
+	<select id="selectOne" resultMap="userInfoMapper" >
+		<include refid="selectAllColumns"/>
+		<include refid="where_fragement" />
+	</select>
+	<select id="selectById" resultMap="userInfoMapper" >
+		<include refid="selectAllColumns"/>
+		where record.id = #{id}
+	</select>
+	
+	<!-- 新增 -->
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.wxboot.web.userinfo.model.UserInfo">
+		insert into user_info(
+				id,
+				phone,
+				status,
+				openid,
+				password,
+				token,
+				nick_name,
+				user_face,
+				user_name,
+				user_card,
+				province,
+				city,
+				area,
+				address,
+				latitude,
+				longitude,
+				energy,
+				sex,
+				school,
+				sign,
+				age
+		)values(
+				#{id},
+				#{phone},
+				#{status},
+				#{openid},
+				#{password},
+				#{token},
+				#{nickName},
+				#{userFace},
+				#{userName},
+				#{userCard},
+				#{province},
+				#{city},
+				#{area},
+				#{address},
+				#{latitude},
+				#{longitude},
+				#{energy},
+				#{sex},
+				#{school},
+				#{sign},
+				#{age}
+		)
+	</insert>
+	<!-- 编辑 -->
+	<update id="update" parameterType="com.wxboot.web.userinfo.model.UserInfo">
+		update user_info record 
+			<set>
+					<if test = "phone != null and phone != ''">
+						record.phone = #{phone},
+					</if>
+					<if test = "status != null and status != ''">
+						record.status = #{status},
+					</if>
+					<if test = "openid != null and openid != ''">
+						record.openid = #{openid},
+					</if>
+					<if test = "password != null and password != ''">
+						record.password = #{password},
+					</if>
+					<if test = "token != null and token != ''">
+						record.token = #{token},
+					</if>
+					<if test = "nickName != null and nickName != ''">
+						record.nick_name = #{nickName},
+					</if>
+					<if test = "userFace != null and userFace != ''">
+						record.user_face = #{userFace},
+					</if>
+					<if test = "userName != null and userName != ''">
+						record.user_name = #{userName},
+					</if>
+					<if test = "userCard != null and userCard != ''">
+						record.user_card = #{userCard},
+					</if>
+					<if test = "province != null and province != ''">
+						record.province = #{province},
+					</if>
+					<if test = "city != null and city != ''">
+						record.city = #{city},
+					</if>
+					<if test = "area != null and area != ''">
+						record.area = #{area},
+					</if>
+					<if test = "address != null and address != ''">
+						record.address = #{address},
+					</if>
+					<if test = "latitude != null and latitude != ''">
+						record.latitude = #{latitude},
+					</if>
+					<if test = "longitude != null and longitude != ''">
+						record.longitude = #{longitude},
+					</if>
+					<if test = "energy != null and energy != ''">
+						record.energy = #{energy},
+					</if>
+					<if test = "sex != null and sex != ''">
+						record.sex = #{sex},
+					</if>
+					<if test = "school != null and school != ''">
+						record.school = #{school},
+					</if>
+					<if test = "sign != null and sign != ''">
+						record.sign = #{sign},
+					</if>
+					<if test = "age != null and age != ''">
+						record.age = #{age}
+					</if>
+			</set>
+		where id = #{id}
+	</update>
+	
+	<!-- 删除 -->
+	<delete id="deleteByIds">
+		delete from user_info
+		<if test=" codes != null and codes.length > 0 ">
+			where id in
+			<foreach collection="codes" open="(" separator="," close=")" item="code">
+				#{code}
+			</foreach>
+		</if>
+		<if test=" codes == null or codes.length == 0 ">
+			where 1 = 3
+		</if>
+	</delete>
+	<delete id="delete">
+		delete from user_info
+		where id = #{code}
+	</delete>
+	
+</mapper>

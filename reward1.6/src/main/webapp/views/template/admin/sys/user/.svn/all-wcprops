@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/webapp/views/template/admin/sys/user
+END
+userList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/webapp/views/template/admin/sys/user/userList.jsp
+END
+useredit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/webapp/views/template/admin/sys/user/useredit.jsp
+END
+empList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/webapp/views/template/admin/sys/user/empList.jsp
+END
+useradd.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/webapp/views/template/admin/sys/user/useradd.jsp
+END

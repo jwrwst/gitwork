@@ -1,0 +1,127 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.platform.rp.services.organize.core.dao.BsMerchantsStoreDAO">
+    
+    <resultMap type="com.platform.rp.services.organize.core.dao.entity.BsMerchantsStoreEntity" id="bsMerchantsStoreEntity">
+        <result column="id" property="id" />
+        <result column="org_code" property="orgCode" />
+       	<result column="store_id" property="storeId" />
+       	<result column="store_name" property="storeName" />
+		<result column="update_time" property="updateTime" />
+		<result column="status" property="status" />
+		<result column="schema" property="schema" />
+    </resultMap>
+    
+    <resultMap type="com.platform.rp.services.store.core.dao.entity.BsStoreInfoEntity" id="bsStoreInfoEntity">
+        <id column="store_id" property="storeId" />
+		<result column="address" property="address" />
+		<result column="create_mobile" property="createMobile" />
+		<result column="create_openId" property="create_openId" />
+		<result column="create_time" property="createTime" />
+		<result column="create_user" property="createUser" />
+		<result column="isUpdate" property="isUpdate" />
+		<result column="qrcode" property="qrcode" />
+		<result column="reward_money" property="rewardMoney" />
+		<result column="signature" property="signature" />
+		<result column="sketch" property="sketch" />
+		<result column="wish" property="wish" />
+		<result column="store_code" property="storeCode" />
+		<result column="store_name" property="storeName" />
+		<result column="store_type" property="storeType" />
+		<result column="code_type" property="codeType" />
+		<result column="telphone" property="telphone" />
+		<result column="update_time" property="updateTime" />
+		<result column="update_user" property="updateUser" />
+		
+		<result column="area_id" property="areaId" />
+		<result column="city_id" property="cityId" />
+		<result column="province_id" property="provinceId" />
+		<result column="country_id" property="countryId" />
+    </resultMap>
+    
+    <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="com.platform.rp.services.organize.core.dao.entity.BsMerchantsStoreEntity">
+		insert into bs_merchants_store(org_code,store_id,status,update_time,`schema`)
+		values(#{orgCode},#{storeId},#{status},#{updateTime},#{schema})
+	</insert>
+	
+   
+   <delete id="deleteByOrgCodeAndStoreId" >
+        delete from  bs_merchants_store 
+        <where>            
+                1=1 
+                <if test="orgCode != null and orgCode != '' "> and org_code = #{orgCode} </if>
+                <if test="storeId != null and storeId != 0 "> and store_id = #{storeId} </if>       
+        </where>   
+    </delete>
+	
+	<select id="get" resultMap="bsMerchantsStoreEntity"  parameterType="long">
+		select * from bs_merchants_store where id = #{id}
+	</select>
+      
+    <select id="getlist" resultMap="bsMerchantsStoreEntity" parameterType="string">
+         select t.*,b.store_name,b.status as storeStatus from bs_merchants_store t left join bs_store_info b on t.store_id = b.store_id
+         <where> t.schema = #{orgCode} 
+                <if test="status != null and status != 0 "> and b.status = #{status} </if>  
+                <if test="status == null or status == 0 "> and b.status != 3 </if>      
+                <if test="storeName != null and storeName != '' "> and b.store_name like CONCAT('%','${storeName}','%' ) </if>       
+         </where>    
+         ORDER BY convert(b.store_name using gbk) collate gbk_chinese_ci  
+    </select>
+    
+    <select id="getSubListByOrgCode" resultMap="bsMerchantsStoreEntity" parameterType="string">
+         select t.*,b.store_name,b.status as storeStatus from bs_merchants_store t left join bs_store_info b on t.store_id = b.store_id
+         <where> t.org_code = #{orgCode} 
+                <if test="status != null and status != 0 "> and b.status = #{status} </if>  
+                <if test="status == null or status == 0 "> and b.status != 3 </if>      
+                <if test="storeName != null and storeName != '' "> and b.store_name like CONCAT('%','${storeName}','%' ) </if>       
+         </where>    
+         ORDER BY b.store_name DESC     
+    </select>
+        
+     <select id="getListByOrgCode" resultMap="bsStoreInfoEntity" parameterType="string">
+         select b.* from bs_merchants_store t left join bs_store_info b on t.store_id = b.store_id
+         where t.org_code = #{orgCode} and b.status = 1
+         ORDER BY  convert(b.store_name using gbk) collate gbk_chinese_ci   
+    </select>
+      
+    <select id="getlistByareaId" resultMap="bsMerchantsStoreEntity" parameterType="string">
+         select t.*,b.store_name,b.status as storeStatus from bs_merchants_store t left join bs_store_info b on t.store_id = b.store_id
+         <where> t.schema = #{orgCode} and b.status != 3   
+                <if test="proId != null and proId != '' "> and b.province_id = #{proId} </if>  
+                <if test="cityId != null and cityId != '' "> and b.city_id = #{cityId} </if>  
+                <if test="areaId != null and areaId != '' "> and b.area_id = #{areaId} </if>  
+                <if test="storeName != null and storeName != '' "> and b.store_name like CONCAT('%','${storeName}','%' ) </if>       
+         </where>    
+         ORDER BY  convert(b.store_name using gbk) collate gbk_chinese_ci      
+    </select>
+  
+    <select id="getMerchantStoreList" resultMap="bsMerchantsStoreEntity" parameterType="list">
+         select t.* from bs_merchants_store t where        
+         t.org_code in                		          
+    	 <foreach collection="orgCodes" index="index" item="orgCode" open="("
+			    separator="," close=")">
+			   	#{orgCode}   
+			</foreach>
+    </select>
+    
+     <!-- 根据父编码获取店铺列表  -->
+    <select id="searchStoreByParentCode" resultMap="bsMerchantsStoreEntity" parameterType="string">
+         SELECT t.*,b.store_name,b.status as storeStatus 
+         FROM bs_merchants_store t 
+         LEFT JOIN bs_store_info b on t.store_id = b.store_id
+		 LEFT JOIN bs_organize o ON o.org_code = t.org_code
+         <where> t.org_code = #{orgCode} 
+                <if test="status != null and status != 0 "> and b.status = #{status} </if>  
+                <if test="status == null or status == 0 "> and b.status != 3 </if>      
+                <if test="storeName != null and storeName != '' "> and b.store_name like CONCAT('%','${storeName}','%' ) </if>       
+         </where>    
+         ORDER BY  convert(b.store_name using gbk) collate gbk_chinese_ci   
+    </select>
+    
+      
+    <select id="geOrgByStoreId" resultMap="bsMerchantsStoreEntity" parameterType="long">
+         select t.* from bs_merchants_store t 
+         <where>            
+                t.store_id = #{storeID}          
+         </where>         
+    </select>
+</mapper>

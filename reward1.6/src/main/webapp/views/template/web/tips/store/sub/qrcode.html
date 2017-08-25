@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+	  <head>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	    <title>众赏</title>
+	    <link href="${basepath}/assets/plugin/mui/dist/css/mui.min.css" rel="stylesheet"/>
+	    <link href="${basepath}/assets/def/css/tips.css" rel="stylesheet"/>
+	    <link rel="shortcut icon" href="${basepath}/assets/favicon.ico" />
+	    <style type="text/css">
+
+		  
+	    </style>
+	  </head>
+	  
+	  <body> 	  	
+	    <!--页面主结构开始-->
+		<div id="center" class="mui-views">
+			<div class="mui-view">	
+			    <div class="mui-navbar">
+				</div>	
+				<div class="mui-pages">
+				</div>
+			</div>
+		</div>	
+	     
+	    <!-- 列表  -->
+		<div id="regpage" class="mui-page" >		
+		  <!--页面标题栏开始-->
+		  <div class="mui-navbar-inner mui-bar mui-bar-nav">				
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+					<span class="mui-icon mui-icon-left-nav" style="color:rgba(0, 0, 0, 0);"></span>
+				</button>
+				<h1 class="mui-center mui-title" style="font-weight:bold;">二维码管理</h1>
+		  </div>
+		  <div class="mui-page-content" id="scroll-content">
+		  	<div class="scroller">
+		  	
+		  		<a href="#resultpage" id="rega" style="display:none;"></a>
+		  		<div class="plat-content">
+				    <ul class="mui-table-view">	
+				    	<li class="mui-table-view-cell mui-media">
+							<a class="mui-navigate-right" data-value="1">								
+								<span  class="mui-media-body" style="line-height:40px;">自助制作</span>								
+								<span style="float:right;padding-right:35px;line-height:40px;color:#cccccc;">实时生成，无需等待</span>						
+							</a>
+			            </li>	
+			            <li class="mui-table-view-cell mui-media">
+							<a class="mui-navigate-right" data-value="3">								
+								<span  class="mui-media-body" style="line-height:40px;">购买成品胸牌</span>								
+								<span style="float:right;padding-right:35px;line-height:40px;color:#cccccc;">进入微店</span>						
+							</a>
+			            </li>				
+					</ul>
+				</div>
+				<!-- 页面底部标题 -->
+			</div>	
+		  </div>		
+            
+		</div>
+		
+		<!-- 纪录详情 -->
+		<div id="pagedetails" class="mui-page" >		
+		  <!--页面标题栏开始-->
+		  <div class="mui-navbar-inner mui-bar mui-bar-nav">
+			  <button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+					<span class="mui-icon mui-icon-left-nav" style="color:#EA4F16;"></span>
+				</button>
+				<h1 class="mui-pull-left mui-title" style="font-weight:bold;">二维码管理</h1>
+		  </div>
+		  <div class="mui-page-content"  id="scroll-content-details">
+		     <div class="scroller">
+		  		<div class="plat-content" id="template-page-content"> 		       
+							
+				</div>
+				
+		      </div>		
+		  </div>	     
+
+		</div>
+	 
+	  [#include '../model/menu.html']
+	  </body>	  
+	  <script src="${basepath}/assets/plugin/require.js"></script>
+	  <script type="text/javascript" src="${basepath}/assets/def/js/tips/tips.js"></script>
+	  <!-- 列表模板 -->
+	  <script type="text/template" id="template-page">
+            {{#js_compare "this.value === '1' "}}
+					<div class="mui-input-group">						
+						<div class="mui-input-row">
+							<label>数量</label>
+							<input type="number" class="mui-input-clear" placeholder="请输入所需数量" name="gnum">
+						</div>						
+					</div>
+					<div class="mui-content-padded tips-reginfo-submit" >		        
+					        <button class="mui-btn mui-btn-warning mui-btn-block" id="comeMain" >生成下载链接</button>					        	       
+					</div>
+    		{{else}}	
+                   <div style="text-align: center;height:120px;padding:10px; ">
+						<div style="width:50%;float: left;text-align: right;padding:20px 10px;"><img alt="" src="${basepath}/assets/def/images/success.png" class="successImg"></div>
+						<div style="width:50%;float: left;text-align: left;font-weight:bold;padding:30px 10px;">
+							<p style="font-size:24px;color:#EA4F16;">操作成功!</p>
+							<span style="font-size:15px;">您的物料已生成完毕</span>
+						</div>
+                    </div>
+                    <div style="padding:20px 10px;">
+						<p>二维码源文件下载链接，如果无法下载，请将下载链接发送到电脑上操作</p>
+						<div>
+						   <textarea rows="5" style="width:100%;"  onclick="this.focus();this.select();this.createTextRange();">{{gurl}}</textarea>
+						</div>
+                    </div>				
+         	{{/js_compare}}
+	  </script>
+
+	  <script type="text/javascript">
+	  require(["jquery","mui","mui_view","addr","common","template7"],function($$,M,mui_view,addr,tools,template7){
+
+		  //初始化单页view
+		  var viewApi = mui('#center').view({
+		  		defaultPage: '#regpage'
+		  });
+		  
+		  $$(document).ready(function(){
+			   
+			  //失去焦点
+// 				jQuery("body").on("click",function(e){			
+// 					var nodeType = e.explicitOriginalTarget ? e.explicitOriginalTarget.nodeName.toLowerCase():(e.target ? e.target.nodeName.toLowerCase():'');
+// 					if(nodeType =='input'|| nodeType =='select' || nodeType == 'option') return;
+				
+// 					jQuery("body").blur();
+// 					document.activeElement.blur();
+// 			    });
+			  
+			  //点击列表项
+			  mui(".mui-media").on('tap','a',function(e){
+				  if($$(this).attr("data-value")==3){
+					  window.location.href="https://wap.koudaitong.com/v2/showcase/homepage?alias=1acoxol7r&redirect_count=1";
+					  return;
+				  }
+				  //加载数据
+				  var template = document.getElementById('template-page').innerHTML;
+				  var compiled = Template7(template).compile();
+				  var compiledRendered = compiled({value:$$(this).attr("data-value")});
+				  $$("#template-page-content").html(compiledRendered); 
+				  
+				  
+				  $$("#rega").attr("href","#pagedetails");
+				  mui.trigger(document.getElementById("rega"),'tap');	
+				  //scroller.updateDimensions($$("#scroll-content").width(),$$("#scroll-content").height());
+				  window.history.pushState({page:"pagedetails"}, "page", window.location.href);
+				  
+				  $$("#comeMain").on("tap",function(){
+					  var num=$$("input[name='gnum']").val();
+					  if(num==""||num==0 || parseInt(num)<0 || parseInt(num)>100){
+						  tools.toastTip("错误提示",'请输入大于0且小于100的数');
+						  return ;
+					  }
+					  
+					  var tranData={empId:tools.global.empId,storeId:tools.global.storeId,gnum:num}
+					  addr.saveFileInfo(JSON.stringify(tranData),function(resData){
+						  	if(resData!=null&&resData.resultMessage.messageCode=="0000"){
+						  		var gurl=resData.resultData.body.result;
+						  	    var compiledRendered = compiled({value:"3",gurl:gurl});
+								$$("#template-page-content").html(compiledRendered); 
+						  	}
+					  });
+					  
+					  
+					  
+				  })
+			  });
+			  
+			  
+			  //滚动条加载完回调加载				
+			  //tools.scrollBar(document.getElementById('scroll-content-details'),null);
+			  
+		  });
+		  
+		  
+	 
+	  });
+	  
+
+	  </script>
+</html>			

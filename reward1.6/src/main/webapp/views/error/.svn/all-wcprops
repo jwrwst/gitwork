@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/webapp/views/error
+END
+error.html
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/webapp/views/error/error.html
+END
+success.html
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/webapp/views/error/success.html
+END
+openid-error.html
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/webapp/views/error/openid-error.html
+END

@@ -1,0 +1,34 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.platform.rp.services.store.core.dao.BsStoreAuthDetailDAO">
+    
+	<resultMap type="com.platform.rp.services.store.core.dao.entity.BsStoreAuthDetailEntity" id="storeAuthDetailEntityMap">
+        <result column="id" property="id" />
+        <result column="store_id" property="storeId" />
+		<result column="auth_code" property="authCode" />
+		<result column="update_time" property="updateTime" />
+	</resultMap>	
+    
+    <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="com.platform.rp.services.store.core.dao.entity.BsStoreAuthDetailEntity">
+		insert into bs_store_auth_detail (store_id,auth_code,update_time)
+		values(#{storeId},#{authCode},#{updateTime})
+	</insert>
+	
+    <update id="update"
+		parameterType="com.platform.rp.services.store.core.dao.entity.BsStoreAuthDetailEntity">
+		update bs_store_auth_detail
+		<set>
+			<if test="authCode != null"> auth_code = #{authCode}, </if>
+			<if test="updateTime != null"> update_time = #{updateTime}, </if>
+		</set>
+		where store_id = #{storeId}
+	</update>
+
+    <select id="getStoreAuthDetailByStoreId" resultMap="storeAuthDetailEntityMap" parameterType="long">
+		Select * from bs_store_auth_detail 
+		where store_id = #{storeId} 
+	</select>
+	
+	<delete id="delete" parameterType="long">
+		delete from bs_store_auth_detail where store_id = #{storeId} 
+	</delete>
+</mapper>

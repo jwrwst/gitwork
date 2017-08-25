@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+	  <head>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	    <title>众赏</title>
+	    <link href="${basepath}/assets/plugin/mui/dist/css/mui.min.css" rel="stylesheet"/>
+	    <link href="${basepath}/assets/def/css/tips.css" rel="stylesheet"/>
+	    <link rel="shortcut icon" href="${basepath}/assets/favicon.ico" />
+		<link href="${basepath}/assets/plugin/mui/dist/css/mui.picker.css" rel="stylesheet" />
+		<link href="${basepath}/assets/plugin/mui/dist/css/mui.poppicker.css" rel="stylesheet" />
+		<style type='text/css'>
+		.mui-input-row label font{ 
+    color: #EA4F16;
+    margin: 0 5px;
+    font-size: 24px;
+    line-height: 1.6;
+    float: left;}
+</style>
+	  </head>
+	  
+	  <body> 	  	
+	    <!--页面主结构开始-->
+		<div id="center" class="mui-views">
+			<div class="mui-view">	
+			    <div class="mui-navbar" style="">
+				</div>	
+				<div class="mui-pages">
+				</div>
+			</div>
+		</div>
+	     
+		<div id="regpage" class="mui-page" >
+		  <!--页面标题栏开始-->
+		  <div class="mui-navbar-inner mui-bar mui-bar-nav">
+		  <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color:#EA4F16;"></a>				
+				<h1 class="mui-text-left mui-title"  style="font-weight:bold;margin-left:-24px;" id="title"> 添加店铺</h1>
+		  </div>
+		  <div class="mui-page-content" id="scroll-content_detail">
+		  <div class="scroller">
+		  		<a href="#resultpage" id="rega" style="display:none;"></a>
+		  	     <div class="plat-content">
+				     <form name = "storeInfo" id="storeInfo">
+						<div class="plat-subtitle">
+							店铺信息
+						</div>
+						<div class="mui-input-group">
+							<div class="mui-input-row">
+								<label><font>*</font>名称</label>
+								<input type="text" class="" placeholder="请输入店铺名称" name="storeName" maxlength="20">
+							</div>
+						<!-- 	<div class="mui-input-row">
+								<label>商户代码</label> -->
+								<input type="hidden" class="" placeholder="请输入商户代码" name="orgCode" readonly="readonly" maxlength="100">
+							<!-- </div> -->
+							<div class="mui-input-row">
+								<label id="System.store.type"><font>*</font>分类</label>
+								<a id='showCityPicker' class="mui-btn-block" type='button' style='color:#000; font-size:15px; text-align:right; padding-right:15px;'>请选择 ...</a> 
+								<input name ="storeType" type="hidden">
+								<input name ="codeType" type="hidden">
+							</div>
+							
+							<div class="mui-input-row">
+								<label id="System.store.type"><font>*</font>所在地区</label>
+								<a id='showCityPicker3' class="mui-btn-block" style='color:#000; font-size:15px; text-align:right; padding-right:15px;'>请选择 ...</a> 
+								<input name ="provinceId" type="hidden">
+								<input name ="cityId" type="hidden">
+								<input name ="areaId" type="hidden">
+							</div>
+							<div class="mui-input-row">
+								<label style='padding-left:35px;'>地址</label>
+								<input type="text"  class="" placeholder="请输入店铺地址" name="address" maxlength="100">
+							</div>
+							<div class="mui-input-row">
+								<label style='padding-left:35px;'>电话</label>
+								<input type="text" class="" placeholder="区号+固定号码或手机号" name="telphone" maxlength="13">
+							</div>						
+						</div>
+						
+						<div>
+							<div class="mui-content-padded tips-reginfo-submit"> 
+							    <input type="hidden" name="storeId" value="">	 
+						        <button  type="button" class="mui-btn mui-btn-warning mui-btn-block" id="regbnt">添加</button>					        	     
+						    </div>
+						      
+						</div>
+				
+		
+					</form>
+			    </div>
+				
+			  </div>
+             </div>
+		</div>
+			
+		<div id="resultpage"  class="mui-page">
+			<div class="mui-navbar-inner mui-bar mui-bar-nav" style="display:none;">
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+					<span class="mui-icon mui-icon-left-nav"></span>
+				</button>
+				<h1 class="mui-text-left mui-title">注册成功</h1>
+			</div>
+		
+			<div class="mui-page-content">
+			  <div class="scroller">
+			  
+				<div class="plat-content">
+				   <div class="mui-content">
+				     <div style="text-align: center;height:120px;padding:10px; ">
+						<div style="width:100%;float: left;text-align: center;"><img alt="" src="${basepath}/assets/def/images/success.png" class="successImg"></div>
+						<div style="width:100%;float: left;text-align: center;font-weight:bold;padding:10px 10px;">
+							<p style="font-size:1.2em;color:#EA4F16;margin-bottom:30px;">您的店铺已开通成功!<br>请长按下方二维码，关注众赏公众号</p>
+						</div>
+						<div style="width:100%;float: left;text-align: center;"><img alt="" src="${basepath}/assets/def/images/qrcode_weixin.jpg" style="width:40%"></div>
+                    </div>
+					
+					<div style="display:none;">
+						<div class="mui-content-padded tips-reginfo-submit" >		        
+					        <button  type="button" class="mui-btn mui-btn-warning mui-btn-block" id="comeMain" >进入店铺首页</button>					        	       
+					    </div>
+					</div>					
+					
+				  </div>
+				</div>
+				
+			 <div class="scroller">
+			</div>
+		</div>
+			
+
+		
+	  </body>
+	  
+	  <script src="${basepath}/assets/plugin/require.js"></script>
+	  <script type="text/javascript" src="${basepath}/assets/def/js/tips/tips.js"></script>
+	  
+	<script src="${basepath}/assets/plugin/mui/dist/js/mui.min.js"></script>
+	<script src="${basepath}/assets/plugin/mui/js/mui.picker.js"></script>
+	<script src="${basepath}/assets/plugin/mui/js/mui.poppicker.js"></script>
+	<script type="text/javascript" src="${basepath}/assets/def/js/tips/areaWap.js"></script>
+	<script type="text/javascript" src="${basepath}/assets/def/js/tips/dataWap.js"></script>
+	  <script type="text/javascript">
+
+	  <#if param??>
+	  	parentCode = '${param.data}';
+	  </#if>
+	  var state="${loginVo.state}";
+	  require(["jquery","mui","mui_view","addr","common"],function($$,mui,mui_view,addr,tools){
+		  //初始化单页view
+		var viewApi = mui('#center').view({
+			defaultPage: '#regpage'
+		});
+
+		//类型
+		function initType(){
+			 //
+			  addr.getClassType("codeClass=System.store.type", function(data){
+				  if(data&&data.resultMessage.messageCode=="0000"){
+					  var list = data.resultData.body.result;
+					  var strHtml=[];
+					  for(var i=0;i<list.length;i++){
+						  strHtml.push("<option value='"+list[i].value+"'>"+list[i].name+"</option>")
+					  }
+					  $$("#storeType").html("");
+					  $$("#storeType").html(strHtml.join(""));
+				  }
+			  });			  
+		}
+		function initSelect(da){
+			//地区
+			AreaWap.init("storeInfo","#showCityPicker3",da.provinceId,da.cityId,da.areaId,function(items,me){
+				var t3 = (items[2] || {});
+				var text = t3.text==null?"":t3.text;
+				$("#showCityPicker3").html((items[0] || {}).text + " " + (items[1] || {}).text + " " +text);
+				$("input[name=areaId]").val(t3==null?"":t3.value);
+				$("input[name=cityId]").val((items[1] || {}).value);
+				$("input[name=provinceId]").val((items[0] || {}).value);
+
+			});
+			//类型
+			DateWap.init("storeInfo","System.store.type","#showCityPicker",2,[da.storeType,da.codeType],function(items,me){
+				$("#showCityPicker").html((items[0] || {}).text + " " + (items[1] || {}).text);
+				$("input[name=storeType]").val((items[0] || {}).value);
+				$("input[name=codeType]").val((items[1] || {}).value);				
+			});
+		}
+		//查询门店信息
+		function getStore(storeId){
+			addr.getStore("storeId="+storeId, function(data){
+				  if(data&&data.resultMessage.messageCode=="0000"){
+						var da = data.resultData.body.result;
+						if(da != null){
+							for(key in da){
+								var input = $$("input[name = "+key+"]");
+								if(input.length == 0){
+									//处理select 
+									var sel = $$("select[name = "+key+"]");
+									if(sel.length == 1){
+										sel.children().each(function(){
+											var me = $$(this);
+											if(me.val()==da[key]){
+												me.attr("selected","selected");
+											}
+										});
+									}else{
+										console.log("属性【"+key+" = "+da[key]+"]没有元素");
+									}
+								//处理input
+								}else if(input.length == 1){
+									input.val(da[key]);
+								}else{
+									console.war("属性【"+key+" = "+da[key]+"] 元素数量为 ："+input.length);
+								}
+							}
+
+						}
+						$("input[name='orgCode']").val(da.storeCode);
+
+						initSelect(da);
+						$("#showCityPicker").html(da.typeName + " " + da.codeTypeName);
+						$("#showCityPicker3").html(da.provinceName + " " + da.cityName+ " " +  (da.areaName== null?"":da.areaName));
+				  }else{
+				  }
+			  });			  
+		}
+		$$(document).ready(function(){
+			var orgCode  = localStorage.getItem("_orgCode");
+			var storeId = localStorage.getItem("_storeId");
+
+			$("input[name='orgCode']").val(orgCode);
+			initType();
+			if(storeId==null){
+
+				initSelect({});
+				//Area.init("storeInfo");
+			}else{
+				$("#title").html("修改店铺");
+				$("#regbnt").html("修改");
+				getStore(storeId);
+			}
+
+			localStorage.removeItem("_orgCode");
+			localStorage.removeItem("_storeId");
+		})
+		  var flag=true;
+		  mui('.mui-content-padded').on('tap','#regbnt',function(e) {
+			    var data = $$("#storeInfo").serializeJson();		
+				var datastr=JSON.stringify(data);
+				
+				var _this =this;
+				if(data.storeName==""){
+					tools.toastTip(null,"请输入店铺名称");
+					return;
+				}	
+			/* 	if(data.address==""){
+					tools.toastTip(null,"请输入店铺地址");
+					return;
+				}	
+				if(data.telphone==""){
+					tools.toastTip(null,"请输入电话");
+					return;
+				}else if(data.telphone.length<11){
+					tools.toastTip(null,"请输入正确输入电话");
+					return;
+				} */
+				if(data.storeType==""){
+					tools.toastTip(null,"请选择类型");
+					return;
+				}	
+				if(data.cityId==""){
+					tools.toastTip(null,"请选择所在地区");
+					return;
+				}	
+			    if(flag==false){
+			    	//return;			    	
+			    }
+			   // flag = false;		    
+				data.nickname=data.createUser;
+				var storeId = data.storeId;
+				if(storeId == null || storeId == ''){
+					var url = addr.store.saveStore;
+					addr.ajaxJson(url,datastr,function(data){
+						flag=true;
+						if(data!=null&&data.resultMessage.messageCode=="0000"){
+							//window.location.href="tips_merchants_manage.xhtml"
+							window.history.back(-1); 
+						}else{
+							tools.toast("错误","添加失败,请直接联系众赏或再试一次.");
+						}
+					});
+				}else{		    		
+					addr.editStore(datastr,function(data){
+						flag=true;
+						if(data!=null&&data.resultMessage.messageCode=="0000"){
+							//window.location.href="tips_merchants_manage.xhtml"
+							window.history.back(-1); 
+						}else{
+							tools.toast("错误","修改失败,请直接联系众赏或再试一次.");
+						}
+					});
+				}
+				
+		  });	  
+	  
+	  });
+	  </script>
+</html>			

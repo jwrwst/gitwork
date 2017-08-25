@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>众赏</title>
+<link href="${basepath}/assets/plugin/mui/dist/css/mui.min.css"
+	rel="stylesheet" />
+<link href="${basepath}/assets/def/css/tips.css" rel="stylesheet" />
+<link rel="shortcut icon" href="${basepath}/assets/favicon.ico" />
+<style type="text/css">
+body,.mui-content{ background: #fff;}
+.imgshadow{ width: 180px; height:180px; display:block; margin:0 15px 5px; padding:10px; border:1px solid #e8e8e8; 
+-webkit-box-shadow:0 0 10px rgba(0, 0, 0, .1);  
+  -moz-box-shadow:0 0 10px rgba(0, 0, 0, .1);  
+  box-shadow:0 0 10px rgba(0, 0, 0, .1);  }
+  .imgshadow1{ padding:0;}
+  .quyuimg{ background:url(${basepath}/assets/def/images/bindquyu.png) no-repeat; background-size:100%;}
+  .storeimg{ background:url(${basepath}/assets/def/images/binddianpu.png) no-repeat; background-size:100%;}
+  .merchants-img{ background:url(${basepath}/assets/def/images/bindshanghu.png) no-repeat; background-size:100%;}
+</style>
+</head>
+
+<body onload="build()">
+	<!--页面主结构开始-->
+<h1 style='padding:10px; background:#f6f1ee; margin-top:0; line-height:24px; font-size:16px !important;'><i class="mui-icon iconfont icon_success"></i>
+您已成为<font id='area'></font>的<font id='areamanager'>的管理员</font> </h1>
+	<!--页面标题栏开始-->
+	<div class="mui-content" id="scroll-content">
+
+		<h3 style="display: block; font-size:16px; margin:25px 10px 15px;color:#EA4F16;">关注众赏公众号，进行<font id='areamanager2'>区域</font>管理 </h3>
+			
+			<p
+				style="font-weight:bold; margin: 10px;">1、长按二维码，关注众赏公众号 </p>
+			<p><img src='${basepath}/assets/def/images/qrcode_weixin.jpg' class='imgshadow imgshadow1' /></p>	
+			<p
+				style="font-weight:bold; margin: 10px;">2、进入公众号后，点击商铺管理 > <font id='areamulu'>区域管理</font> </p>
+			<p><span class="imgshadow imgshadow1 quyuimg" id='areaimg'></span></p>	
+
+
+
+		<!-- 页面底部标题 -->
+	</div>
+</body>
+
+<script type="text/javascript">
+	function build(){
+		
+		var name  = localStorage.getItem("_name");
+		localStorage.removeItem("_name");
+		document.getElementById("area").innerHTML = name;	
+		var type  = localStorage.getItem("_type");
+		//localStorage.removeItem("_type");
+		if(type == '1'){
+			document.getElementById("areamanager2").innerHTML = '商户';	
+			document.getElementById("areamulu").innerHTML = '商户管理';	
+			//
+			var areaimg  = document.getElementById("areaimg");
+			areaimg.className = "imgshadow imgshadow1 merchants-img";
+		}else if(type == '2'){
+			document.getElementById("areamanager2").innerHTML = '店长';	
+			document.getElementById("areamulu").innerHTML = '店长管理';	
+			//
+			var areaimg  = document.getElementById("areaimg");
+			areaimg.className = "imgshadow imgshadow1 storeimg";
+		}
+	}
+</script>	
+</html>

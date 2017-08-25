@@ -1,0 +1,106 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.platform.rp.services.organize.core.dao.BsMerchantsExtRewardDAO">
+    
+    <resultMap type="com.platform.rp.services.organize.core.dao.entity.BsMerchantsExtRewardEntity" id="bsMerchantsExtRewardEntity">
+        <result column="id" property="id" />
+        <result column="org_code" property="orgCode" />
+       	<result column="allot_plan" property="allotPlan" />
+       	<result column="percent" property="percent" />
+		<result column="emp_id" property="empId" />
+		<result column="name" property="empName" />
+		<result column="money" property="money" />
+		<result column="parent_id" property="parentId" />
+		<result column="remark" property="remark" />
+		<result column="update_user" property="updateUser" />
+		<result column="update_time" property="updateTime" />		
+		
+    </resultMap>
+    
+   <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="com.platform.rp.services.organize.core.dao.entity.BsMerchantsExtRewardEntity">
+		insert into bs_merchants_ext_reward(org_code,allot_plan,percent,emp_id,money,update_user,update_time,parent_id,remark)
+		values
+		  (#{orgCode}, #{allotPlan}, #{percent}, #{empId}, #{money}, #{updateUser}, now(),#{parentId},#{remark})
+
+	</insert>
+	
+   <update id="update" parameterType="com.platform.rp.services.organize.core.dao.entity.BsMerchantsExtRewardEntity">
+		update bs_merchants_ext_reward
+		<set>
+			<if test="orgCode != null and orgCode != ''"> org_code = #{orgCode}, </if>
+			<if test="allotPlan != null and allotPlan != ''"> allot_plan = #{allotPlan}, </if>
+			<if test="percent != null and percent != ''"> percent = #{percent}, </if>			
+			<if test="money != null and money != ''"> money = #{money}, </if>
+			<if test="remark != null and remark != ''"> remark = #{remark}, </if>
+			<if test="parentId != 0 "> parent_id = #{parentId}, </if>
+			update_time = now()
+		</set>
+		<where>
+		    1=1
+		    <if test="parentId != 0 "> and parent_id = #{parentId}</if>
+		    <if test="id != 0"> and id = #{id} </if>    
+		</where>
+	</update>
+     
+   <delete id="deleteList" parameterType="string">
+        delete from  bs_merchants_ext_reward where  org_code = #{orgCode}  
+    </delete>
+    
+    <delete id="deleteById" parameterType="int">
+        delete from  bs_merchants_ext_reward 
+        <where>
+            1=1
+		    <if test="parentId != 0 "> and parent_id = #{parentId} </if>
+		    <if test="id != 0">and id = #{id}</if>    
+		</where>
+    </delete>
+	
+      
+    <select id="getList" resultMap="bsMerchantsExtRewardEntity" parameterType="string">
+         select t.*,b.name from bs_merchants_ext_reward t left join bs_employee_info b on t.emp_id = b.emp_id
+         <where>            
+                t.org_code = #{orgCode}          
+         </where>         
+    </select>
+    
+        
+    
+    <delete id="deleteByParentId" parameterType="java.lang.Integer">
+        delete from bs_merchants_ext_reward 
+        where parent_id in 
+        <foreach collection="deleteIdList" index="index" item="tag" open="("
+			    separator="," close=")">
+			   	#{tag}
+		</foreach>
+    </delete>
+    
+    <delete id="deleteByParentIdAndOrgCode">
+        delete from bs_merchants_ext_reward  where parent_id=0 and org_code in 
+        <foreach collection="orgList" index="index" item="tag" open="("
+			    separator="," close=")">
+			   	#{tag.orgCode}
+		</foreach>
+    </delete>
+
+    <update id="updateOrgRewardByParentId">
+		update bs_merchants_ext_reward
+		<set>
+			<if test="entity.allotPlan != null and entity.allotPlan != '' "> allot_plan = #{entity.allotPlan}, </if>
+			<if test="entity.empId != 0"> emp_id = #{entity.empId}, </if>
+			<if test="entity.percent != 0"> percent = #{entity.percent}, </if>
+			<if test="entity.money != 0"> money = #{entity.money}, </if>	
+			<if test="entity.remark != null and entity.remark != '' "> remark = #{entity.remark}, </if>	
+			<if test="entity.parentId != 0 "> parent_id = #{entity.parentId}, </if>	
+			<if test="entity.updateUser != null"> update_user = #{entity.updateUser}, </if>
+			<if test="entity.updateTime != null"> update_time = #{entity.updateTime}, </if>
+		</set>
+		<where>
+		    org_code = #{entity.orgCode} 
+		    
+		    <if test="rewardId != 0 and rewardParentId != 0 ">and ( parent_id = #{rewardId} or parent_id = #{rewardParentId}) </if>
+		    <if test="rewardId != 0 and rewardParentId == 0 ">and parent_id = #{rewardId}  </if>
+			<if test="rewardId == 0 and rewardParentId != 0 "> and parent_id = #{rewardParentId}</if>
+		</where>
+		
+	</update>
+  
+</mapper>

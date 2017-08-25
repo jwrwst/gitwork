@@ -1,0 +1,251 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.platform.rp.services.employee.core.dao.BsEmployeeExtRewardDAO">
+    
+    <resultMap type="com.platform.rp.services.employee.core.dao.entity.BsEmployeeExtRewardEntity" id="empExtRewardEntityMap">
+        <id column="id" property="id" />
+        <result column="emp_id" property="empId" />
+		<result column="store_id" property="storeId" />
+		<result column="day_count" property="dayCount" />
+		<result column="yesterday_count" property="yesterdayCount" />
+		<result column="week_count" property="weekCount" />
+		<result column="lastweek_count" property="lastweekCount" />
+		<result column="month_count" property="monthCount" />
+		<result column="lastmonth_count" property="lastmonthCount" />
+		<result column="total_count" property="totalCount" />
+		<result column="cash_count" property="cashCount" />
+		<result column="day_money" property="dayMoney" />
+		<result column="yesterday_money" property="yesterdayMoney" />
+		<result column="week_money" property="weekMoney" />
+		<result column="lastweek_money" property="lastweekMoney" />
+		<result column="month_money" property="monthMoney" />
+		<result column="lastmonth_money" property="lastmonthMoney" />
+		<result column="total_money" property="totalMoney" />
+		<result column="cash_money" property="cashMoney" />
+		<result column="status" property="status" />
+		<result column="update_time" property="updateTime" />
+		<result column="cash_count" property="cashCount" />
+		<result column="cash_money" property="cashMoney" />
+	</resultMap>
+	
+    <resultMap type="com.platform.rp.services.store.external.vo.StoreDynamicInfoVo" id="storeDynamicInfoVoMap">
+        <result column="daycount" property="dayCount" />
+		<result column="yesterdaycount" property="yesterdayCount" />
+		<result column="sumday" property="dayData" />
+		<result column="sumyesterday" property="yesterdayData" />
+	</resultMap>
+	
+    <resultMap type="com.platform.rp.services.store.external.vo.StoreRankVo" id="storeRankVoMap">
+        <result column="count" property="rankCount" />
+		<result column="score" property="rankData" />
+		<result column="empnickname" property="empNickname" />
+		<result column="empId" property="employeeID" />
+		<result column="empname" property="empName" />
+		<result column="updatetime" property="updateTime" />
+		<result column="altercount" property="alterRankCount" />
+		<result column="alterdata" property="alterRankData" />
+	</resultMap>
+	
+    <resultMap type="com.platform.rp.services.employee.external.vo.EmployeeRankDetailVo" id="employeeRankDetailVoMap">
+        <result column="daymoney" property="dayData" />
+		<result column="weekmoney" property="weekData" />
+		<result column="monthmoney" property="monthData" />
+		<result column="empnickname" property="empNickname" />
+		<result column="jobnumber" property="jobNumber" />
+		<result column="updatetime" property="updateTime" />
+	</resultMap>
+	
+    <resultMap type="com.platform.rp.services.employee.external.vo.EmployeeIncomeBaseInfoVo" id="employeeIncomeBaseInfoVoMap">
+        <result column="empId" property="employeeID" />
+		<result column="empnickname" property="empNickname" />
+		<result column="remainmoney" property="remainMoney" />
+		<result column="headpic" property="headPic" />
+		<result column="totalmoney" property="totalMoney" />
+		<result column="empname" property="empName" />
+		<result column="level" property="level" />
+	</resultMap>
+	
+    <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="com.platform.rp.services.employee.core.dao.entity.BsEmployeeExtRewardEntity">
+		insert into bs_employee_ext_reward(emp_id,store_id,day_count,yesterday_count,week_count,lastweek_count,month_count,lastmonth_count,total_count,cash_count,day_money,yesterday_money,week_money,lastweek_money,month_money,lastmonth_money,total_money,cash_money,status,update_time)
+		values(#{empId},#{storeId},#{dayCount},#{yesterdayCount},#{weekCount},#{lastweekCount},#{monthCount},#{lastmonthCount},#{totalCount},#{cashCount},#{dayMoney},#{yesterdayMoney},#{weekMoney},#{lastweekMoney},#{monthMoney},#{lastmonthMoney},#{totalMoney},#{cashMoney},#{status},#{updateTime})
+	</insert>
+	
+    <update id="update" parameterType="com.platform.rp.services.employee.core.dao.entity.BsEmployeeExtRewardEntity">
+		update bs_employee_ext_reward
+		<set>
+			<if test="dayCount != null"> day_count = #{dayCount}, </if>
+			<if test="yesterdayCount != null"> yesterday_count = #{yesterdayCount}, </if>
+			<if test="weekCount != null"> week_count = #{weekCount}, </if>
+			<if test="lastweekCount != null"> lastweek_count = #{lastweekCount}, </if>
+			<if test="monthCount != null"> month_count = #{monthCount}, </if>
+			<if test="lastmonthCount != null"> lastmonth_count = #{lastmonthCount}, </if>
+			<if test="totalCount != null"> total_count = #{totalCount}, </if>
+			<if test="cashCount != null"> cash_count = #{cashCount}, </if>
+			<if test="dayMoney != null"> day_money = #{dayMoney}, </if>
+			<if test="yesterdayMoney != null"> yesterday_money = #{yesterdayMoney}, </if>
+			<if test="weekMoney != null"> week_money = #{weekMoney}, </if>
+			<if test="lastweekMoney != null"> lastweek_money = #{lastweekMoney}, </if>
+			<if test="monthMoney != null"> month_money = #{monthMoney}, </if>
+			<if test="lastmonthMoney != null"> lastmonth_money = #{lastmonthMoney}, </if>
+			<if test="totalMoney != null"> total_money = #{totalMoney}, </if>
+			<if test="cashMoney != null"> cash_money = #{cashMoney}, </if>
+			<if test="status != null"> status = #{status}, </if>
+			<if test="updateTime != null and updateTime != ''"> update_time = #{updateTime}, </if>
+		</set>
+		<where>
+		    emp_id = #{empId}
+		    <if test="storeId != null"> and store_id = #{storeId}</if>
+		</where>
+	</update>
+	
+    <sql id="page">
+		<if test="start > -1">
+			<if test="pageSize > 0">
+				limit #{start}, #{pageSize}
+			</if>
+			<if test="pageSize == 0 or pageSize == '' or pageSize &lt; 0">
+				limit #{start}
+			</if>
+		</if>
+	</sql>
+	
+    <select id="count" resultType="int" parameterType="map">
+		select count(1) from bs_employee_ext_reward 
+		<where>
+		    1 = 1
+		    <if test = "storeId != 0 and storeId != null"> and store_id = #{storeId}</if>
+		    <if test = "empId != 0 and empId != null"> and emp_id = #{empId}</if>
+		    <if test = "filter == 'day'">
+		        <if test = "startDay != null and endDay != null"> and update_time &gt;= #{startDay} and update_time &lt;= #{endDay}</if>
+		    </if>
+		    <if test = "filter == 'yesterday'">
+		        <if test = "startDay != null and endDay != null and startYesterday != null and endYesterday != null"> and ((update_time &gt;= #{startDay} and update_time &lt;= #{endDay}) or (update_time &gt;= #{startYesterday} and update_time &lt;= #{endYesterday}))</if>
+		    </if>
+		    <if test = "filter == 'week'">
+		        <if test = "startWeek != null and endWeek != null"> and update_time &gt;= #{startWeek} and update_time &lt;= #{endWeek}</if>
+		    </if>
+		    <if test = "filter == 'lastweek'">
+		        <if test = "startWeek != null and endWeek != null and startLastWeek != null and endLastWeek != null"> and ((update_time &gt;= #{startWeek} and update_time &lt;= #{endWeek}) or (update_time &gt;= #{startLastWeek} and update_time &lt;= #{endLastWeek}))</if>
+		    </if>
+		    <if test = "filter == 'month'">
+		        <if test = "startMonth != null and endMonth != null"> and update_time &gt;= #{startMonth} and update_time &lt;= #{endMonth}</if>
+		    </if>
+		    <if test = "filter == 'lastmonth'">
+		        <if test = "startMonth != null and endMonth != null and startLastMonth != null and endLastMonth != null"> and ((update_time &gt;= #{startMonth} and update_time &lt;= #{endMonth}) or (update_time &gt;= #{startLastMonth} and update_time &lt;= #{endLastMonth}))</if>
+		    </if>
+		</where> 
+	</select>
+	
+    <select id="getPage" resultMap="storeRankVoMap" parameterType="map">
+		<if test = "filter == 'day'">
+		    Select a.update_time as updateTime, a.day_count as count, a.day_money as score, b.nickname as empnickname, b.name as empname, b.emp_id as empId 
+			from bs_employee_ext_reward a left join bs_employee_info b
+			on b.emp_id = a.emp_id
+			<where>
+			    1 = 1
+			    <if test = "storeId != 0 and storeId != null"> and a.store_id = #{storeId}</if>
+		    	<if test = "empId != 0 and empId != null"> and a.emp_id = #{empId}</if>
+		    	<if test = "startDay != null and endDay != null"> and (update_time &gt;= #{startDay} and update_time &lt;= #{endDay})</if>
+			</where>
+			order by a.update_time desc
+        </if>
+        <if test = "filter == 'yesterday'">
+            Select a.update_time as updateTime, a.yesterday_count as count, a.yesterday_money as score, a.day_count as altercount, a.day_money as alterdata, b.nickname as empnickname, b.name as empname, b.emp_id as empId 
+			from bs_employee_ext_reward a left join bs_employee_info b
+			on b.emp_id = a.emp_id
+			<where>
+			    1 = 1
+			    <if test = "storeId != 0 and storeId != null"> and a.store_id = #{storeId}</if>
+		    	<if test = "empId != 0 and empId != null"> and a.emp_id = #{empId}</if>
+		    	<if test = "startDay != null and endDay != null and startYesterday != null and endYesterday != null"> and ((update_time &gt;= #{startDay} and update_time &lt;= #{endDay}) or (update_time &gt;= #{startYesterday} and update_time &lt;= #{endYesterday}))</if>
+			</where>
+			order by a.update_time desc
+        </if>
+        <if test = "filter == 'week'">
+			Select a.update_time as updateTime, a.week_count as count, a.week_money as score, b.nickname as empnickname, b.name as empname, b.emp_id as empId   
+			from bs_employee_ext_reward a left join bs_employee_info b
+			on b.emp_id = a.emp_id
+			<where>
+			    1 = 1
+			    <if test = "storeId != 0 and storeId != null"> and a.store_id = #{storeId}</if>
+		    	<if test = "empId != 0 and empId != null"> and a.emp_id = #{empId}</if>
+		    	<if test = "startWeek != null and endWeek != null"> and (update_time &gt;= #{startWeek} and update_time &lt;= #{endWeek})</if>
+			</where>
+			order by a.update_time desc
+        </if>
+        <if test = "filter == 'lastweek'">
+            Select a.update_time as updateTime, a.lastweek_count as count, a.lastweek_money as score, a.week_count as altercount, a.week_money as alterdata, b.nickname as empnickname, b.name as empname, b.emp_id as empId 
+			from bs_employee_ext_reward a left join bs_employee_info b
+			on b.emp_id = a.emp_id
+			<where>
+			    1 = 1
+			    <if test = "storeId != 0 and storeId != null"> and a.store_id = #{storeId}</if>
+		    	<if test = "empId != 0 and empId != null"> and a.emp_id = #{empId}</if>
+		    	<if test = "startWeek != null and endWeek != null and startLastWeek != null and endLastWeek != null"> and ((update_time &gt;= #{startWeek} and update_time &lt;= #{endWeek}) or (update_time &gt;= #{startLastWeek} and update_time &lt;= #{endLastWeek}))</if>
+			</where>
+			order by a.update_time desc
+        </if>
+        <if test = "filter == 'month'">
+			Select a.update_time as updateTime, a.month_count as count, a.month_money as score, b.nickname as empnickname, b.name as empname, b.emp_id as empId 
+			from bs_employee_ext_reward a left join bs_employee_info b
+			on b.emp_id = a.emp_id
+			<where>
+			    1 = 1
+			    <if test = "storeId != 0 and storeId != null"> and a.store_id = #{storeId}</if>
+		    	<if test = "empId != 0 and empId != null"> and a.emp_id = #{empId}</if>
+		    	<if test = "startMonth != null and endMonth != null"> and (update_time &gt;= #{startMonth} and update_time &lt;= #{endMonth})</if>
+			</where>
+			order by a.update_time desc
+        </if>
+        <if test = "filter == 'lastmonth'">
+			Select a.update_time as updateTime, a.lastmonth_count as count, a.lastmonth_money as score, a.month_count as altercount, a.month_money as alterdata, b.nickname as empnickname, b.name as empname, b.emp_id as empId 
+			from bs_employee_ext_reward a left join bs_employee_info b
+			on b.emp_id = a.emp_id
+			<where>
+			    1 = 1
+			    <if test = "storeId != 0 and storeId != null"> and a.store_id = #{storeId}</if>
+		    	<if test = "empId != 0 and empId != null"> and a.emp_id = #{empId}</if>
+		    	<if test = "startMonth != null and endMonth != null and startLastMonth != null and endLastMonth != null"> and ((update_time &gt;= #{startMonth} and update_time &lt;= #{endMonth}) or (update_time &gt;= #{startLastMonth} and update_time &lt;= #{endLastMonth}))</if>
+			</where>
+			order by a.update_time desc
+        </if>
+		<include refid="page" />
+	</select>
+	
+    <select id="getStoreDayDynamicByStoreId" resultMap="storeDynamicInfoVoMap">
+		Select sum(day_count) as daycount, sum(yesterday_count) as yesterdaycount, sum(day_money) as sumday, sum(yesterday_money) as sumyesterday
+		from bs_employee_ext_reward  
+		where store_id = #{storeId} and update_time &gt;= #{startDay} and update_time &lt;= #{endDay}
+	</select>
+	
+    <select id="getStoreYesterdayDynamicByStoreId" resultMap="storeDynamicInfoVoMap">
+		Select sum(day_count) as daycount, sum(yesterday_count) as yesterdaycount, sum(day_money) as sumday, sum(yesterday_money) as sumyesterday
+		from bs_employee_ext_reward  
+		where store_id = #{storeId} and update_time &gt;= #{startYesterday} and update_time &lt;= #{endYesterday}
+	</select>
+	
+    <select id="getEmployeeRewardRankDetail" resultMap="employeeRankDetailVoMap" parameterType="map">
+		Select a.day_money as daymoney, a.week_money as weekmoney, a.month_money as monthmoney, a.update_time as updatetime, b.nickname as empnickname, b.job_number as jobnumber
+		from bs_employee_ext_reward a, bs_employee_info b 
+		<where>
+			a.store_id = #{storeId} and a.emp_id = #{empId} and b.emp_id = a.emp_id
+		   	<if test = "startMonth != null and endMonth != null"> and update_time &gt;= #{startMonth} and update_time &lt;= #{endMonth}</if>
+		</where>
+	</select>
+	
+    <select id="getEmployeeIncomeBaseInfo" resultMap="employeeIncomeBaseInfoVoMap" parameterType="long">
+		Select a.emp_id as empId, sum(a.total_money) as totalmoney, (sum(a.total_money) - sum(a.cash_money)) as remainmoney, b.nickname as empnickname, b.name as empname, b.head_pic as headpic,b.level
+		from bs_employee_ext_reward a, bs_employee_info b 
+		where a.emp_id = #{empId} and b.emp_id = a.emp_id
+	</select>
+	
+    <select id="getEmployeeReward" resultMap="empExtRewardEntityMap">
+		select * from bs_employee_ext_reward  
+		<where>
+		    emp_id = #{empId}
+		    <if test="storeId != 0 and storeId != null"> and store_id = #{storeId}</if>
+		    <if test="limit != 0 and limit != null"> and total_money - cash_money > 0</if>
+		</where> 
+		order by id
+	</select>
+	
+</mapper>

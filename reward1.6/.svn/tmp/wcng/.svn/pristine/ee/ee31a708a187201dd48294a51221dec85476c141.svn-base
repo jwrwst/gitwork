@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util-4.0.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+        http://cxf.apache.org/jaxws 
+    	http://cxf.apache.org/schemas/jaxws.xsd
+        ">
+        
+	<!-- quartz 线程池 -->
+	<bean id="executor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		 <property name="corePoolSize" value="10" />
+		 <property name="maxPoolSize" value="100" />
+		 <property name="queueCapacity" value="500" />
+	</bean>
+	
+	<!-- 管理调度 可以有多个任务-->
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		 <property name="triggers">
+			  <list>  
+			   <!-- 定时扫描打赏员工未转账未成功的信息，给员工转账  -->
+			   <ref bean="rewardTransfer"/>
+			  </list>
+		 </property>
+		 <property name="taskExecutor" ref="executor" /> 
+	</bean>
+	
+	<!-- 定时执行转账 -->
+	<bean id="rewardTransferInfo" class="com.platform.rp.services.common.task.RewardTransferTask"></bean>
+
+    <bean id="rewardTransferInfoTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+	     <property name="targetObject" ref="rewardTransferInfo" />
+	    <!-- 方法 -->
+	     <property name="targetMethod" value="getRewardTransferInfo" />
+    </bean>
+
+   <!--  singleton="false" -->
+	<bean id="rewardTransfer" class="org.springframework.scheduling.quartz.CronTriggerBean">
+	     <property name="jobDetail" ref="rewardTransferInfoTask" />
+	     <!-- 服务启动后1分钟执行第一次 -->
+	     <!--   <property name="startDelay" value="60000"/> --> 
+	     <!-- 每天17点结算执行一次 -->
+	     <property name="cronExpression">
+			<value>0 50 09,15 * * ?</value>
+		 </property>	
+	</bean>
+	
+</beans>

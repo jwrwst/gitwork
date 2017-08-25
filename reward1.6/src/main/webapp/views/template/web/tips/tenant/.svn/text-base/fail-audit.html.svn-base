@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	  <head>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	    <title>众赏</title>
+	    <link href="${basepath}/assets/plugin/mui/dist/css/mui.min.css" rel="stylesheet"/>
+	    <link href="${basepath}/assets/def/css/tips.css" rel="stylesheet"/>
+	    <style>
+	    	 html,body{
+	    		margin: 0;
+	    		overflow-x: hidden;
+	    	} 
+	    </style>
+	  </head>
+	  	
+	    <!--页面主结构开始-->
+		<header class="mui-bar mui-bar-nav">
+		    <span class="mui-pull-right">
+		            <span class="mui-icon iconfont icon-up" style="position: absolute;left:90px;top:6px;color:#cccccc;font-size:12px !important;"></span>								
+  					<select class="mui-btn mui-btn-block mui-pull-right" style="width:96px;background: transparent;position: absolute;left: 0;" name="dateType" id="dateType">	
+  					    <option value="0">很久以前</option>						
+					</select>	
+		     </span> 
+		     <button type="button" class="mui-btn mui-btn-warning mui-btn-block" style="font-size: 16px;width: 30%;float:right;margin-right: 2%;border-radius: 8px;">注册新商户</button>	
+		</header> 
+		<div>
+			<span style="display: block;text-align: center;font-size: 24px;margin-top: 90px;">很抱歉，您未通过审核</span>
+			<p style="margin-left: 50px;font-size: 14px;margin-top: 25px;margin-bottom: 0;">原因:执照照片不清晰。</p>
+			<p style="margin-left: 50px;font-size: 14px;margin-top: 2px;paddding: 0;margin-bottom: 0;">如您对审核有疑问，请联系客服</p>
+			<p style="margin-left: 50px;font-size: 14px;margin-top: 2px;paddding: 0;margin-bottom: 0;">13051706955</p>
+		</div>
+		<button type="button" class="mui-btn mui-btn-warning mui-btn-block" id="abox" style="display: block;font-size: 20px;width: 60%;position: absolute;left: 20%;bottom: 15%;height: 40px;line-height: 40px;padding: 0;font-size: 16px;">重新提交审核</button>	
+					
+	  </body>
+	  <script src="${basepath}/assets/plugin/require.js"></script>
+	  <script type="text/javascript" src="${basepath}/assets/def/js/tips/tips.js"></script>
+
+</html>			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

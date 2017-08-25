@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/store/core/dao/entity
+END
+BsStoreEmployeeDividedEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/store/core/dao/entity/BsStoreEmployeeDividedEntity.java
+END
+BsStoreExtStatisticalEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/store/core/dao/entity/BsStoreExtStatisticalEntity.java
+END
+BsStoreAuthDetailEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/store/core/dao/entity/BsStoreAuthDetailEntity.java
+END
+BsStoreAuthEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/store/core/dao/entity/BsStoreAuthEntity.java
+END
+ItRewardInfoEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/store/core/dao/entity/ItRewardInfoEntity.java
+END
+ItEvaluateInfoEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/store/core/dao/entity/ItEvaluateInfoEntity.java
+END
+BsStoreExtRewardEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/store/core/dao/entity/BsStoreExtRewardEntity.java
+END
+BsStoreEmployeeEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/store/core/dao/entity/BsStoreEmployeeEntity.java
+END
+BsStoreInfoEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/work/!svn/ver/1935/branch/reward_1.6/src/main/java/com/platform/rp/services/store/core/dao/entity/BsStoreInfoEntity.java
+END

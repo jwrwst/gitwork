@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>众赏</title>
+<link href="${basepath}/assets/plugin/mui/dist/css/mui.min.css"
+	rel="stylesheet" />
+<link href="${basepath}/assets/def/css/tips.css" rel="stylesheet" />
+<link href="${basepath}/assets/def/css/axis.css" rel="stylesheet" />
+<link rel="shortcut icon" href="${basepath}/assets/favicon.ico" />
+<style type="text/css">
+.mui-search .mui-placeholder .mui-icon {
+	position: absolute;
+	left: 5px;
+	top: 45%;
+}
+}
+</style>
+</head>
+
+<body>
+	<!--页面主结构开始-->
+	<div id="center" class="mui-views">
+		<div class="mui-view">
+			<div class="mui-navbar"></div>
+			<div class="mui-pages"></div>
+		</div>
+	</div>
+
+	<div id="regpage">
+
+		<!--页面标题栏开始-->
+		<div class="mui-navbar-inner mui-bar mui-bar-nav">
+			<span class="mui-pull-left"> <span
+				class="mui-icon iconfont icon-up"
+				style="position: absolute; left: 90px; top: 6px; color: #cccccc; font-size: 12px !important;"></span>
+				<select class="mui-btn mui-btn-block"
+				style="width: 96px; background: transparent; padding-right: 20px; text-align: left; position: absolute;"
+				name="storeName">
+			</select>
+			</span>
+			<!-- <h1 class="mui-title">导航栏</h1> -->
+			<a class="mui-btn-link mui-pull-right" style="color: #EA4F16;">账户与安全</a>
+		</div>
+		<div class="mui-page-content" id="scroll-content">
+			<div class="scroller">
+
+				<div class="plat-content">
+					<div class="mui-content"
+						style="border-bottom: 1px dashed lightgray;">
+						<span class="mui-pull-left"
+							style="width: 35%; height: 50px; margin-bottom: 5px;"> <span
+							class="mui-icon iconfont icon-up"
+							style="position: absolute; left: 90px; top: 6px; color: #cccccc; font-size: 12px !important;"></span>
+							<select class="mui-btn mui-btn-block"
+							style="width: 96px; background: transparent; padding-right: 20px; text-align: left; position: absolute;"
+							name="storeName">
+						</select>
+						</span>
+						<div class="mui-input-row mui-search"
+							style="width: 65%; clear: none;">
+							<input type="search" class="mui-input-clear" placeholder=""
+								style="margin-bottom: 5px; background: #fff;">
+						</div>
+
+
+					</div>
+					<div class="mui-content-padded"
+						style="margin: 5px 10px; display: inline;">
+						<a class="mui-pull-left" style="color: #EA4F16;"> <span
+							class="mui-icon mui-icon-compose"></span>
+						</a> <a class="mui-pull-right" style="color: #EA4F16;"><span
+							class="mui-icon mui-icon-plusempty"></span></a>
+					</div>
+					<div class="mui-content">
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell"><a
+								class="mui-navigate-right"> 众赏旗舰店1 </a></li>
+							<li class="mui-table-view-cell"><a
+								class="mui-navigate-right"> 众赏旗舰店2 </a></li>
+							<li class="mui-table-view-cell"><a
+								class="mui-navigate-right"> 众赏旗舰店3 </a></li>
+						</ul>
+					</div>
+
+				</div>
+			</div>
+			[#include '../store/model/menu.html']
+</body>
+
+<script src="${basepath}/assets/plugin/require.js"></script>
+<script type="text/javascript"
+	src="${basepath}/assets/def/js/tips/tips.js"></script>
+<!--打赏纪录  -->
+</html>

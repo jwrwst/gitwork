@@ -1,0 +1,248 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.platform.rp.services.organize.core.dao.BsMerchantsInfoDAO">
+    
+    <resultMap type="com.platform.rp.services.organize.core.dao.entity.BsMerchantsInfoEntity" id="bsMerchantsInfoEntity">
+        <result column="org_id" property="orgId" />
+        <result column="org_code" property="orgCode" />
+       	<result column="org_name" property="orgName" />
+       	<result column="reward_money" property="rewardMoney" />
+		<result column="isUpdateMoney" property="isUpdateMoney" />
+		<result column="isedit" property="isedit" />
+		<result column="isedit_val1" property="iseditVal1" />
+		<result column="isedit_val2" property="iseditVal2" />
+		<result column="isedit_val3" property="iseditVal3" />
+		<result column="bus_start_time" property="busStartTime" />
+		<result column="bus_end_time" property="busEndTime" />
+		<result column="email" property="email" />
+		<result column="wish" property="wish" />
+		<result column="account" property="account" />
+		<result column="password" property="password" />
+		<result column="update_user" property="updateUser" />
+		<result column="update_time" property="updateTime" />
+		<result column="orgStatus" property="status" />
+		<result column="qrcode" property="qrcode" />
+		<result column="m_key" property="mkey" />
+		
+		<result column="telphone" property="telphone" />
+		<result column="address" property="address" />
+		<result column="photo" property="photo" />
+		<result column="store_type" property="store_type" />
+		<result column="auth_type" property="authType" />
+		<result column="code_type" property="codeType" />
+		<result column="schema" property="schema" />
+		<result column="remark" property="remark" />
+				
+		<result column="area_id" property="areaId" />
+		<result column="city_id" property="cityId" />
+		<result column="province_id" property="provinceId" />
+		<result column="country_id" property="countryId" />
+    </resultMap>
+    
+    <resultMap type="com.platform.rp.services.employee.core.dao.entity.BsEmployeeInfoEntity" id="bsEmployeeInfoEntity">
+       	<result column="emp_id" property="empId" />
+		<result column="name" property="name" />		
+		<result column="nickname" property="nickname" />	
+		<result column="wx_account" property="wxAccount" />		
+		<result column="mobile" property="mobile" />
+    </resultMap>
+    
+    <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="com.platform.rp.services.organize.core.dao.entity.BsMerchantsInfoEntity">
+		insert into bs_merchants_info(org_code,reward_money,isUpdateMoney,isedit,bus_start_time,bus_end_time,wish,email,account,password,update_user,update_time,telphone,address,photo,store_type,auth_type,create_user,
+		isedit_val1,isedit_val2,isedit_val3,code_type,area_id,city_id,province_id,country_id,merchant_name,legal_name)
+		values(#{orgCode},#{rewardMoney},#{isUpdateMoney},#{isedit},#{busStartTime},#{busEndTime},#{wish},#{email},#{account},#{password},#{updateUser},#{updateTime},#{telphone},#{address},#{photo},#{store_type},#{authType},#{empId},
+		#{iseditVal1},#{iseditVal2},#{iseditVal3},#{codeType},#{areaId}, #{cityId}, #{provinceId}, #{countryId},#{name},#{legalName})
+	</insert>
+	
+    <update id="update" parameterType="com.platform.rp.services.organize.core.dao.entity.BsMerchantsInfoEntity">
+		update bs_merchants_info
+		<set>
+			<if test="rewardMoney != null and rewardMoney != ''"> reward_money = #{rewardMoney}, </if>
+			<if test="isUpdateMoney != null and isUpdateMoney != ''"> isUpdateMoney = #{isUpdateMoney}, </if>
+			<if test="isedit != null and isedit != ''"> isedit = #{isedit}, </if>
+			<if test="busStartTime != null and busStartTime != ''"> bus_start_time = #{busStartTime}, </if>
+			<if test="busEndTime != null and busEndTime != ''"> bus_end_time = #{busEndTime}, </if>
+			<if test="wish != null and wish != ''"> wish = #{wish}, </if>
+			<if test="email != null and email != ''"> email = #{email}, </if>
+			<if test="updateUser != null and updateUser != ''"> update_user = #{updateUser}, </if>
+			<if test="telphone != null and telphone != ''"> telphone = #{telphone}, </if>
+			<if test="address != null and address != ''"> address = #{address}, </if>
+			<if test="photo != null and photo != ''"> photo = #{photo}, </if>
+			<if test="store_type != null and store_type != ''"> store_type = #{store_type}, </if>
+			<if test="codeType != null and codeType != ''"> code_type = #{codeType}, </if>
+			<if test="authType != null and authType != ''"> auth_type = #{authType}, </if>
+			
+			<if test="name != null and name != ''"> merchant_name = #{name}, </if>
+			<if test="legalName != null and legalName != ''"> legal_name = #{legalName}, </if>
+			
+			<if test="status != 0"> status = #{status}, </if>
+			<if test="iseditVal1 != null and iseditVal1 != ''"> isedit_val1 = #{iseditVal1}, </if>
+			<if test="iseditVal2 != null and iseditVal2 != ''"> isedit_val2 = #{iseditVal2}, </if>
+			<if test="iseditVal3 != null and iseditVal3 != ''"> isedit_val3 = #{iseditVal3}, </if>
+			
+			
+			<if test="areaId != null and areaId != ''"> area_id = #{areaId}, </if>
+			<if test="areaId == '-1'"> area_id = null, </if>
+			<if test="cityId != null and cityId != ''"> city_id = #{cityId}, </if>
+			<if test="provinceId != null and provinceId != ''"> province_id = #{provinceId}, </if>
+			<if test="countryId != null and countryId != ''"> country_id = #{countryId}, </if>
+			update_time = now()
+		</set>
+		<where>
+		    org_code = #{orgCode}		    
+		</where>
+	</update>
+	
+	
+    <update id="updatePassword" parameterType="string">
+		update bs_merchants_info
+		<set>
+			<if test="password != null and password != ''"> password = #{password}, </if>
+			update_time = now()
+		</set>
+		<where>
+		    account = #{username}		    
+		</where>
+	</update>
+        
+    <update id="updateUserName" parameterType="string">
+		update bs_merchants_info
+		<set>
+			<if test="password != null and password != ''"> password = #{password}, </if>
+			<if test="username != null and username != ''"> account = #{username}, </if>
+			update_time = now()
+		</set>
+		<where>
+		    org_code = #{orgCode}			    
+		</where>
+	</update>
+        
+	<select id="get" resultMap="bsMerchantsInfoEntity"  parameterType="long">
+		select * from bs_merchants_info m where m.status !=3 and id = #{id}
+	</select>
+    
+    <select id="getInfoByOrgCode" resultMap="bsMerchantsInfoEntity" parameterType="string">
+         select t.*,b.schema from bs_merchants_info t left join bs_organize b on t.org_code = b.org_code
+         <where>            
+                t.org_code = #{orgCode}           
+         </where>         
+    </select>
+    
+    <select id="getEmpInfoByOrgCode" resultMap="bsEmployeeInfoEntity" parameterType="string">
+         select b.emp_id,b.name,b.nickname,b.wx_account,b.mobile from bs_merchants_info t left join bs_employee_info b on t.create_user = b.emp_id
+         <where>            
+                t.org_code = #{orgCode}           
+         </where>         
+    </select>
+    
+  	 <select id="getInfo" resultMap="bsMerchantsInfoEntity" parameterType="com.platform.rp.services.organize.core.dao.entity.BsMerchantsInfoEntity">
+         select t.*,t.org_code,t.account,t.password,b.status orgStatus,b.qrcode,b.m_key,b.org_name,b.remark,b.schema from bs_merchants_info t left join bs_organize b on t.org_code = b.org_code
+         <where>   
+             1=1         
+              <if test="account != null and account != ''"> and account = #{account} </if>
+			  <if test="password != null and password != ''"> and password = #{password} </if>   
+			  <if test="orgCode != null and orgCode != ''"> and t.org_code = #{orgCode}</if>            
+         </where>         
+    </select>
+    
+    <select id="getInfoByStoreID" resultMap="bsMerchantsInfoEntity" parameterType="long">
+         select a.*,b.schema from bs_merchants_info a, bs_merchants_store b 
+         where a.org_code = b.schema and b.store_id = #{storeId}
+    </select>
+  
+    <select id="getPreMerchantsInfoByStoreID" resultMap="bsMerchantsInfoEntity" parameterType="long">
+         select a.*,b.schema from bs_merchants_info a, bs_merchants_store b 
+         where a.org_code = b.org_code and b.store_id = #{storeId}
+    </select>
+  
+    <!-- 查询注册的商户信息 -->
+   <select id="findRegisterMerchantsEntity" resultType="com.platform.rp.services.organize.core.dao.entity.RegisterMerchantsEntity" parameterType="string">  
+		select 
+			e.`name`,e.mobile,e.emp_id AS empId,
+			o.org_name AS merName,o.org_code AS orgCode,o.`status`,
+			m.store_type as type,m.address,m.telphone as phone,m.email,m.photo as filePath,m.id AS merId,m.account,m.code_type as codeType,
+			m.area_id as areaId,m.city_id as cityId,m.province_id as provinceId,
+			t.store_name as storeName,t.address as storeAddress,t.telphone as storeMobile,t.store_id AS storeId
+		from 
+			bs_organize o 
+			LEFT JOIN bs_merchants_info m on m.org_code = o.org_code
+			LEFT JOIN bs_merchants_employee me on me.org_code = m.org_code
+			LEFT JOIN bs_employee_info e on me.emp_id = e.emp_id
+			LEFT JOIN (
+				select ms.org_code,s.store_id,s.store_name,s.address,s.telphone from bs_store_info s
+				LEFT JOIN bs_merchants_store ms on ms.store_id = s.store_id
+				where ms.`status` = 1
+				GROUP BY ms.org_code
+		)t on t.org_code  = o.org_code
+         <where> m.status = 1
+                <if test="openId != '-1'"> AND e.wx_account = #{openId} </if>
+                <if test="orgCode != null"> AND o.org_code = #{orgCode}</if>
+                <if test="status != null"> AND o.status = #{status}</if>
+         </where>         
+    </select> 
+    
+  
+    <!-- 查询注册的商户信息 -->
+   <select id="getRegisterMerchantsEntity" resultType="com.platform.rp.services.organize.core.dao.entity.RegisterMerchantsEntity" parameterType="string">  
+		select 
+						e.`name`,
+			e.mobile,
+			e.emp_id AS empId,
+			o.org_name AS orgName,
+			o.org_code AS orgCode,
+			o.`status`,
+			o.remark,
+			m.`merchant_name` AS merName,
+			m.store_type AS type,
+			m.legal_name as legalName,
+			m.address,
+			m.telphone AS phone,
+			m.email,
+			m.photo AS filePath,
+			m.id AS merId,
+			m.account,
+			m.code_type AS codeType,
+			m.area_id AS areaId,
+			m.city_id AS cityId,
+			m.province_id AS provinceId
+		from 
+			bs_organize o 
+			LEFT JOIN bs_merchants_info m on m.org_code = o.org_code
+			LEFT JOIN bs_merchants_employee me on me.org_code = m.org_code
+			LEFT JOIN bs_employee_info e on me.emp_id = e.emp_id
+         <where> m.status = 1
+                <if test="openId != '-1'"> AND e.wx_account = #{openId} </if>
+                <if test="orgCode != null"> AND o.org_code = #{orgCode}</if>
+                <if test="status != null"> AND o.status = #{status}</if>
+         </where>         
+    </select> 
+    
+    <!-- 查询注册的商户信息 -->
+   <select id="getMerchantsByUsername" resultType="com.platform.rp.services.organize.core.dao.entity.BsMerchantsInfoEntity" parameterType="string">  
+		select * from  bs_merchants_info m
+         <where> 
+              m.status !=3  and
+              m.account = #{username}
+         </where>         
+    </select>
+    <!-- 根据手机号查询商铺信息 -->
+    <select id="queryMerchantInfoByPhone" resultType="com.platform.rp.services.organize.core.dao.entity.BsMerchantsInfoEntity" parameterType="string">
+       select * from  bs_merchants_info m
+       <where> 
+             m.account=#{phone}
+       </where>         
+    </select>
+    <!-- 根据电话号码重置密码 -->
+    <update id="updatePasswordByPhone" parameterType="string">
+       UPDATE bs_merchants_info SET PASSWORD=#{password}
+       <where> 
+             account=#{phone}
+       </where>         
+    </update>
+    <!-- 修改绑定手机号 -->
+   	<update id="updateBindMobile" parameterType="string">
+   	    update bs_merchants_info SET account=#{newMobile}
+   	    <where>
+   	        account=#{phone}
+   	    </where>
+   	</update>
+</mapper>
