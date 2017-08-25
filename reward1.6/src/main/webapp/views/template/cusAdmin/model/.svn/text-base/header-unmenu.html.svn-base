@@ -1,73 +1,0 @@
-<!DOCTYPE html>
-
-<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
-<!--[if !IE]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
-<!-- BEGIN HEAD -->
-<head>
-	<meta charset="utf-8" />
-	<title>顶顶科技 | 商户平台</title>
-	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-	<meta content="" name="description" />
-	<meta content="" name="author" />
-	<!-- BEGIN GLOBAL MANDATORY STYLES -->
-	<link href="media/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-	<link href="media/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
-	<link href="media/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-	<link href="media/css/style-metro.css" rel="stylesheet" type="text/css"/>
-	<link href="media/css/style.css" rel="stylesheet" type="text/css"/>
-	<link href="media/css/style-responsive.css" rel="stylesheet" type="text/css"/>
-	<link href="media/css/default.css" rel="stylesheet" type="text/css" id="style_color"/>
-	<link href="media/css/uniform.default.css" rel="stylesheet" type="text/css"/>
-	<!-- END GLOBAL MANDATORY STYLES -->
-	<!-- BEGIN PAGE LEVEL STYLES --> 
-	<link href="media/css/jquery.gritter.css" rel="stylesheet" type="text/css"/>
-	<link href="media/css/daterangepicker.css" rel="stylesheet" type="text/css" />
-	<link href="media/css/fullcalendar.css" rel="stylesheet" type="text/css"/>
-	<link href="media/css/jqvmap.css" rel="stylesheet" type="text/css" media="screen"/>
-	<link href="media/css/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen"/>		<link rel="stylesheet" type="text/css" href="media/css/select2_metro.css" />	<link rel="stylesheet" href="media/css/DT_bootstrap.css" />		<link rel="stylesheet" type="text/css" href="media/css/daterangepicker.css" />	<link rel="stylesheet" type="text/css" href="media/css/datetimepicker.css" />		<link rel="stylesheet" type="text/css" href="media/css/datepicker.css" />	<link rel="stylesheet" type="text/css" href="media/css/timepicker.css" />		<link rel="stylesheet" type="text/css" href="media/css/multi-select-metro.css" />		<link rel="stylesheet" type="text/css" href="media/css/chosen.css" />
-	<!-- END PAGE LEVEL STYLES -->
-	<link rel="shortcut icon" href="/assets/favicon.ico" />
-</head>
-<!-- END HEAD -->
-<!-- BEGIN BODY -->
-<body class="page-header-fixed" >
-	<!-- BEGIN HEADER -->
-	<div class="header navbar navbar-inverse navbar-fixed-top">
-		<!-- BEGIN TOP NAVIGATION BAR -->
-		<div class="navbar-inner">
-			<div class="container-fluid">
-				<span class="brand"  style="width:80%;">
-<!-- 				<img src="media/image/logo.png" alt="logo"/> -->					<a href="index.xhtml" style="color:#fff;text-decoration: none;">顶顶科技-商户管理平台</a><a id="updatedBnt" href="#updatedInfo" role="button" data-toggle="modal" style="font-size:13px;margin-left:30px;color:#fff;">当前版本V1.6，点击查看更新说明</a>
-				</span>
-				<a href="javascript:;" class="btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
-					<img src="media/image/menu-toggler.png" alt="" />
-				</a>          	      
-				<ul class="nav pull-right">
-					
-					<!-- END TODO DROPDOWN -->					<li class="dropdown" id="header_task_bar">						<a href="#" class="dropdown-toggle" data-toggle="dropdown">						<i class="icon-tasks"></i>						<span class="badge" id = "orgListSizeId">1</span>						</a>						<ul class="dropdown-menu extended tasks" id="orgListId">							<li>								<p>商户信息</p>														</li>													</ul>					</li>
-					<!-- BEGIN USER LOGIN DROPDOWN -->
-					<li class="dropdown user">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						<img alt="" src="media/image/logo.png" style="width:30px;height:30px;"/>
-						<span class="username">管理员</span>
-						<i class="icon-angle-down"></i>
-						</a>
-						<ul class="dropdown-menu">							<li style="display:none;"><a href="index.xhtml"><i class="icon-home"></i> 管理中心</a></li>
-							<li><a href="account.xhtml"><i class="icon-user"></i> 账号与安全</a></li>							
-							<li class="divider"></li>
-							<li><a href="login.html"  onclick="window.localStorage.removeItem('orgCode')"><i class="icon-key"></i> 退出</a></li>
-						</ul>
-					</li>
-					<!-- END USER LOGIN DROPDOWN -->
-				</ul>
-				<!-- END TOP NAVIGATION MENU --> 
-			</div>
-		</div>
-		<!-- END TOP NAVIGATION BAR -->
-	</div>
-	<!-- END HEADER -->
-	<!-- BEGIN CONTAINER -->
-	<div class="page-container"  style='background:#fff !important; width:100%; display:block; overflow-y:scroll;'>
-		
-					

@@ -1,40 +1,0 @@
-10
-
-dir
-1941
-https://tangj/svn/work/branch/reward_1.6/src/main/java/com/platform/rp/services/wechat/external
-https://tangj/svn/work
-
-
-
-2016-06-06T10:31:42.577274Z
-1760
-wangst
-
-
-svn:special svn:externals svn:needs-lock
-
-
-
-
-
-
-
-
-
-
-
-57fe7d2a-0271-d044-88a7-87d00fcb0546
-
-action
-dir
-
-common
-dir
-
-rest
-dir
-
-vo
-dir
-
